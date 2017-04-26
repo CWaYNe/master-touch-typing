@@ -1,0 +1,316 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B0EEE4AA1EB0833C00253BCF /* ResourcePath.mm in Sources */ = {isa = PBXBuildFile; fileRef = B0EEE4A91EB0833C00253BCF /* ResourcePath.mm */; };
+		B0EEE4AD1EB0833C00253BCF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0EEE4AC1EB0833C00253BCF /* main.cpp */; };
+		B0EEE4B01EB0833C00253BCF /* cute_image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B0EEE4AF1EB0833C00253BCF /* cute_image.jpg */; };
+		B0EEE4B21EB0833C00253BCF /* nice_music.ogg in Resources */ = {isa = PBXBuildFile; fileRef = B0EEE4B11EB0833C00253BCF /* nice_music.ogg */; };
+		B0EEE4B41EB0833C00253BCF /* sansation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B0EEE4B31EB0833C00253BCF /* sansation.ttf */; };
+		B0EEE4B61EB0833C00253BCF /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B0EEE4B51EB0833C00253BCF /* icon.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B0EEE4A41EB0833C00253BCF /* master-touch-typing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "master-touch-typing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0EEE4A81EB0833C00253BCF /* master-touch-typing-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "master-touch-typing-Info.plist"; sourceTree = "<group>"; };
+		B0EEE4A91EB0833C00253BCF /* ResourcePath.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ResourcePath.mm; sourceTree = "<group>"; };
+		B0EEE4AB1EB0833C00253BCF /* ResourcePath.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ResourcePath.hpp; sourceTree = "<group>"; };
+		B0EEE4AC1EB0833C00253BCF /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		B0EEE4AF1EB0833C00253BCF /* cute_image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cute_image.jpg; sourceTree = "<group>"; };
+		B0EEE4B11EB0833C00253BCF /* nice_music.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = nice_music.ogg; sourceTree = "<group>"; };
+		B0EEE4B31EB0833C00253BCF /* sansation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sansation.ttf; sourceTree = "<group>"; };
+		B0EEE4B51EB0833C00253BCF /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B0EEE4A01EB0833B00253BCF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B0EEE49A1EB0833B00253BCF = {
+			isa = PBXGroup;
+			children = (
+				B0EEE4A61EB0833C00253BCF /* master-touch-typing */,
+				B0EEE4A51EB0833C00253BCF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B0EEE4A51EB0833C00253BCF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B0EEE4A41EB0833C00253BCF /* master-touch-typing.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B0EEE4A61EB0833C00253BCF /* master-touch-typing */ = {
+			isa = PBXGroup;
+			children = (
+				B0EEE4A91EB0833C00253BCF /* ResourcePath.mm */,
+				B0EEE4AB1EB0833C00253BCF /* ResourcePath.hpp */,
+				B0EEE4AC1EB0833C00253BCF /* main.cpp */,
+				B0EEE4AE1EB0833C00253BCF /* Resources */,
+				B0EEE4A71EB0833C00253BCF /* Supporting Files */,
+			);
+			path = "master-touch-typing";
+			sourceTree = "<group>";
+		};
+		B0EEE4A71EB0833C00253BCF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B0EEE4A81EB0833C00253BCF /* master-touch-typing-Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B0EEE4AE1EB0833C00253BCF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B0EEE4AF1EB0833C00253BCF /* cute_image.jpg */,
+				B0EEE4B11EB0833C00253BCF /* nice_music.ogg */,
+				B0EEE4B31EB0833C00253BCF /* sansation.ttf */,
+				B0EEE4B51EB0833C00253BCF /* icon.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B0EEE4A31EB0833B00253BCF /* master-touch-typing */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B0EEE4B91EB0833C00253BCF /* Build configuration list for PBXNativeTarget "master-touch-typing" */;
+			buildPhases = (
+				B0EEE49F1EB0833B00253BCF /* Sources */,
+				B0EEE4A01EB0833B00253BCF /* Frameworks */,
+				B0EEE4A11EB0833B00253BCF /* Resources */,
+				B0EEE4A21EB0833B00253BCF /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "master-touch-typing";
+			productName = "master-touch-typing";
+			productReference = B0EEE4A41EB0833C00253BCF /* master-touch-typing.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B0EEE49B1EB0833B00253BCF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = WayneChang;
+				TargetAttributes = {
+					B0EEE4A31EB0833B00253BCF = {
+						CreatedOnToolsVersion = 8.3.1;
+						DevelopmentTeam = 3JLWU9ZHMM;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = B0EEE49E1EB0833B00253BCF /* Build configuration list for PBXProject "master-touch-typing" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B0EEE49A1EB0833B00253BCF;
+			productRefGroup = B0EEE4A51EB0833C00253BCF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B0EEE4A31EB0833B00253BCF /* master-touch-typing */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B0EEE4A11EB0833B00253BCF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0EEE4B61EB0833C00253BCF /* icon.png in Resources */,
+				B0EEE4B41EB0833C00253BCF /* sansation.ttf in Resources */,
+				B0EEE4B21EB0833C00253BCF /* nice_music.ogg in Resources */,
+				B0EEE4B01EB0833C00253BCF /* cute_image.jpg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B0EEE4A21EB0833B00253BCF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This shell script simply copies required SFML dylibs/frameworks into the application bundle frameworks folder.\n# If you're using static libraries (which is not recommended) you should remove this script from your project.\n\n# SETTINGS\nCMAKE_INSTALL_FRAMEWORK_PREFIX=\"/Library/Frameworks\"\nCMAKE_INSTALL_LIB_PREFIX=\"/usr/local/lib\"\nFRAMEWORKS_FULL_PATH=\"$BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH/\"\n\n# Are we building a project that uses frameworks or dylibs?\ncase \"$SFML_BINARY_TYPE\" in\n    DYLIBS)\n        frameworks=\"false\"\n        ;;\n    *)\n        frameworks=\"true\"\n        ;;\nesac\n\n# Echoes to stderr\nerror () # $* message to display\n{\n    echo $* 1>&2\n    exit 2\n}\n\nassert () # $1 is a boolean, $2...N is an error message\n{\n    if [ $# -lt 2 ]\n    then\n        error \"Internal error in assert: not enough args\"\n    fi\n\n    if [ $1 -ne 0 ]\n    then\n        shift\n        error \"$*\"\n    fi\n}\n\nforce_remove () # $@ is some paths\n{\n    test $# -ge 1\n    assert $? \"force_remove() requires at least one parameter\"\n    rm -fr $@\n    assert $? \"couldn't remove $@\"\n}\n\ncopy () # $1 is a source, $2 is a destination\n{\n    test $# -eq 2\n    assert $? \"copy() requires two parameters\"\n    ditto \"$1\" \"$2\"\n    assert $? \"couldn't copy $1 to $2\"\n}\n\nrequire () # $1 is a SFML module like 'system' or 'audio'\n{\n    dest=\"$BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH/\"\n\n    if [ -z \"$1\" ]\n    then\n        error \"require() requires one parameter!\"\n    else\n        # clean potentially old stuff\n        force_remove \"$dest/libsfml-$1\"*\n        force_remove \"$dest/sfml-$1.framework\"\n\n        # copy SFML libraries\n        if [ \"$frameworks\" = \"true\" ]\n        then\n            source=\"$CMAKE_INSTALL_FRAMEWORK_PREFIX/sfml-$1.framework\"\n            target=\"sfml-$1.framework\"\n        elif [ \"$SFML_LINK_DYLIBS_SUFFIX\" = \"-d\" ]\n        then\n            source=\"$CMAKE_INSTALL_LIB_PREFIX/libsfml-$1-d.dylib\"\n            target=\"`readlink $source`\"\n        else\n            source=\"$CMAKE_INSTALL_LIB_PREFIX/libsfml-$1.dylib\"\n            target=\"`readlink $source`\"\n        fi\n\n        copy \"$source\" \"$dest/$target\"\n\n        # copy extra dependencies\n        if [ \"$1\" = \"audio\" ]\n        then\n            # copy \"FLAC\" \"ogg\" \"vorbis\" \"vorbisenc\" \"vorbisfile\" \"OpenAL\" frameworks too\n            for f in \"FLAC\" \"ogg\" \"vorbis\" \"vorbisenc\" \"vorbisfile\" \"OpenAL\"\n            do\n                copy \"$CMAKE_INSTALL_FRAMEWORK_PREFIX/$f.framework\" \"$dest/$f.framework\"\n            done\n        elif [ \"$1\" = \"graphics\" ]\n        then\n            copy \"$CMAKE_INSTALL_FRAMEWORK_PREFIX/freetype.framework\" \"$dest/freetype.framework\"\n        fi\n    fi\n}\n\nif [ -n \"$SFML_SYSTEM\" ]\nthen\n    require \"system\"\nfi\n\nif [ -n \"$SFML_AUDIO\" ]\nthen\n    require \"audio\"\nfi\n\nif [ -n \"$SFML_NETWORK\" ]\nthen\n    require \"network\"\nfi\n\nif [ -n \"$SFML_WINDOW\" ]\nthen\n    require \"window\"\nfi\n\nif [ -n \"$SFML_GRAPHICS\" ]\nthen\n    require \"graphics\"\nfi\n\n                ";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B0EEE49F1EB0833B00253BCF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0EEE4AD1EB0833C00253BCF /* main.cpp in Sources */,
+				B0EEE4AA1EB0833C00253BCF /* ResourcePath.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		B0EEE4B71EB0833C00253BCF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				FRAMEWORK_SEARCH_PATHS = (
+					/Library/Frameworks/,
+					"$(inherited)",
+				);
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include/,
+					"$(inherited)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib/,
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"$(SFML_SYSTEM)",
+					"$(SFML_WINDOW)",
+					"$(SFML_GRAPHICS)",
+					"$(SFML_AUDIO)",
+					"$(SFML_NETWORK)",
+				);
+				SFML_AUDIO = "$(SFML_LINK_PREFIX) sfml-audio$(SFML_LINK_SUFFIX)";
+				SFML_BINARY_TYPE = FRAMEWORKS;
+				SFML_GRAPHICS = "$(SFML_LINK_PREFIX) sfml-graphics$(SFML_LINK_SUFFIX)";
+				SFML_LINK_DYLIBS_PREFIX = "-l";
+				SFML_LINK_DYLIBS_SUFFIX = "";
+				SFML_LINK_FRAMEWORKS_PREFIX = "-framework";
+				SFML_LINK_FRAMEWORKS_SUFFIX = "";
+				SFML_LINK_PREFIX = "$(SFML_LINK_$(SFML_BINARY_TYPE)_PREFIX)";
+				SFML_LINK_SUFFIX = "$(SFML_LINK_$(SFML_BINARY_TYPE)_SUFFIX)";
+				SFML_NETWORK = "$(SFML_LINK_PREFIX) sfml-network$(SFML_LINK_SUFFIX)";
+				SFML_SYSTEM = "$(SFML_LINK_PREFIX) sfml-system$(SFML_LINK_SUFFIX)";
+				SFML_WINDOW = "$(SFML_LINK_PREFIX) sfml-window$(SFML_LINK_SUFFIX)";
+				SUPPORTED_PLATFORMS = macosx;
+			};
+			name = Debug;
+		};
+		B0EEE4B81EB0833C00253BCF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				FRAMEWORK_SEARCH_PATHS = (
+					/Library/Frameworks/,
+					"$(inherited)",
+				);
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include/,
+					"$(inherited)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib/,
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"$(SFML_SYSTEM)",
+					"$(SFML_WINDOW)",
+					"$(SFML_GRAPHICS)",
+					"$(SFML_AUDIO)",
+					"$(SFML_NETWORK)",
+				);
+				SFML_AUDIO = "$(SFML_LINK_PREFIX) sfml-audio$(SFML_LINK_SUFFIX)";
+				SFML_BINARY_TYPE = FRAMEWORKS;
+				SFML_GRAPHICS = "$(SFML_LINK_PREFIX) sfml-graphics$(SFML_LINK_SUFFIX)";
+				SFML_LINK_DYLIBS_PREFIX = "-l";
+				SFML_LINK_DYLIBS_SUFFIX = "";
+				SFML_LINK_FRAMEWORKS_PREFIX = "-framework";
+				SFML_LINK_FRAMEWORKS_SUFFIX = "";
+				SFML_LINK_PREFIX = "$(SFML_LINK_$(SFML_BINARY_TYPE)_PREFIX)";
+				SFML_LINK_SUFFIX = "$(SFML_LINK_$(SFML_BINARY_TYPE)_SUFFIX)";
+				SFML_NETWORK = "$(SFML_LINK_PREFIX) sfml-network$(SFML_LINK_SUFFIX)";
+				SFML_SYSTEM = "$(SFML_LINK_PREFIX) sfml-system$(SFML_LINK_SUFFIX)";
+				SFML_WINDOW = "$(SFML_LINK_PREFIX) sfml-window$(SFML_LINK_SUFFIX)";
+				SUPPORTED_PLATFORMS = macosx;
+			};
+			name = Release;
+		};
+		B0EEE4BA1EB0833C00253BCF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 3JLWU9ZHMM;
+				INFOPLIST_FILE = "master-touch-typing/master-touch-typing-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B0EEE4BB1EB0833C00253BCF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 3JLWU9ZHMM;
+				INFOPLIST_FILE = "master-touch-typing/master-touch-typing-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B0EEE49E1EB0833B00253BCF /* Build configuration list for PBXProject "master-touch-typing" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B0EEE4B71EB0833C00253BCF /* Debug */,
+				B0EEE4B81EB0833C00253BCF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B0EEE4B91EB0833C00253BCF /* Build configuration list for PBXNativeTarget "master-touch-typing" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B0EEE4BA1EB0833C00253BCF /* Debug */,
+				B0EEE4BB1EB0833C00253BCF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B0EEE49B1EB0833B00253BCF /* Project object */;
+}
