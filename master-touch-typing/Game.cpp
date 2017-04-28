@@ -6,7 +6,6 @@
 //  Copyright © 2017年 WayneChang. All rights reserved.
 //
 
-#include "ResourcePath.hpp"
 #include "Game.hpp"
 
 #include <iostream>

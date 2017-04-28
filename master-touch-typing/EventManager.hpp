@@ -89,7 +89,6 @@ struct Binding{
     EventDetails m_details;
 };
 
-
 // key bindings, using map to evade duplication
 using Bindings = std::unordered_map<std::string, Binding*>;
 
@@ -98,8 +97,25 @@ using CallbackContainer = std::unordered_map<std::string, std::function<void (Ev
 // bindingd callback function, also using map to evade duplication
 enum class StateType;
 
+//namespace std {
+//    template<>
+//    struct hash<StateType> {
+//        size_t operator()(const StateType &type) const {
+//            return std::hash<int>()(static_cast<int>(type));
+//        }
+//    };
+//}
 
-using Callbacks = std::unordered_map<StateType, CallbackContainer>;
+struct EnumClassHash
+{
+    template <typename T>
+    std::size_t operator()(T t) const
+    {
+        return static_cast<std::size_t>(t);
+    }
+};
+
+using Callbacks = std::unordered_map<StateType, CallbackContainer, EnumClassHash>;
 
 class EventManager{
 public:

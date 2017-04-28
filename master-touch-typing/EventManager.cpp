@@ -10,17 +10,18 @@
 #include "ResourcePath.hpp"
 
 
-
-EventManager::EventManager()
-:m_currentState(StateType(0)), m_hasFocus(true)
-{
-    LoadBindings();
-}
+EventManager::EventManager(): m_hasFocus(true){ LoadBindings(); }
 
 EventManager::~EventManager(){
     for (auto &itr : m_bindings){
         delete itr.second;
+        itr.second = nullptr;
     }
+}
+
+
+void EventManager::SetCurrentState(StateType l_state){
+    m_currentState = l_state;
 }
 
 bool EventManager::AddBinding(Binding *l_binding){
@@ -38,21 +39,21 @@ bool EventManager::RemoveBinding(std::string l_name){
     return true;
 }
 
-void EventManager::SetCurrentState(StateType l_state){
-    m_currentState = l_state;
-}
-
 void EventManager::SetFocus(const bool& l_focus){ m_hasFocus = l_focus; }
 
+// If is a multikey binding, you must handle the last key here, others in Update()
 void EventManager::HandleEvent(sf::Event& l_event){
     // Handling SFML events.
     for (auto &b_itr : m_bindings){
         Binding* bind = b_itr.second;
         for (auto &e_itr : bind->m_events){
+            // check l_event whether match the type of the binding event
             EventType sfmlEvent = (EventType)l_event.type;
             if (e_itr.first != sfmlEvent){ continue; }
             if (sfmlEvent == EventType::KeyDown || sfmlEvent == EventType::KeyUp){
+                // If keyCode match event Keystroke
                 if (e_itr.second.m_code == l_event.key.code){
+                    std::cout << "Keyboard event, c=" << (bind->c) << std::endl;
                     // Matching event/keystroke.
                     // Increase count.
                     if (bind->m_details.m_keyCode != -1){
@@ -63,6 +64,7 @@ void EventManager::HandleEvent(sf::Event& l_event){
                 }
             } else if (sfmlEvent == EventType::MButtonDown || sfmlEvent == EventType::MButtonUp){
                 if (e_itr.second.m_code == l_event.mouseButton.button){
+                    std::cout << "Mouse event, c=" << (bind->c) << std::endl;
                     // Matching event/keystroke.
                     // Increase count.
                     bind->m_details.m_mouse.x = l_event.mouseButton.x;
@@ -89,6 +91,7 @@ void EventManager::HandleEvent(sf::Event& l_event){
     }
 }
 
+// Handle User inputs (used for consequent input)
 void EventManager::Update(){
     if (!m_hasFocus){ return; }
     for (auto &b_itr : m_bindings){
@@ -97,6 +100,7 @@ void EventManager::Update(){
             switch (e_itr.first){
                 case(EventType::Keyboard) :
                     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(e_itr.second.m_code))){
+                        std::cout << "Event Update,  c=" << bind->c << " " << e_itr.second.m_code << std::endl;
                         if (bind->m_details.m_keyCode != -1){
                             bind->m_details.m_keyCode = e_itr.second.m_code;
                         }
@@ -105,6 +109,7 @@ void EventManager::Update(){
                     break;
                 case(EventType::Mouse) :
                     if (sf::Mouse::isButtonPressed(sf::Mouse::Button(e_itr.second.m_code))){
+                        std::cout << "Event Update, Mouse pressed" << std::endl;
                         if (bind->m_details.m_keyCode != -1){
                             bind->m_details.m_keyCode = e_itr.second.m_code;
                         }
@@ -116,27 +121,24 @@ void EventManager::Update(){
                     break;
             }
         }
-        
+        // if event count match the binding count, call callback
         if (bind->m_events.size() == bind->c){
             auto stateCallbacks = m_callbacks.find(m_currentState);
             auto otherCallbacks = m_callbacks.find(StateType(0));
             
-            if (stateCallbacks != m_callbacks.end()){
+            if  (stateCallbacks != m_callbacks.end()){
                 auto callItr = stateCallbacks->second.find(bind->m_name);
                 if (callItr != stateCallbacks->second.end()){
-                    // Pass in information about events.
+                    // Pass in information about events
                     callItr->second(&bind->m_details);
                 }
             }
             
-            if (otherCallbacks != m_callbacks.end()){
-                auto callItr = otherCallbacks->second.find(bind->m_name);
-                if (callItr != otherCallbacks->second.end()){
-                    // Pass in information about events.
-                    callItr->second(&bind->m_details);
-                }
-            }
+//            if(callItr != m_callbacks.end()){
+//                callItr->second(&bind->m_details);
+//            }
         }
+        // erase
         bind->c = 0;
         bind->m_details.Clear();
     }
@@ -146,7 +148,7 @@ void EventManager::LoadBindings(){
     std::string delimiter = ":";
     
     std::ifstream bindings;
-    bindings.open(resourcePath()+"keys.cfg");
+    bindings.open(resourcePath() + "keys.cfg");
     if (!bindings.is_open()){ std::cout << "! Failed loading keys.cfg." << std::endl; return; }
     std::string line;
     while (std::getline(bindings, line)){
@@ -163,9 +165,9 @@ void EventManager::LoadBindings(){
             EventType type = EventType(stoi(keyval.substr(start, end - start)));
             int code = stoi(keyval.substr(end + delimiter.length(),
                                           keyval.find(delimiter, end + delimiter.length())));
-            
             EventInfo eventInfo;
             eventInfo.m_code = code;
+            
             bind->BindEvent(type, eventInfo);
         }
         
@@ -173,4 +175,13 @@ void EventManager::LoadBindings(){
         bind = nullptr;
     }
     bindings.close();
+}
+
+void EventManager::RemoveCallback(StateType l_state, const std::string& l_name){
+    auto itr = m_callbacks.find(l_state);
+    if (itr == m_callbacks.end()){ return false; }
+    auto itr2 = itr->second.find(l_name);
+    if (itr2 == itr->second.end()){ return false; }
+    itr->second.erase(l_name);
+    return true;
 }

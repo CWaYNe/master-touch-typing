@@ -324,6 +324,11 @@
 				DEVELOPMENT_TEAM = 3JLWU9ZHMM;
 				INFOPLIST_FILE = "master-touch-typing/master-touch-typing-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-x",
+					"objective-c++",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -334,6 +339,11 @@
 				DEVELOPMENT_TEAM = 3JLWU9ZHMM;
 				INFOPLIST_FILE = "master-touch-typing/master-touch-typing-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-x",
+					"objective-c++",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

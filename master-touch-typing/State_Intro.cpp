@@ -7,7 +7,7 @@
 //
 
 #include "State_Intro.hpp"
-#include "ResourcePath.mm"
+#include "ResourcePath.hpp"
 #include "StateManager.hpp" // forward declaration in BaseState
 
 State_Intro::State_Intro(StateManager* l_stateManager)
