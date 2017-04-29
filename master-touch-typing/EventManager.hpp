@@ -32,12 +32,9 @@ enum class EventType{
     MouseLeft = sf::Event::MouseLeft,
     Closed = sf::Event::Closed,
     TextEntered = sf::Event::TextEntered,
-    Keyboard = sf::Event::Count + 1, // the total number of event types
-    Mouse, Joystick
+    Keyboard = sf::Event::Count + 1, Mouse, Joystick
 };
 
-
-// each event may have a event_code, if no defaulted to 0
 struct EventInfo{
     EventInfo(){ m_code = 0; }
     EventInfo(int l_event){ m_code = l_event; }
@@ -45,7 +42,6 @@ struct EventInfo{
         int m_code;
     };
 };
-
 
 struct EventDetails{
     EventDetails(const std::string& l_bindName)
@@ -65,19 +61,15 @@ struct EventDetails{
         m_textEntered = 0;
         m_mouse = sf::Vector2i(0, 0);
         m_mouseWheelDelta = 0;
-        m_keyCode = -1; // unknown
+        m_keyCode = -1;
     }
 };
 
-
 using Events = std::vector<std::pair<EventType, EventInfo>>;
 
-
-
-
-// A single binding
 struct Binding{
-    Binding(const std::string& l_name): m_name(l_name), m_details(l_name), c(0){}
+    Binding(const std::string& l_name) : m_name(l_name), m_details(l_name), c(0){}
+    ~Binding(){}
     void BindEvent(EventType l_type, EventInfo l_info = EventInfo()){
         m_events.emplace_back(l_type, l_info);
     }
@@ -89,23 +81,8 @@ struct Binding{
     EventDetails m_details;
 };
 
-// key bindings, using map to evade duplication
-using Bindings = std::unordered_map<std::string, Binding*>;
 
-using CallbackContainer = std::unordered_map<std::string, std::function<void (EventDetails*)>>;
-
-// bindingd callback function, also using map to evade duplication
 enum class StateType;
-
-//namespace std {
-//    template<>
-//    struct hash<StateType> {
-//        size_t operator()(const StateType &type) const {
-//            return std::hash<int>()(static_cast<int>(type));
-//        }
-//    };
-//}
-
 struct EnumClassHash
 {
     template <typename T>
@@ -115,6 +92,12 @@ struct EnumClassHash
     }
 };
 
+
+
+using Bindings = std::unordered_map<std::string, Binding*>;
+// Callback container.
+using CallbackContainer = std::unordered_map<std::string, std::function<void(EventDetails*)>>;
+// State callback container.
 using Callbacks = std::unordered_map<StateType, CallbackContainer, EnumClassHash>;
 
 class EventManager{
@@ -136,19 +119,27 @@ public:
         auto itr = m_callbacks.emplace(l_state, CallbackContainer()).first;
         auto temp = std::bind(l_func, l_instance, std::placeholders::_1);
         return itr->second.emplace(l_name, temp).second;
-//        return m_callbacks.emplace(l_name, temp).second;
     }
     
-    void RemoveCallback(StateType l_state, const std::string& l_name);
+    bool RemoveCallback(StateType l_state, const std::string& l_name){
+        auto itr = m_callbacks.find(l_state);
+        if (itr == m_callbacks.end()){ return false; }
+        auto itr2 = itr->second.find(l_name);
+        if (itr2 == itr->second.end()){ return false; }
+        itr->second.erase(l_name);
+        return true;
+    }
     
     void HandleEvent(sf::Event& l_event);
     void Update();
     
+    // Getters.
     sf::Vector2i GetMousePos(sf::RenderWindow* l_wind = nullptr){
         return (l_wind ? sf::Mouse::getPosition(*l_wind) : sf::Mouse::getPosition());
     }
 private:
     void LoadBindings();
+    
     StateType m_currentState;
     Bindings m_bindings;
     Callbacks m_callbacks;

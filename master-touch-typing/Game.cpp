@@ -8,12 +8,10 @@
 
 #include "Game.hpp"
 
-#include <iostream>
 
 
 Game::Game(): m_window("Chapter 5", sf::Vector2u(800,600)), m_stateManager(&m_context){
     // Setting up class members
-    RestartClock();
     m_clock.restart();
     srand(time(nullptr));
     
@@ -25,7 +23,7 @@ Game::Game(): m_window("Chapter 5", sf::Vector2u(800,600)), m_stateManager(&m_co
 
 Game::~Game(){}
 
-sf::Time Game::GetElapsed(){ return m_elapsed; }
+sf::Time Game::GetElapsed(){ return m_clock.getElapsedTime(); }
 void Game::RestartClock(){ m_elapsed = m_clock.restart();}
 Window* Game::GetWindow(){ return &m_window; }
 

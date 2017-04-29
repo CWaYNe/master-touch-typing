@@ -10,9 +10,9 @@
 
 StateManager::StateManager(SharedContext* l_shared): m_shared(l_shared){
     RegisterState<State_Intro>(StateType::Intro);
-//    RegisterState<State_MainMenu>(StateType::MainMenu);
-//    RegisterState<State_Game>(StateType::Game);
-//    RegisterState<State_Paused>(StateType::Paused);
+    RegisterState<State_MainMenu>(StateType::MainMenu);
+    RegisterState<State_Game>(StateType::Game);
+    RegisterState<State_Paused>(StateType::Paused);
 }
 
 StateManager::~StateManager(){
@@ -105,6 +105,12 @@ void StateManager::SwitchTo(const StateType& l_type){
             return;
         }
     }
+    
+    
+    // State with l_type wasn't found.
+    if (!m_states.empty()){ m_states.back().second->Deactivate(); }
+    CreateState(l_type);
+    m_states.back().second->Activate();
 }
 
 void StateManager::CreateState(const StateType& l_type){

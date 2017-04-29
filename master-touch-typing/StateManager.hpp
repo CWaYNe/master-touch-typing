@@ -11,10 +11,11 @@
 
 #include <vector>
 #include <unordered_map>
-#include "State_Intro.hpp"
 #include "SharedContext.hpp"
-#include "BaseState.hpp" // to delete
-
+#include "State_Intro.hpp"
+#include "State_MainMenu.hpp"
+#include "State_Game.hpp"
+#include "State_Paused.hpp"
 
 enum class StateType{
     Intro=1, MainMenu, Game, Paused, GameOver, Credits

@@ -1,21 +1,21 @@
 //
-//  State_Intro.hpp
+//  State_Paused.hpp
 //  master-touch-typing
 //
 //  Created by Wayne Chang on 2017/4/29.
 //  Copyright © 2017年 WayneChang. All rights reserved.
 //
 
-#ifndef State_Intro_hpp
-#define State_Intro_hpp
+#ifndef State_Paused_hpp
+#define State_Paused_hpp
 
 #include "BaseState.hpp"
 #include "EventManager.hpp"
 
-class State_Intro : public BaseState{
+class State_Paused : public BaseState{
 public:
-    State_Intro(StateManager* l_stateManager);
-    ~State_Intro();
+    State_Paused(StateManager* l_stateManager);
+    ~State_Paused();
     
     void OnCreate();
     void OnDestroy();
@@ -26,13 +26,10 @@ public:
     void Update(const sf::Time& l_time);
     void Draw();
     
-    void Continue(EventDetails* l_details);
+    void Unpause(EventDetails* l_details);
 private:
-    sf::Texture m_introTexture;
-    sf::Sprite m_introSprite;
     sf::Font m_font;
     sf::Text m_text;
-    
-    float m_timePassed;
+    sf::RectangleShape m_rect;
 };
-#endif /* State_Intro_hpp */
+#endif /* State_Paused_hpp */

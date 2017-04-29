@@ -8,39 +8,30 @@
 
 #ifndef Game_hpp
 #define Game_hpp
-
 #include "Window.hpp"
 #include "EventManager.hpp"
 #include "StateManager.hpp"
 #include "SharedContext.hpp"
+#include <iostream>
 
 class Game{
 public:
     Game();
     ~Game();
     
-//    void HandleInput();
     void Update();
     void Render();
-    Window* GetWindow();
+    void LateUpdate();
     
     sf::Time GetElapsed();
     
-    void MoveSprite(EventDetails* l_details);
-    
-    void LateUpdate();
+    Window* GetWindow();
 private:
-//    void MoveMushroom();
-    Window m_window;
     SharedContext m_context;
-    
+    Window m_window;
+    StateManager m_stateManager;
     sf::Clock m_clock;
     sf::Time m_elapsed;
-    
-    sf::Texture m_texture;
-    sf::Sprite m_sprite;
-    
-    StateManager m_stateManager;
     void RestartClock();
 };
 
