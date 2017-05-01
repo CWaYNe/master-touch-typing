@@ -21,7 +21,7 @@ enum class StateType{
     Intro=1, MainMenu, Game, Paused, GameOver, Credits
 };
 
-
+// vector is a stack-like order
 using StateContainer = std::vector<std::pair<StateType, BaseState*>>;
 using TypeContainer = std::vector<StateType>;
 using StateFactory = std::unordered_map<StateType, std::function<BaseState*(void)>, EnumClassHash>;
@@ -48,8 +48,10 @@ private:
     
     template<class T>
     void RegisterState(const StateType& l_type){
+        // Create a mapping between type and BaseState pointer
         m_stateFactory[l_type] = [this]()-> BaseState*
         {
+            // each state need pointer to StateManager
             return new T(this);
         };
     }
@@ -57,6 +59,7 @@ private:
     
     SharedContext* m_shared;
     StateContainer m_states;
+     // keeping the states we want to remove and processed by ProcessRquests
     TypeContainer m_toRemove;
     StateFactory m_stateFactory;
 };

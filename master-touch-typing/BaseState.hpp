@@ -11,7 +11,7 @@
 
 #include <SFML/Graphics.hpp>
 
-class StateManager;
+class StateManager; // forward declaration
 
 class BaseState{
     friend class StateManager;
@@ -20,9 +20,11 @@ public:
     m_transparent(false), m_transcendent(false){}
     virtual ~BaseState(){}
     
+    // State created and pushed on the stack
     virtual void OnCreate() = 0;
     virtual void OnDestroy() = 0;
     
+    // Invoke when state is moved to the top of the stack
     virtual void Activate() = 0;
     virtual void Deactivate() = 0;
     

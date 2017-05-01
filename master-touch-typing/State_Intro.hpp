@@ -33,6 +33,7 @@ private:
     sf::Font m_font;
     sf::Text m_text;
     
+    // time spent in this state
     float m_timePassed;
 };
 #endif /* State_Intro_hpp */

@@ -29,7 +29,7 @@ Window* Game::GetWindow(){ return &m_window; }
 
 void Game::Update(){
     m_window.Update(); // Update window events.
-    m_stateManager.Update(m_elapsed);
+    m_stateManager.Update(m_elapsed);   // let state manager update the state
 }
 
 void Game::Render(){

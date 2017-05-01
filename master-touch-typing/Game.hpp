@@ -11,8 +11,7 @@
 #include "Window.hpp"
 #include "EventManager.hpp"
 #include "StateManager.hpp"
-#include "SharedContext.hpp"
-#include <iostream>
+
 
 class Game{
 public:

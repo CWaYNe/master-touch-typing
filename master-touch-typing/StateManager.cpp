@@ -27,6 +27,7 @@ void StateManager::Draw(){
     if (m_states.empty()){ return; }
     if (m_states.back().second->IsTransparent() && m_states.size() > 1){
         auto itr = m_states.end();
+        // Find state that is not transparent backwards till the first state
         while(itr != m_states.begin()){
             if (itr != m_states.end()){
                 if (!itr->second->IsTransparent()){
@@ -68,12 +69,12 @@ void StateManager::Update(const sf::Time& l_time){
 SharedContext* StateManager::GetContext(){ return m_shared; }
 
 bool StateManager::HasState(const StateType& l_type){
-    for (auto itr = m_states.begin();
-         itr != m_states.end(); ++itr)
+    for (auto itr = m_states.begin();itr != m_states.end(); ++itr)
     {
         if (itr->first == l_type){
             auto removed = std::find(m_toRemove.begin(),
                                      m_toRemove.end(), l_type);
+            // return false if state is about to remove
             if (removed == m_toRemove.end()){ return true; }
             return false;
         }

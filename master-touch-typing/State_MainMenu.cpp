@@ -69,6 +69,7 @@ void State_MainMenu::OnDestroy(){
 void State_MainMenu::Activate(){
     if(m_stateMgr->HasState(StateType::Game) && m_labels[0].getString() == "PLAY")
     {
+        // change text and reset text location
         m_labels[0].setString(sf::String("RESUME"));
         sf::FloatRect rect = m_labels[0].getLocalBounds();
         m_labels[0].setOrigin(rect.left + rect.width / 2.0f,rect.top + rect.height / 2.0f);

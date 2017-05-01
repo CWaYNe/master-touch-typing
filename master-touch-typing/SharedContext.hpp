@@ -12,7 +12,7 @@
 #include "Window.hpp"
 #include "EventManager.hpp"
 
-
+// keeps the pointer to the main window class and event manager
 
 struct SharedContext{
     SharedContext(): m_wind(nullptr), m_eventManager(nullptr){};

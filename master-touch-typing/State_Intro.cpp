@@ -22,6 +22,7 @@ void State_Intro::OnCreate(){
     
     m_introTexture.loadFromFile(resourcePath() + "intro.png");
     m_introSprite.setTexture(m_introTexture);
+    // center point for all transformation
     m_introSprite.setOrigin(m_introTexture.getSize().x / 2.0f,
                             m_introTexture.getSize().y / 2.0f);
     
@@ -64,7 +65,6 @@ void State_Intro::Draw(){
 }
 
 void State_Intro::Continue(EventDetails* l_details){
-    std::cout << "continue"  << std::endl;
     if(m_timePassed >= 5.0f){
         m_stateMgr->SwitchTo(StateType::MainMenu);
         m_stateMgr->Remove(StateType::Intro);

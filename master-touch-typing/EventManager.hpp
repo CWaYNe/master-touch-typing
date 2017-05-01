@@ -70,6 +70,7 @@ using Events = std::vector<std::pair<EventType, EventInfo>>;
 struct Binding{
     Binding(const std::string& l_name) : m_name(l_name), m_details(l_name), c(0){}
     ~Binding(){}
+    // Bind event from keys.cfg
     void BindEvent(EventType l_type, EventInfo l_info = EventInfo()){
         m_events.emplace_back(l_type, l_info);
     }

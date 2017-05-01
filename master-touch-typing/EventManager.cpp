@@ -89,6 +89,7 @@ void EventManager::HandleEvent(sf::Event& l_event){
     }
 }
 
+// real time user inputs
 void EventManager::Update(){
     if (!m_hasFocus){ return; }
     for (auto &b_itr : m_bindings){
@@ -118,8 +119,8 @@ void EventManager::Update(){
         }
         
         if (bind->m_events.size() == bind->c){
-            auto stateCallbacks = m_callbacks.find(m_currentState);
-            auto otherCallbacks = m_callbacks.find(StateType(0));
+            auto stateCallbacks = m_callbacks.find(m_currentState);  // current state callback
+            auto otherCallbacks = m_callbacks.find(StateType(0));   // global callback
             
             if (stateCallbacks != m_callbacks.end()){
                 auto callItr = stateCallbacks->second.find(bind->m_name);
