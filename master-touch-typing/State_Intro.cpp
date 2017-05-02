@@ -10,6 +10,7 @@
 #include "StateManager.hpp"
 #include "ResourcePath.hpp"
 
+
 State_Intro::State_Intro(StateManager* l_stateManager)
 : BaseState(l_stateManager){}
 
@@ -27,7 +28,6 @@ void State_Intro::OnCreate(){
                             m_introTexture.getSize().y / 2.0f);
     
     m_introSprite.setPosition(windowSize.x / 2.0f, 0);
-    
     m_font.loadFromFile(resourcePath() + "arial.ttf");
     m_text.setFont(m_font);
     m_text.setString({ "Press SPACE to continue" });

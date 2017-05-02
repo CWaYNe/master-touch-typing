@@ -17,40 +17,59 @@ State_Game::State_Game(StateManager* l_stateManager)
 State_Game::~State_Game(){}
 
 void State_Game::OnCreate(){
-    m_texture.loadFromFile(resourcePath() + "Mushroom.png");
-    m_sprite.setTexture(m_texture);
-    m_sprite.setPosition(0,0);
-    m_increment = sf::Vector2f(400.0f,400.0f);
-    
     EventManager* evMgr = m_stateMgr->GetContext()->m_eventManager;
     evMgr->AddCallback(StateType::Game,"Key_Escape",&State_Game::MainMenu,this);
     evMgr->AddCallback(StateType::Game,"Key_P",&State_Game::Pause,this);
+    evMgr->AddCallback(StateType::Game, "Key_O", &State_Game::ToggleOverlay, this);
+    
+    sf::Vector2u size = m_stateMgr->GetContext()->m_wind->GetWindowSize();
+    m_view.setSize(size.x,size.y);
+    m_view.setCenter(size.x/2,size.y/2);
+    m_view.zoom(0.6f);
+    m_stateMgr->GetContext()->m_wind->GetRenderWindow()->setView(m_view);
+    
+    m_gameMap = new Map(m_stateMgr->GetContext(), this);
+    m_gameMap->LoadMap("media/Maps/map1.map");
 }
 
 void State_Game::OnDestroy(){
     EventManager* evMgr = m_stateMgr->GetContext()->m_eventManager;
     evMgr->RemoveCallback(StateType::Game,"Key_Escape");
     evMgr->RemoveCallback(StateType::Game,"Key_P");
+    evMgr->RemoveCallback(StateType::Game,"Key_O");
+    
+    delete m_gameMap;
+    m_gameMap = nullptr;
 }
 
 void State_Game::Update(const sf::Time& l_time){
-    sf::Vector2u l_windSize = m_stateMgr->GetContext()->m_wind->GetWindowSize();
-    sf::Vector2u l_textSize = m_texture.getSize();
-    
-    if((m_sprite.getPosition().x > l_windSize.x - l_textSize.x && m_increment.x > 0) ||
-       (m_sprite.getPosition().x < 0 && m_increment.x < 0))
-    {
-        m_increment.x = -m_increment.x;
+    SharedContext* context = m_stateMgr->GetContext();
+    EntityBase* player = context->m_entityManager->Find("Player");
+    if(!player){
+        std::cout << "Respawning player..." << std::endl;
+        context->m_entityManager->Add(EntityType::Player,"Player");
+        player = context->m_entityManager->Find("Player");
+        player->SetPosition(m_gameMap->GetPlayerStart());
+    } else {
+        m_view.setCenter(player->GetPosition());
+        context->m_wind->GetRenderWindow()->setView(m_view);
     }
     
-    if((m_sprite.getPosition().y > l_windSize.y - l_textSize.y && m_increment.y > 0) ||
-       (m_sprite.getPosition().y < 0 && m_increment.y < 0))
+    sf::FloatRect viewSpace = context->m_wind->GetViewSpace();
+    if(viewSpace.left <= 0){
+        m_view.setCenter(viewSpace.width / 2,m_view.getCenter().y);
+        context->m_wind->GetRenderWindow()->setView(m_view);
+    } else if (viewSpace.left + viewSpace.width >
+               (m_gameMap->GetMapSize().x + 1) * Sheet::Tile_Size)
     {
-        m_increment.y = -m_increment.y;
+        m_view.setCenter(((m_gameMap->GetMapSize().x + 1) *
+                          Sheet::Tile_Size) - (viewSpace.width / 2),
+                         m_view.getCenter().y);
+        context->m_wind->GetRenderWindow()->setView(m_view);
     }
     
-    m_sprite.setPosition(m_sprite.getPosition().x + (m_increment.x * l_time.asSeconds()),
-                         m_sprite.getPosition().y + (m_increment.y * l_time.asSeconds()));
+    m_gameMap->Update(l_time.asSeconds());
+    m_stateMgr->GetContext()->m_entityManager->Update(l_time.asSeconds());
 }
 
 void State_Game::Draw(){
@@ -63,6 +82,11 @@ void State_Game::MainMenu(EventDetails* l_details){
 
 void State_Game::Pause(EventDetails* l_details){
     m_stateMgr->SwitchTo(StateType::Paused); 
+}
+
+// Test/debug methods.
+void State_Game::ToggleOverlay(EventDetails* l_details){
+    m_stateMgr->GetContext()->m_debugOverlay.SetDebug(!m_stateMgr->GetContext()->m_debugOverlay.Debug());
 }
 
 void State_Game::Activate(){}

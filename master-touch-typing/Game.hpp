@@ -11,7 +11,8 @@
 #include "Window.hpp"
 #include "EventManager.hpp"
 #include "StateManager.hpp"
-
+#include "TextureManager.hpp"
+#include "EntityManager.hpp"
 
 class Game{
 public:
@@ -29,6 +30,8 @@ private:
     SharedContext m_context;
     Window m_window;
     StateManager m_stateManager;
+    EntityManager m_entityManager;
+    TextureManager m_textureManager;
     sf::Clock m_clock;
     sf::Time m_elapsed;
     void RestartClock();

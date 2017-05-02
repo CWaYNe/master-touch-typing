@@ -10,13 +10,16 @@
 
 
 
-Game::Game(): m_window("Chapter 5", sf::Vector2u(800,600)), m_stateManager(&m_context){
-    // Setting up class members
+Game::Game(): m_window("Chapter 6", sf::Vector2u(800, 600)),
+m_stateManager(&m_context), m_entityManager(&m_context, 100)
+{
     m_clock.restart();
     srand(time(nullptr));
     
     m_context.m_wind = &m_window;
     m_context.m_eventManager = m_window.GetEventManager();
+    m_context.m_textureManager = &m_textureManager;
+    m_context.m_entityManager = &m_entityManager;
     
     m_stateManager.SwitchTo(StateType::Intro);
 }

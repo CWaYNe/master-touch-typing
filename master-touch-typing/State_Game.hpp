@@ -11,6 +11,7 @@
 
 #include "BaseState.hpp"
 #include "EventManager.hpp"
+#include "Map.hpp"
 
 class State_Game : public BaseState{
 public:
@@ -26,12 +27,14 @@ public:
     void Update(const sf::Time& l_time);
     void Draw();
     
+    void ToggleOverlay(EventDetails* l_details);
     void MainMenu(EventDetails* l_details);
     void Pause(EventDetails* l_details);
 private:
     sf::Texture m_texture;
     sf::Sprite m_sprite;
     sf::Vector2f m_increment;
+    Map* m_gameMap;
 };
 
 #endif /* State_Game_hpp */

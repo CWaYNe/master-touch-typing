@@ -9,6 +9,7 @@
 #include "State_Paused.hpp"
 #include "StateManager.hpp"
 #include "ResourcePath.hpp"
+#include "TextureManager.hpp"
 
 State_Paused::State_Paused(StateManager* l_stateManager)
 : BaseState(l_stateManager){}
