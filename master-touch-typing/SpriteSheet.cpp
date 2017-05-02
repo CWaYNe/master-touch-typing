@@ -47,7 +47,7 @@ void SpriteSheet::CropSprite(const sf::IntRect& l_rect){ m_sprite.setTextureRect
 
 bool SpriteSheet::LoadSheet(const std::string& l_file){
     std::ifstream sheet;
-    sheet.open(Utils::GetWorkingDirectory() + l_file);
+    sheet.open(resourcePath() + "assets/" + l_file);
     if(sheet.is_open()){
         ReleaseSheet(); // Release current sheet resources.
         std::string line;

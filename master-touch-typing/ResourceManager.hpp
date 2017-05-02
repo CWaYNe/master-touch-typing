@@ -61,12 +61,12 @@ public:
             m_resources.erase(m_resources.begin());
         }
     }
-    
+protected:
     //Derived classes will implement their own versions of Load, but will not rely on resolving virtual pointers to functions during run-time.
     T* Load(const std::string& l_path){
         return static_cast<Derived*>(this)->Load(l_path);
     }
-    
+private:
     bool Unload(const std::string& l_id){
         auto itr = m_resources.find(l_id);
         if (itr == m_resources.end()){  return false; }
@@ -82,7 +82,7 @@ public:
     
     void LoadPaths(const std::string& l_pathFile){
         std::ifstream paths;
-        paths.open(Utils::GetWorkingDirectory() + l_pathFile);
+        paths.open(resourcePath() + "assets/" + l_pathFile);
         if(paths.is_open()){
             std::string line;
             while(std::getline(paths,line)){
@@ -99,7 +99,6 @@ public:
         std::cerr << "! Failed loading the path file:" << l_pathFile << std::endl;
     }
     
-private:
     //With that being said, let's talk about the m_resources data member. It's using a map, which is going to tie a string handle to a pair of elements, the first of which is the template parameter of a resource and the second is an unsigned integer type that will be used as a counter for how many places are currently using this particular resource.
     std::unordered_map<std::string, std::pair<T*, unsigned int>> m_resources;
     std::unordered_map<std::string, std::string> m_paths;

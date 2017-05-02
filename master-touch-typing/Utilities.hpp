@@ -9,10 +9,10 @@
 #ifndef Utilities_h
 #define Utilities_h
 
-#define RUNNING_WINDOWS
 #include <iostream>
 #include <string>
 #include <algorithm>
+#include "ResourcePath.hpp"
 
 namespace Utils{
 

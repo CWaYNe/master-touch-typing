@@ -21,14 +21,14 @@ void State_Intro::OnCreate(){
     
     sf::Vector2u windowSize = m_stateMgr->GetContext()->m_wind->GetRenderWindow()->getSize();
     
-    m_introTexture.loadFromFile(resourcePath() + "intro.png");
+    m_introTexture.loadFromFile(resourcePath() + "assets/media/Textures/intro.png");
     m_introSprite.setTexture(m_introTexture);
     // center point for all transformation
     m_introSprite.setOrigin(m_introTexture.getSize().x / 2.0f,
                             m_introTexture.getSize().y / 2.0f);
     
     m_introSprite.setPosition(windowSize.x / 2.0f, 0);
-    m_font.loadFromFile(resourcePath() + "arial.ttf");
+    m_font.loadFromFile(resourcePath() + "assets/media/Fonts/arial.ttf");
     m_text.setFont(m_font);
     m_text.setString({ "Press SPACE to continue" });
     m_text.setCharacterSize(15);

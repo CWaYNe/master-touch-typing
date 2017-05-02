@@ -120,7 +120,7 @@ void Map::PurgeTileSet(){
 
 void Map::LoadTiles(const std::string& l_path){
     std::ifstream file;
-    file.open(Utils::GetWorkingDirectory() + l_path);
+    file.open(resourcePath() + "assets/" + l_path);
     if (!file.is_open()){
         std::cout << "! Failed loading tile set file: "<< l_path << std::endl;
         return;
@@ -146,7 +146,7 @@ void Map::LoadTiles(const std::string& l_path){
 
 void Map::LoadMap(const std::string& l_path){
     std::ifstream mapFile;
-    mapFile.open(Utils::GetWorkingDirectory() + l_path);
+    mapFile.open(resourcePath() + "assets/" + l_path);
     if (!mapFile.is_open()){ std::cout << "! Failed loading map file: " << l_path << std::endl; return; }
     EntityManager* entityMgr = m_context->m_entityManager;
     std::string line;

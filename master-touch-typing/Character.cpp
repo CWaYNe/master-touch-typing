@@ -57,7 +57,7 @@ void Character::GetHurt(const int& l_damage){
 
 void Character::Load(const std::string& l_path){
     std::ifstream file;
-    file.open(Utils::GetWorkingDirectory() + std::string("media/Characters/") + l_path);
+    file.open(resourcePath() + std::string("assets/media/Characters/") + l_path);
     if (!file.is_open()){ std::cout << "! Failed loading the character file: " << l_path << std::endl; return; }
     std::string line;
     while(std::getline(file,line)){
