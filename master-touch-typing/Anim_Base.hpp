@@ -9,6 +9,7 @@
 #ifndef Anim_Base_hpp
 #define Anim_Base_hpp
 #include <string>
+#include <string>
 class SpriteSheet;
 
 using Frame = unsigned int;
@@ -51,8 +52,8 @@ public:
     
     virtual void Update(const float& l_dT);
     
-    friend std::stringstream& operator >>(std::stringstream& l_stream,
-                                          Anim_Base& a){
+    friend std::stringstream& operator >>(std::stringstream& l_stream, Anim_Base& a)
+    {
         a.ReadIn(l_stream);
         return l_stream;
     }

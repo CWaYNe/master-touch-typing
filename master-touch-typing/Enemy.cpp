@@ -9,14 +9,11 @@
 #include "Enemy.hpp"
 
 Enemy::Enemy(EntityManager* l_entityMgr)
-:Character(l_entityMgr), m_hasDestination(false)
-{
-    m_type = EntityType::Enemy;
-}
+:Character(l_entityMgr), m_hasDestination(false){ m_type = EntityType::Enemy; }
+
 Enemy::~Enemy(){}
 
-void Enemy::OnEntityCollision(EntityBase* l_collider,
-                              bool l_attack)
+void Enemy::OnEntityCollision(EntityBase* l_collider, bool l_attack)
 {
     if (m_state == EntityState::Dying){ return; }
     if (l_attack){ return; }
@@ -37,13 +34,8 @@ void Enemy::Update(float l_dT){
     Character::Update(l_dT);
     
     if (m_hasDestination){
-        if (std::abs(m_destination.x - m_position.x) < 16){
-            m_hasDestination = false;
-            return;
-        }
-        if (m_destination.x - m_position.x > 0){
-            Move(Direction::Right);
-        } else { Move(Direction::Left); }
+        if (std::abs(m_destination.x - m_position.x) < 16){ m_hasDestination = false; return; }
+        if (m_destination.x - m_position.x > 0){ Move(Direction::Right); } else { Move(Direction::Left); }
         if (m_collidingOnX){ m_hasDestination = false; }
         return;
     }

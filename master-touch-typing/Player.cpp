@@ -16,18 +16,12 @@ Player::Player(EntityManager* l_entityMgr)
     Load("Player.char");
     m_type = EntityType::Player;
     
-    EventManager* events = m_entityManager->
-    GetContext()->m_eventManager;
-    events->AddCallback<Player>(StateType::Game,
-                                "Player_MoveLeft", &Player::React, this);
-    events->AddCallback<Player>(StateType::Game,
-                                "Player_MoveRight", &Player::React, this);
-    events->AddCallback<Player>(StateType::Game,
-                                "Player_Jump", &Player::React, this);
-    events->AddCallback<Player>(StateType::Game,
-                                "Player_Attack", &Player::React, this);
+    EventManager* events = m_entityManager->GetContext()->m_eventManager;
+    events->AddCallback<Player>(StateType::Game, "Player_MoveLeft", &Player::React, this);
+    events->AddCallback<Player>(StateType::Game, "Player_MoveRight", &Player::React, this);
+    events->AddCallback<Player>(StateType::Game, "Player_Jump", &Player::React, this);
+    events->AddCallback<Player>(StateType::Game, "Player_Attack", &Player::React, this);
 }
-
 
 Player::~Player(){
     EventManager* events = m_entityManager->GetContext()->m_eventManager;
@@ -36,7 +30,6 @@ Player::~Player(){
     events->RemoveCallback(StateType::Game, "Player_Jump");
     events->RemoveCallback(StateType::Game, "Player_Attack");
 }
-
 
 void Player::React(EventDetails* l_details){
     if (l_details->m_name == "Player_MoveLeft"){

@@ -18,6 +18,7 @@
 		B09ECBF21EB83B4A001036E1 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B09ECBF01EB83B4A001036E1 /* Player.cpp */; };
 		B09ECBF51EB83C5B001036E1 /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B09ECBF31EB83C5B001036E1 /* Enemy.cpp */; };
 		B09ECC031EB85747001036E1 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = B09ECC021EB85747001036E1 /* assets */; };
+		B09ECC061EB86BE8001036E1 /* State_GameOver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B09ECC041EB86BE8001036E1 /* State_GameOver.cpp */; };
 		B0BA8A611EB38D0900F4951B /* State_MainMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0BA8A5F1EB38D0900F4951B /* State_MainMenu.cpp */; };
 		B0BA8A641EB44DC900F4951B /* State_Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0BA8A621EB44DC900F4951B /* State_Game.cpp */; };
 		B0BA8A671EB4505000F4951B /* State_Intro.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0BA8A651EB4505000F4951B /* State_Intro.cpp */; };
@@ -70,6 +71,8 @@
 		B09ECBF41EB83C5B001036E1 /* Enemy.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Enemy.hpp; sourceTree = "<group>"; };
 		B09ECBF61EB83FC5001036E1 /* DebugOverlay.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DebugOverlay.hpp; sourceTree = "<group>"; };
 		B09ECC021EB85747001036E1 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
+		B09ECC041EB86BE8001036E1 /* State_GameOver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = State_GameOver.cpp; sourceTree = "<group>"; };
+		B09ECC051EB86BE8001036E1 /* State_GameOver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = State_GameOver.hpp; sourceTree = "<group>"; };
 		B0BA8A5F1EB38D0900F4951B /* State_MainMenu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = State_MainMenu.cpp; sourceTree = "<group>"; };
 		B0BA8A601EB38D0900F4951B /* State_MainMenu.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = State_MainMenu.hpp; sourceTree = "<group>"; };
 		B0BA8A621EB44DC900F4951B /* State_Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = State_Game.cpp; sourceTree = "<group>"; };
@@ -121,52 +124,54 @@
 		B0EEE4A61EB0833C00253BCF /* master-touch-typing */ = {
 			isa = PBXGroup;
 			children = (
-				B0EEE4AC1EB0833C00253BCF /* main.cpp */,
-				B0EEE4A91EB0833C00253BCF /* ResourcePath.mm */,
-				B0EEE4AB1EB0833C00253BCF /* ResourcePath.hpp */,
-				B0EEE4BF1EB08B3700253BCF /* Window.cpp */,
-				B0EEE4BE1EB08A0500253BCF /* Window.hpp */,
-				B0EEE4C11EB08EDA00253BCF /* Game.cpp */,
-				B0EEE4C21EB08EDA00253BCF /* Game.hpp */,
-				B0EEE4C61EB0D6F400253BCF /* EventManager.cpp */,
-				B0EEE4C71EB0D6F400253BCF /* EventManager.hpp */,
-				B079E90E1EB2281000D7A830 /* StateManager.cpp */,
-				B079E90F1EB2281000D7A830 /* StateManager.hpp */,
-				B079E9111EB2289000D7A830 /* SharedContext.hpp */,
-				B0BA8A5F1EB38D0900F4951B /* State_MainMenu.cpp */,
-				B0BA8A601EB38D0900F4951B /* State_MainMenu.hpp */,
-				B0BA8A621EB44DC900F4951B /* State_Game.cpp */,
-				B0BA8A631EB44DC900F4951B /* State_Game.hpp */,
-				B0BA8A651EB4505000F4951B /* State_Intro.cpp */,
-				B0BA8A661EB4505000F4951B /* State_Intro.hpp */,
-				B079E90C1EB2223300D7A830 /* BaseState.hpp */,
-				B0BA8A681EB459D800F4951B /* State_Paused.cpp */,
-				B0BA8A691EB459D800F4951B /* State_Paused.hpp */,
-				B09ECBC91EB71060001036E1 /* Utilities.hpp */,
-				B09ECBCA1EB71094001036E1 /* ResourceManager.hpp */,
-				B09ECBCE1EB71484001036E1 /* SpriteSheet.cpp */,
-				B09ECBCF1EB71484001036E1 /* SpriteSheet.hpp */,
-				B09ECBD21EB71649001036E1 /* TextureManager.hpp */,
 				B09ECBD61EB71A1D001036E1 /* Anim_Base.cpp */,
 				B09ECBD41EB71924001036E1 /* Anim_Base.hpp */,
 				B09ECBD81EB71C30001036E1 /* Anim_Directional.cpp */,
 				B09ECBD91EB71C30001036E1 /* Anim_Directional.hpp */,
+				B079E90C1EB2223300D7A830 /* BaseState.hpp */,
+				B09ECBEB1EB83732001036E1 /* Character.cpp */,
+				B09ECBEC1EB83732001036E1 /* Character.hpp */,
+				B09ECBF61EB83FC5001036E1 /* DebugOverlay.hpp */,
 				B09ECBDF1EB72190001036E1 /* Directions.hpp */,
-				B09ECBE21EB73BD0001036E1 /* Map.cpp */,
-				B09ECBE31EB73BD0001036E1 /* Map.hpp */,
+				B09ECBF31EB83C5B001036E1 /* Enemy.cpp */,
+				B09ECBF41EB83C5B001036E1 /* Enemy.hpp */,
 				B09ECBE51EB75EF4001036E1 /* EntityBase.cpp */,
 				B09ECBE61EB75EF4001036E1 /* EntityBase.hpp */,
 				B09ECBE81EB82C44001036E1 /* EntityManager.cpp */,
 				B09ECBE91EB82C44001036E1 /* EntityManager.hpp */,
-				B09ECBEB1EB83732001036E1 /* Character.cpp */,
-				B09ECBEC1EB83732001036E1 /* Character.hpp */,
+				B0EEE4C61EB0D6F400253BCF /* EventManager.cpp */,
+				B0EEE4C71EB0D6F400253BCF /* EventManager.hpp */,
+				B0EEE4C11EB08EDA00253BCF /* Game.cpp */,
+				B0EEE4C21EB08EDA00253BCF /* Game.hpp */,
+				B0EEE4AC1EB0833C00253BCF /* main.cpp */,
+				B09ECBE21EB73BD0001036E1 /* Map.cpp */,
+				B09ECBE31EB73BD0001036E1 /* Map.hpp */,
 				B09ECBF01EB83B4A001036E1 /* Player.cpp */,
 				B09ECBF11EB83B4A001036E1 /* Player.hpp */,
-				B09ECBF31EB83C5B001036E1 /* Enemy.cpp */,
-				B09ECBF41EB83C5B001036E1 /* Enemy.hpp */,
-				B09ECBF61EB83FC5001036E1 /* DebugOverlay.hpp */,
+				B09ECBCA1EB71094001036E1 /* ResourceManager.hpp */,
+				B0EEE4AB1EB0833C00253BCF /* ResourcePath.hpp */,
+				B0EEE4A91EB0833C00253BCF /* ResourcePath.mm */,
+				B079E9111EB2289000D7A830 /* SharedContext.hpp */,
+				B09ECBCE1EB71484001036E1 /* SpriteSheet.cpp */,
+				B09ECBCF1EB71484001036E1 /* SpriteSheet.hpp */,
+				B0BA8A621EB44DC900F4951B /* State_Game.cpp */,
+				B0BA8A631EB44DC900F4951B /* State_Game.hpp */,
+				B0BA8A651EB4505000F4951B /* State_Intro.cpp */,
+				B0BA8A661EB4505000F4951B /* State_Intro.hpp */,
+				B0BA8A5F1EB38D0900F4951B /* State_MainMenu.cpp */,
+				B0BA8A601EB38D0900F4951B /* State_MainMenu.hpp */,
+				B0BA8A681EB459D800F4951B /* State_Paused.cpp */,
+				B0BA8A691EB459D800F4951B /* State_Paused.hpp */,
+				B079E90E1EB2281000D7A830 /* StateManager.cpp */,
+				B079E90F1EB2281000D7A830 /* StateManager.hpp */,
+				B09ECBD21EB71649001036E1 /* TextureManager.hpp */,
+				B09ECBC91EB71060001036E1 /* Utilities.hpp */,
+				B0EEE4BF1EB08B3700253BCF /* Window.cpp */,
+				B0EEE4BE1EB08A0500253BCF /* Window.hpp */,
 				B0EEE4AE1EB0833C00253BCF /* Resources */,
 				B0EEE4A71EB0833C00253BCF /* Supporting Files */,
+				B09ECC041EB86BE8001036E1 /* State_GameOver.cpp */,
+				B09ECC051EB86BE8001036E1 /* State_GameOver.hpp */,
 			);
 			path = "master-touch-typing";
 			sourceTree = "<group>";
@@ -279,6 +284,7 @@
 				B09ECBF21EB83B4A001036E1 /* Player.cpp in Sources */,
 				B0BA8A6A1EB459D800F4951B /* State_Paused.cpp in Sources */,
 				B09ECBED1EB83732001036E1 /* Character.cpp in Sources */,
+				B09ECC061EB86BE8001036E1 /* State_GameOver.cpp in Sources */,
 				B0BA8A671EB4505000F4951B /* State_Intro.cpp in Sources */,
 				B0EEE4C81EB0D6F400253BCF /* EventManager.cpp in Sources */,
 				B0EEE4C01EB08B3700253BCF /* Window.cpp in Sources */,

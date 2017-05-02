@@ -10,54 +10,44 @@
 #include "EntityManager.hpp"
 #include "StateManager.hpp"
 
-Character::Character(EntityManager* l_entityMgr):EntityBase(l_entityMgr), m_spriteSheet(m_entityManager->GetContext()->m_textureManager),m_jumpVelocity(250), m_hitpoints(5){ m_name = "Character"; }
-Character::~Character(){}
+Character::Character(EntityManager* l_entityMgr)
+:EntityBase(l_entityMgr),
+m_spriteSheet(m_entityManager->GetContext()->m_textureManager),
+m_jumpVelocity(250), m_hitpoints(5){ m_name = "Character"; }
+
+Character::~Character(){ }
 
 void Character::Move(const Direction& l_dir){
     if (GetState() == EntityState::Dying){ return; }
     m_spriteSheet.SetDirection(l_dir);
     if (l_dir == Direction::Left){ Accelerate(-m_speed.x, 0); }
     else { Accelerate(m_speed.x, 0); }
-    if (GetState() == EntityState::Idle){
-        SetState(EntityState::Walking);
-    }
+    if (GetState() == EntityState::Idle){ SetState(EntityState::Walking); }
 }
 
 void Character::Jump(){
-    if (GetState() == EntityState::Dying || GetState() == EntityState::Jumping || GetState() == EntityState::Hurt){
-        return;
-    }
+    if (GetState() == EntityState::Dying || GetState() == EntityState::Jumping || GetState() == EntityState::Hurt){ return; }
     SetState(EntityState::Jumping);
     AddVelocity(0, -m_jumpVelocity);
 }
 
 void Character::Attack(){
-    if (GetState() == EntityState::Dying ||
-        GetState() == EntityState::Jumping ||
-        GetState() == EntityState::Hurt ||
-        GetState() == EntityState::Attacking)
-    {
-        return;
-    }
+    if (GetState() == EntityState::Dying || GetState() == EntityState::Jumping ||
+        GetState() == EntityState::Hurt || GetState() == EntityState::Attacking)
+    { return; }
     SetState(EntityState::Attacking);
 }
 
 void Character::GetHurt(const int& l_damage){
-    if (GetState() == EntityState::Dying ||
-        GetState() == EntityState::Hurt)
-    {
-        return;
-    }
-    m_hitpoints = (m_hitpoints - l_damage > 0 ?
-                   m_hitpoints - l_damage : 0);
+    if (GetState() == EntityState::Dying || GetState() == EntityState::Hurt){ return; }
+    m_hitpoints = (m_hitpoints - l_damage > 0 ? m_hitpoints - l_damage : 0);
     if (m_hitpoints){ SetState(EntityState::Hurt); }
     else { SetState(EntityState::Dying); }
 }
 
-
 void Character::Load(const std::string& l_path){
     std::ifstream file;
-    file.open(resourcePath() + std::string("assets/media/Characters/") + l_path);
+    file.open(resourcePath() + std::string("media/Characters/") + l_path);
     if (!file.is_open()){ std::cout << "! Failed loading the character file: " << l_path << std::endl; return; }
     std::string line;
     while(std::getline(file,line)){
@@ -139,10 +129,19 @@ void Character::Update(float l_dT){
     EntityBase::Update(l_dT);
     if(m_attackAABB.width != 0 && m_attackAABB.height != 0){
         UpdateAttackAABB();
+        
+        // Debug.
+        if(m_entityManager->GetContext()->m_debugOverlay.Debug()){
+            sf::RectangleShape* arect = new sf::RectangleShape(sf::Vector2f(m_attackAABB.width,m_attackAABB.height));
+            arect->setPosition(m_attackAABB.left,m_attackAABB.top);
+            arect->setFillColor(sf::Color(255,0,0,
+                                          (m_state == EntityState::Attacking && m_spriteSheet.GetCurrentAnim()->IsInAction()
+                                           ? 200 : 100)));
+            m_entityManager->GetContext()->m_debugOverlay.Add(arect);
+        }
+        // End debug.
     }
-    if(GetState() != EntityState::Dying && GetState() !=
-       EntityState::Attacking && GetState() != EntityState::Hurt)
-    {
+    if(GetState() != EntityState::Dying && GetState() != EntityState::Attacking && GetState() != EntityState::Hurt){
         if(std::abs(m_velocity.y) >= 0.001f){
             SetState(EntityState::Jumping);
         } else if(std::abs(m_velocity.x) >= 0.1f){
@@ -150,9 +149,7 @@ void Character::Update(float l_dT){
         } else {
             SetState(EntityState::Idle);
         }
-    } else if(GetState() == EntityState::Attacking ||
-              GetState() == EntityState::Hurt)
-    {
+    } else if(GetState() == EntityState::Attacking || GetState() == EntityState::Hurt){
         if(!m_spriteSheet.GetCurrentAnim()->IsPlaying()){
             SetState(EntityState::Idle);
         }
@@ -161,7 +158,9 @@ void Character::Update(float l_dT){
             m_entityManager->Remove(m_id);
         }
     }
+    
     Animate();
+    
     m_spriteSheet.Update(l_dT);
     m_spriteSheet.SetSpritePosition(m_position);
 }

@@ -13,17 +13,9 @@
 #include "Enemy.hpp"
 #include "Player.hpp"
 
-struct EnumClassHash2
-{
-    template <typename T>
-    std::size_t operator()(T t) const
-    {
-        return static_cast<std::size_t>(t);
-    }
-};
 
 using EntityContainer = std::unordered_map<unsigned int,EntityBase*>;
-using EntityFactory = std::unordered_map<EntityType, std::function<EntityBase*(void)>, EnumClassHash2>;
+using EntityFactory = std::unordered_map<EntityType, std::function<EntityBase*(void)>, EnumClassHash>;
 using EnemyTypes = std::unordered_map<std::string,std::string>;
 
 struct SharedContext;
@@ -54,7 +46,7 @@ private:
     }
     
     void ProcessRemovals();
-    void LoadEnemyTypes(const std::string& l_names);
+    void LoadEnemyTypes(const std::string& l_name);
     void EntityCollisionCheck();
     
     EntityContainer m_entities;

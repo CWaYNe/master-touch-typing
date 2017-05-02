@@ -38,6 +38,9 @@ void Game::Update(){
 void Game::Render(){
     m_window.BeginDraw(); // Clear.
     m_stateManager.Draw();
+    if(m_context.m_debugOverlay.Debug()){
+        m_context.m_debugOverlay.Draw(m_window.GetRenderWindow());
+    }
     m_window.EndDraw(); // Display.
 }
 

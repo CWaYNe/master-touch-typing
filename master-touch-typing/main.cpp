@@ -13,12 +13,7 @@
 // application bundle. To get the path to these resources, use the helper
 // function `resourcePath()` from ResourcePath.hpp
 //
-
-#include <SFML/Audio.hpp>
-#include "ResourcePath.hpp"
 #include "Game.hpp"
-
-
 
 int main(int, char const**)
 {
@@ -28,7 +23,7 @@ int main(int, char const**)
         // Game loop
         game.Update();
         game.Render();
-        game.LateUpdate(); // Restarting our clock.
+        game.LateUpdate();
     }
     return EXIT_SUCCESS;
 }

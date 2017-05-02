@@ -14,7 +14,6 @@
 #include <unordered_map>
 #include "TextureManager.hpp"
 #include "Anim_Directional.hpp"
-#include "Directions.hpp"
 #include "Utilities.hpp"
 
 using Animations = std::unordered_map<std::string,Anim_Base*>;

@@ -16,6 +16,7 @@
 #include "State_MainMenu.hpp"
 #include "State_Game.hpp"
 #include "State_Paused.hpp"
+#include "State_GameOver.hpp"
 
 enum class StateType{
     Intro=1, MainMenu, Game, Paused, GameOver, Credits

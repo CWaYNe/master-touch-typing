@@ -9,7 +9,6 @@
 #include "SpriteSheet.hpp"
 
 
-
 SpriteSheet::SpriteSheet(TextureManager* l_textMgr)
 :m_textureManager(l_textMgr), m_animationCurrent(nullptr),
 m_spriteScale(1.f, 1.f), m_direction(Direction::Right){}
@@ -47,7 +46,7 @@ void SpriteSheet::CropSprite(const sf::IntRect& l_rect){ m_sprite.setTextureRect
 
 bool SpriteSheet::LoadSheet(const std::string& l_file){
     std::ifstream sheet;
-    sheet.open(resourcePath() + "assets/" + l_file);
+    sheet.open(resourcePath() + l_file);
     if(sheet.is_open()){
         ReleaseSheet(); // Release current sheet resources.
         std::string line;
@@ -98,7 +97,6 @@ bool SpriteSheet::LoadSheet(const std::string& l_file){
                 anim->Reset();
                 m_animations.emplace(name,anim);
                 
-                // If is the first animation, assumed to be default
                 if (m_animationCurrent){ continue; }
                 m_animationCurrent = anim;
                 m_animationCurrent->Play();
@@ -125,5 +123,7 @@ bool SpriteSheet::SetAnimation(const std::string& l_name,
     return true;
 }
 
-void SpriteSheet::Update(const float& l_dT){ m_animationCurrent->Update(l_dT); }
+void SpriteSheet::Update(const float& l_dT){
+    m_animationCurrent->Update(l_dT);
+}
 void SpriteSheet::Draw(sf::RenderWindow* l_wnd){ l_wnd->draw(m_sprite); }

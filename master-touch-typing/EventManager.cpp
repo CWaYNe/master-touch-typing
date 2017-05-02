@@ -7,9 +7,7 @@
 //
 
 #include "EventManager.hpp"
-#include "ResourcePath.hpp"
-#include <iostream>
-
+#include "Utilities.hpp"
 
 EventManager::EventManager()
 :m_currentState(StateType(0)), m_hasFocus(true)
@@ -89,7 +87,6 @@ void EventManager::HandleEvent(sf::Event& l_event){
     }
 }
 
-// real time user inputs
 void EventManager::Update(){
     if (!m_hasFocus){ return; }
     for (auto &b_itr : m_bindings){
@@ -119,8 +116,8 @@ void EventManager::Update(){
         }
         
         if (bind->m_events.size() == bind->c){
-            auto stateCallbacks = m_callbacks.find(m_currentState);  // current state callback
-            auto otherCallbacks = m_callbacks.find(StateType(0));   // global callback
+            auto stateCallbacks = m_callbacks.find(m_currentState);
+            auto otherCallbacks = m_callbacks.find(StateType(0));
             
             if (stateCallbacks != m_callbacks.end()){
                 auto callItr = stateCallbacks->second.find(bind->m_name);
@@ -147,7 +144,7 @@ void EventManager::LoadBindings(){
     std::string delimiter = ":";
     
     std::ifstream bindings;
-    bindings.open(resourcePath() + "assets/keys.cfg");
+    bindings.open(resourcePath() + "keys.cfg");
     if (!bindings.is_open()){ std::cout << "! Failed loading keys.cfg." << std::endl; return; }
     std::string line;
     while (std::getline(bindings, line)){
@@ -167,10 +164,9 @@ void EventManager::LoadBindings(){
             
             EventInfo eventInfo;
             eventInfo.m_code = code;
-
             bind->BindEvent(type, eventInfo);
         }
-        std::cout << bind->m_name << std::endl;
+        
         if (!AddBinding(bind)){ delete bind; }
         bind = nullptr;
     }

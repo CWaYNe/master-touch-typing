@@ -7,14 +7,21 @@
 //
 
 #include "EntityBase.hpp"
+#include "EntityManager.hpp"
+#include "SharedContext.hpp"
 #include "Map.hpp"
 #include <cmath>
 
+
+bool SortCollisions(const CollisionElement& l_1, const CollisionElement& l_2)
+{
+    return l_1.m_area > l_2.m_area;
+}
+
 EntityBase::EntityBase(EntityManager* l_entityMgr)
 :m_entityManager(l_entityMgr), m_name("BaseEntity"),
-m_type(EntityType::Base), m_referenceTile(nullptr),
-m_state(EntityState::Idle), m_id(0),
-m_collidingOnX(false), m_collidingOnY(false){}
+m_type(EntityType::Base), m_id(0), m_referenceTile(nullptr),
+m_state(EntityState::Idle), m_collidingOnX(false), m_collidingOnY(false){}
 
 EntityBase::~EntityBase(){}
 
@@ -22,25 +29,25 @@ void EntityBase::SetPosition(float l_x, float l_y){
     m_position = sf::Vector2f(l_x,l_y);
     UpdateAABB();
 }
+
 void EntityBase::SetPosition(const sf::Vector2f& l_pos){
     m_position = l_pos;
     UpdateAABB();
 }
+
 void EntityBase::SetSize(float l_x, float l_y){
     m_size = sf::Vector2f(l_x,l_y);
     UpdateAABB();
 }
-
 
 void EntityBase::SetAcceleration(float l_x, float l_y){
     m_acceleration = sf::Vector2f(l_x,l_y);
 }
 
 void EntityBase::SetState(const EntityState& l_state){
-    if(m_state == EntityState::Dying){ return; }
+    if (m_state == EntityState::Dying){ return; }
     m_state = l_state;
 }
-
 
 const sf::Vector2f& EntityBase::GetSize()const{ return m_size; }
 std::string EntityBase::GetName()const{ return m_name; }
@@ -48,7 +55,6 @@ EntityState EntityBase::GetState()const{ return m_state; }
 unsigned int EntityBase::GetId()const{ return m_id; }
 EntityType EntityBase::GetType()const{ return m_type; }
 const sf::Vector2f& EntityBase::GetPosition()const{ return m_position; }
-
 
 void EntityBase::Move(float l_x, float l_y){
     m_positionOld = m_position;
@@ -69,6 +75,7 @@ void EntityBase::Move(float l_x, float l_y){
     
     UpdateAABB();
 }
+
 void EntityBase::AddVelocity(float l_x, float l_y){
     m_velocity += sf::Vector2f(l_x,l_y);
     if(std::abs(m_velocity.x) > m_maxVelocity.x){
@@ -132,11 +139,8 @@ void EntityBase::Update(float l_dT){
 }
 
 void EntityBase::UpdateAABB(){
-    m_AABB = sf::FloatRect(m_position.x - (m_size.x / 2),m_position.y - m_size.y, m_size.x, m_size.y);
+    m_AABB = sf::FloatRect(m_position.x - (m_size.x / 2),m_position.y - m_size.y, m_size.x,m_size.y);
 }
-
-bool SortCollisions(const CollisionElement& l_1,const CollisionElement& l_2)
-{ return l_1.m_area > l_2.m_area; }
 
 void EntityBase::CheckCollisions(){
     Map* gameMap = m_entityManager->GetContext()->m_gameMap;
@@ -150,8 +154,7 @@ void EntityBase::CheckCollisions(){
         for(int y = fromY; y <= toY; ++y){
             Tile* tile = gameMap->GetTile(x,y);
             if (!tile){ continue; }
-            sf::FloatRect tileBounds(x * tileSize, y * tileSize,
-                                     tileSize,tileSize);
+            sf::FloatRect tileBounds(x * tileSize,y * tileSize,tileSize,tileSize);
             sf::FloatRect intersection;
             m_AABB.intersects(tileBounds,intersection);
             float area = intersection.width * intersection.height;
@@ -164,7 +167,6 @@ void EntityBase::CheckCollisions(){
         }
     }
 }
-
 
 void EntityBase::ResolveCollisions(){
     if(!m_collisions.empty()){

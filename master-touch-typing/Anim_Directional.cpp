@@ -29,7 +29,6 @@ void Anim_Directional::FrameStep(){
     }
 }
 
-// Read data from file
 void Anim_Directional::ReadIn(std::stringstream& l_stream){
     l_stream >> m_frameStart >> m_frameEnd >> m_frameRow
     >> m_frameTime >> m_frameActionStart >> m_frameActionEnd;

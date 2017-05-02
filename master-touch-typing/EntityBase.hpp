@@ -89,4 +89,6 @@ protected:
     Collisions m_collisions;
     EntityManager* m_entityManager;
 };
+
+
 #endif /* EntityBase_hpp */

@@ -28,12 +28,9 @@ public:
     
     void Continue(EventDetails* l_details);
 private:
-    sf::Texture m_introTexture;
     sf::Sprite m_introSprite;
     sf::Font m_font;
     sf::Text m_text;
-    
-    // time spent in this state
-    float m_timePassed;
 };
-#endif /* State_Intro_hpp */
+
+#endif //State_Intro_hpp

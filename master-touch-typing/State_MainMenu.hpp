@@ -13,7 +13,7 @@
 #include "EventManager.hpp"
 
 
-class State_MainMenu : public BaseState {
+class State_MainMenu : public BaseState{
 public:
     State_MainMenu(StateManager* l_stateManager);
     ~State_MainMenu();
@@ -26,11 +26,11 @@ public:
     
     void Update(const sf::Time& l_time);
     void Draw();
-
+    
     void MouseClick(EventDetails* l_details);
 private:
-    sf::Text m_text;
     sf::Font m_font;
+    sf::Text m_text;
     
     sf::Vector2f m_buttonSize;
     sf::Vector2f m_buttonPos;

@@ -16,7 +16,6 @@ m_frameActionEnd(-1), m_loop(false), m_playing(false){}
 
 Anim_Base::~Anim_Base(){}
 
-// support backward animation
 void Anim_Base::SetFrame(Frame l_frame){
     if((l_frame >= m_frameStart && l_frame <= m_frameEnd) ||
        (l_frame >= m_frameEnd && l_frame <= m_frameStart))
@@ -26,9 +25,7 @@ void Anim_Base::SetFrame(Frame l_frame){
 }
 
 bool Anim_Base::IsInAction(){
-    // If any of the values are -1, the "action" is always performed
     if (m_frameActionStart == -1 || m_frameActionEnd == -1){ return true; }
-    // the current frame is checked for being within the designated range that will be loaded from the sprite sheet file
     return (m_frameCurrent >= m_frameActionStart && m_frameCurrent <= m_frameActionEnd);
 }
 
