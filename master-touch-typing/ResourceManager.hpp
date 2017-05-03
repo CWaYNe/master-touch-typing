@@ -22,7 +22,9 @@ public:
         LoadPaths(l_pathsFile);
     }
     
-    virtual ~ResourceManager(){ PurgeResources(); }
+    virtual ~ResourceManager(){
+        PurgeResources();
+    }
     
     T* GetResource(const std::string& l_id){
         auto res = Find(l_id);
@@ -48,6 +50,8 @@ public:
         return true;
     }
     
+    // A tile is used many times
+    // free memory only if no more used
     bool ReleaseResource(const std::string& l_id){
         auto res = Find(l_id);
         if (!res){ return false; }
@@ -109,4 +113,4 @@ private:
     std::unordered_map<std::string, std::string> m_paths;
 };
 
-#endif /* ResourceManager_hpp */
+#endif // ResourceManager.hpp

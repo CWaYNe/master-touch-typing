@@ -27,14 +27,15 @@ public:
     
     Window* GetWindow();
 private:
-    SharedContext m_context;
-    Window m_window;
-    StateManager m_stateManager;
-    EntityManager m_entityManager;
-    TextureManager m_textureManager;
+    void RestartClock();
+    
     sf::Clock m_clock;
     sf::Time m_elapsed;
-    void RestartClock();
+    SharedContext m_context;
+    Window m_window;
+    EntityManager m_entityManager;
+    TextureManager m_textureManager;
+    StateManager m_stateManager;
 };
 
 #endif /* Game_hpp */

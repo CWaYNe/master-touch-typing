@@ -17,6 +17,7 @@ void Enemy::OnEntityCollision(EntityBase* l_collider, bool l_attack)
 {
     if (m_state == EntityState::Dying){ return; }
     if (l_attack){ return; }
+    // enemy will not hurt each other
     if (l_collider->GetType() != EntityType::Player){ return; }
     Character* player = (Character*)l_collider;
     SetState(EntityState::Attacking);

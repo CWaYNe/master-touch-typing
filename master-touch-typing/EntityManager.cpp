@@ -16,6 +16,7 @@ EntityManager::EntityManager(SharedContext* l_context, unsigned int l_maxEntitie
     RegisterEntity<Player>(EntityType::Player);
     RegisterEntity<Enemy>(EntityType::Enemy);
 }
+
 EntityManager::~EntityManager(){ Purge(); }
 
 int EntityManager::Add(const EntityType& l_type, const std::string& l_name)
@@ -28,6 +29,7 @@ int EntityManager::Add(const EntityType& l_type, const std::string& l_name)
     
     m_entities.emplace(m_idCounter,entity);
     
+    // if is enemy, entity is typed cast to Enemy
     if(l_type == EntityType::Enemy){
         auto itr = m_enemyTypes.find(l_name);
         if(itr != m_enemyTypes.end()){
@@ -40,6 +42,7 @@ int EntityManager::Add(const EntityType& l_type, const std::string& l_name)
     return m_idCounter - 1;
 }
 
+// find by name
 EntityBase* EntityManager::Find(const std::string& l_name){
     for(auto &itr : m_entities){
         if(itr.second->GetName() == l_name){
@@ -49,6 +52,7 @@ EntityBase* EntityManager::Find(const std::string& l_name){
     return nullptr;
 }
 
+// find by ID
 EntityBase* EntityManager::Find(unsigned int l_id){
     auto itr = m_entities.find(l_id);
     if (itr == m_entities.end()){ return nullptr; }
@@ -112,6 +116,10 @@ void EntityManager::EntityCollisionCheck(){
                 itr->second->OnEntityCollision(itr2->second, false);
                 itr2->second->OnEntityCollision(itr->second, false);
             }
+            
+            // attack collision
+            // Character will have to keep another bounding
+            // box to perform attack.
             
             EntityType t1 = itr->second->GetType();
             EntityType t2 = itr2->second->GetType();

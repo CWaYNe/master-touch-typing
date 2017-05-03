@@ -10,10 +10,15 @@
 #include "StateManager.hpp"
 
 
-Map::Map(SharedContext* l_context, BaseState* l_currentState)
-:m_context(l_context), m_defaultTile(l_context), m_maxMapSize(32, 32),
-m_tileCount(0), m_tileSetCount(0), m_mapGravity(512.f), m_loadNextMap(false),
-m_currentState(l_currentState)
+Map::Map(SharedContext* l_context, BaseState* l_currentState):
+        m_context(l_context),
+        m_defaultTile(l_context),// id = 0
+        m_maxMapSize(32, 32), //default map size
+        m_tileCount(0),
+        m_tileSetCount(0),
+        m_mapGravity(512.f),
+        m_loadNextMap(false),
+        m_currentState(l_currentState)
 {
     m_context->m_gameMap = this;
     LoadTiles("tiles.cfg");
@@ -157,6 +162,7 @@ void Map::Update(float l_dT){
         if(m_nextMap != ""){
             LoadMap("media/maps/"+m_nextMap);
         } else {
+            // Finished all stages
             m_currentState->GetStateManager()->SwitchTo(StateType::GameOver);
         }
         m_nextMap = "";

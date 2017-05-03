@@ -18,6 +18,7 @@
 // keeps the pointer to the main window class and event manager
 
 class Map;
+
 struct SharedContext{
     SharedContext():
         m_wind(nullptr),

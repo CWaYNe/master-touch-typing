@@ -29,6 +29,7 @@ void State_Game::OnCreate(){
     m_view.zoom(0.6f);
     m_stateMgr->GetContext()->m_wind->GetRenderWindow()->setView(m_view);
     
+    // Load First stage's map
     m_gameMap = new Map(m_stateMgr->GetContext(), this);
     m_gameMap->LoadMap("media/Maps/map1.map");
 }

@@ -18,13 +18,13 @@
 #include "State_Paused.hpp"
 #include "State_GameOver.hpp"
 
-enum class StateType{
-    Intro=1, MainMenu, Game, Paused, GameOver, Credits
-};
+enum class StateType{ Intro = 1, MainMenu, Game, Paused, GameOver, Credits };
 
-// vector is a stack-like order
+// State container.
 using StateContainer = std::vector<std::pair<StateType, BaseState*>>;
+// Type container.
 using TypeContainer = std::vector<StateType>;
+// State factory.
 using StateFactory = std::unordered_map<StateType, std::function<BaseState*(void)>, EnumClassHash>;
 
 class StateManager{
@@ -42,25 +42,22 @@ public:
     
     void SwitchTo(const StateType& l_type);
     void Remove(const StateType& l_type);
-
 private:
+    // Methods.
     void CreateState(const StateType& l_type);
     void RemoveState(const StateType& l_type);
     
     template<class T>
     void RegisterState(const StateType& l_type){
-        // Create a mapping between type and BaseState pointer
-        m_stateFactory[l_type] = [this]()-> BaseState*
+        m_stateFactory[l_type] = [this]() -> BaseState*
         {
-            // each state need pointer to StateManager
             return new T(this);
         };
     }
     
-    
+    // Members.
     SharedContext* m_shared;
     StateContainer m_states;
-     // keeping the states we want to remove and processed by ProcessRquests
     TypeContainer m_toRemove;
     StateFactory m_stateFactory;
 };

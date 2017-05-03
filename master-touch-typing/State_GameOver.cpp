@@ -25,7 +25,7 @@ void State_GameOver::OnCreate(){
     m_text.setOrigin(m_text.getLocalBounds().width / 2,
                      m_text.getLocalBounds().height / 2);
     m_text.setPosition(400, 300);
-    
+
     m_stateMgr->Remove(StateType::Game);
 }
 

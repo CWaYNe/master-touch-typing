@@ -47,13 +47,14 @@ private:
     
     void ProcessRemovals();
     void LoadEnemyTypes(const std::string& l_name);
+    // check and resolve collision between entities
     void EntityCollisionCheck();
     
     EntityContainer m_entities;
     EnemyTypes m_enemyTypes;
     EntityFactory m_entityFactory;
     SharedContext* m_context;
-    unsigned int m_idCounter;
+    unsigned int m_idCounter;//keep track the highest ID
     unsigned int m_maxEntities;
     
     std::vector<unsigned int> m_entitiesToRemove;

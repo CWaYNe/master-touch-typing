@@ -34,6 +34,7 @@ struct TileInfo{
         m_texture = l_texture;
         m_id = l_id;
         m_sprite.setTexture(*tmgr->GetResource(m_texture));
+        // get tile by id
         sf::IntRect tileBoundaries(m_id % (Sheet::Sheet_Width / Sheet::Tile_Size) * Sheet::Tile_Size,
                                    m_id / (Sheet::Sheet_Height / Sheet::Tile_Size) * Sheet::Tile_Size,
                                    Sheet::Tile_Size,Sheet::Tile_Size);
@@ -56,20 +57,22 @@ struct TileInfo{
     std::string m_texture;
 };
 
+// remove redundancy
 struct Tile{
     TileInfo* m_properties;
     bool m_warp; // Is the tile a warp.
     // Other flags unique to each tile.
 };
 
-using TileMap = std::unordered_map<TileID,Tile*>;
-using TileSet = std::unordered_map<TileID,TileInfo*>;
+using TileMap = std::unordered_map<TileID,Tile*>;       // map
+using TileSet = std::unordered_map<TileID,TileInfo*>;   // unique tile set
 
 class Map{
 public:
     Map(SharedContext* l_context, BaseState* l_currentState);
     ~Map();
     
+    // get tile at specific coordinate
     Tile* GetTile(unsigned int l_x, unsigned int l_y);
     TileInfo* GetDefaultTile();
     

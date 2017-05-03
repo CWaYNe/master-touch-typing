@@ -29,11 +29,13 @@ struct CollisionElement{
 };
 
 using Collisions = std::vector<CollisionElement>;
+// always resolve the biggest collision first
 bool SortCollisions(const CollisionElement& l_1, const CollisionElement& l_2);
 
 class EntityManager;
+
 class EntityBase{
-    friend class EntityManager;
+friend class EntityManager;
 public:
     EntityBase(EntityManager* l_entityMgr);
     virtual ~EntityBase();
@@ -89,6 +91,5 @@ protected:
     Collisions m_collisions;
     EntityManager* m_entityManager;
 };
-
 
 #endif /* EntityBase_hpp */

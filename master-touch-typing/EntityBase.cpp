@@ -12,16 +12,15 @@
 #include "Map.hpp"
 #include <cmath>
 
+EntityBase::EntityBase(EntityManager* l_entityMgr)
+:m_entityManager(l_entityMgr), m_name("BaseEntity"),
+m_type(EntityType::Base), m_id(0), m_referenceTile(nullptr),
+m_state(EntityState::Idle), m_collidingOnX(false), m_collidingOnY(false), m_friction({0.8f, 0.8f}){}
 
 bool SortCollisions(const CollisionElement& l_1, const CollisionElement& l_2)
 {
     return l_1.m_area > l_2.m_area;
 }
-
-EntityBase::EntityBase(EntityManager* l_entityMgr)
-:m_entityManager(l_entityMgr), m_name("BaseEntity"),
-m_type(EntityType::Base), m_id(0), m_referenceTile(nullptr),
-m_state(EntityState::Idle), m_collidingOnX(false), m_collidingOnY(false){}
 
 EntityBase::~EntityBase(){}
 
@@ -122,6 +121,7 @@ void EntityBase::Update(float l_dT){
         frictionValue = m_referenceTile->m_friction;
         if(m_referenceTile->m_deadly){ SetState(EntityState::Dying); }
     } else if(map->GetDefaultTile()){
+        // no tile underneath the entity (e.g. mid air)
         frictionValue = map->GetDefaultTile()->m_friction;
     } else {
         frictionValue = m_friction;
@@ -138,6 +138,8 @@ void EntityBase::Update(float l_dT){
     ResolveCollisions();
 }
 
+// origin of the bounding box must be at the top left corner
+// entities position is set to (width / 2, height)
 void EntityBase::UpdateAABB(){
     m_AABB = sf::FloatRect(m_position.x - (m_size.x / 2),m_position.y - m_size.y, m_size.x,m_size.y);
 }
@@ -149,16 +151,15 @@ void EntityBase::CheckCollisions(){
     int toX = floor((m_AABB.left + m_AABB.width) / tileSize);
     int fromY = floor(m_AABB.top / tileSize);
     int toY = floor((m_AABB.top + m_AABB.height) / tileSize);
-    
     for(int x = fromX; x <= toX; ++x){
         for(int y = fromY; y <= toY; ++y){
             Tile* tile = gameMap->GetTile(x,y);
             if (!tile){ continue; }
+            
             sf::FloatRect tileBounds(x * tileSize,y * tileSize,tileSize,tileSize);
             sf::FloatRect intersection;
             m_AABB.intersects(tileBounds,intersection);
             float area = intersection.width * intersection.height;
-            
             CollisionElement e(area, tile->m_properties, tileBounds);
             m_collisions.emplace_back(e);
             if(tile->m_warp && m_type == EntityType::Player){
@@ -174,13 +175,14 @@ void EntityBase::ResolveCollisions(){
         Map* gameMap = m_entityManager->GetContext()->m_gameMap;
         unsigned int tileSize = gameMap->GetTileSize();
         for (auto &itr : m_collisions){
-            if (!m_AABB.intersects(itr.m_tileBounds)){ continue; }
+            if (!m_AABB.intersects(itr.m_tileBounds)){continue; }
+            
             // Debug
             if(m_entityManager->GetContext()->m_debugOverlay.Debug()){
                 sf::Vector2f tempPos(itr.m_tileBounds.left, itr.m_tileBounds.top);
                 sf::RectangleShape* rect = new sf::RectangleShape(sf::Vector2f(tileSize,tileSize));
                 rect->setPosition(tempPos);
-                rect->setFillColor(sf::Color(255,255,0,150));
+                rect->setFillColor(sf::Color(255,255,255,150));
                 m_entityManager->GetContext()->m_debugOverlay.Add(rect);
             }
             // End debug.
