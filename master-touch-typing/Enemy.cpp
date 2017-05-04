@@ -9,7 +9,10 @@
 #include "Enemy.hpp"
 
 Enemy::Enemy(EntityManager* l_entityMgr)
-:Character(l_entityMgr), m_hasDestination(false){ m_type = EntityType::Enemy; }
+:Character(l_entityMgr), m_hasDestination(false){
+    std::cout << "[DEBUG] " << "enemy added" << std::endl;
+    m_type = EntityType::Enemy;
+}
 
 Enemy::~Enemy(){}
 

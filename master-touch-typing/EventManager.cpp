@@ -53,7 +53,8 @@ void EventManager::HandleEvent(sf::Event& l_event){
                 if (e_itr.second.m_code == l_event.key.code){
                     // Matching event/keystroke.
                     // Increase count.
-                    if (bind->m_details.m_keyCode != -1){
+                    
+                    if (bind->m_details.m_keyCode == -1){ // why != -1?
                         bind->m_details.m_keyCode = e_itr.second.m_code;
                     }
                     ++(bind->c);
@@ -80,6 +81,9 @@ void EventManager::HandleEvent(sf::Event& l_event){
                     bind->m_details.m_size.y = l_event.size.height;
                 } else if (sfmlEvent == EventType::TextEntered){
                     bind->m_details.m_textEntered = l_event.text.unicode;
+//                    if (e_itr.second.m_code == l_event.text.unicode){
+//                        std::cout << e_itr.second.m_code << ":" << l_event.text.unicode << std::endl;
+//                    }
                 }
                 ++(bind->c);
             }
@@ -118,7 +122,6 @@ void EventManager::Update(){
         if (bind->m_events.size() == bind->c){
             auto stateCallbacks = m_callbacks.find(m_currentState);
             auto otherCallbacks = m_callbacks.find(StateType(0));
-            
             if (stateCallbacks != m_callbacks.end()){
                 auto callItr = stateCallbacks->second.find(bind->m_name);
                 if (callItr != stateCallbacks->second.end()){

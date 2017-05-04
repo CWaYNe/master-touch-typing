@@ -20,19 +20,21 @@
 
 
 enum class EventType{
-    KeyDown = sf::Event::KeyPressed,
-    KeyUp = sf::Event::KeyReleased,
-    MButtonDown = sf::Event::MouseButtonPressed,
-    MButtonUp = sf::Event::MouseButtonReleased,
-    MouseWheel = sf::Event::MouseWheelMoved,
-    WindowResized = sf::Event::Resized,
-    GainedFocus = sf::Event::GainedFocus,
-    LostFocus = sf::Event::LostFocus,
-    MouseEntered = sf::Event::MouseEntered,
-    MouseLeft = sf::Event::MouseLeft,
-    Closed = sf::Event::Closed,
-    TextEntered = sf::Event::TextEntered,
-    Keyboard = sf::Event::Count + 1, Mouse, Joystick
+    KeyDown = sf::Event::KeyPressed,// 5
+    KeyUp = sf::Event::KeyReleased,// 6
+    MButtonDown = sf::Event::MouseButtonPressed,//8
+    MButtonUp = sf::Event::MouseButtonReleased,//9
+    MouseWheel = sf::Event::MouseWheelMoved,//7
+    WindowResized = sf::Event::Resized,//1
+    GainedFocus = sf::Event::GainedFocus,//3
+    LostFocus = sf::Event::LostFocus,//2
+    MouseEntered = sf::Event::MouseEntered,//11
+    MouseLeft = sf::Event::MouseLeft,//12
+    Closed = sf::Event::Closed,//0
+    TextEntered = sf::Event::TextEntered,//4
+    Keyboard = sf::Event::Count + 1, //25
+    Mouse,//26
+    Joystick //27
 };
 
 struct EventInfo{

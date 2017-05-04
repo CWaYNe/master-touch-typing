@@ -91,6 +91,8 @@ void StateManager::ProcessRequests(){
 
 void StateManager::SwitchTo(const StateType& l_type){
     m_shared->m_eventManager->SetCurrentState(l_type);
+    // if state already in m_states, deactivate the current running state
+    // and push the wanted state into the top of the stack
     for (auto itr = m_states.begin();
          itr != m_states.end(); ++itr)
     {
@@ -101,12 +103,14 @@ void StateManager::SwitchTo(const StateType& l_type){
             m_states.erase(itr);
             m_states.emplace_back(tmp_type, tmp_state);
             tmp_state->Activate();
+            // set view for new state
             m_shared->m_wind->GetRenderWindow()->setView(tmp_state->GetView());
             return;
         }
     }
     
-    // State with l_type wasn't found.
+    // State with l_type wasn't found
+    // Create new state and set view
     if (!m_states.empty()){ m_states.back().second->Deactivate(); }
     CreateState(l_type);
     m_states.back().second->Activate();

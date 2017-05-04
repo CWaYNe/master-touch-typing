@@ -2,92 +2,123 @@
 //  State_Game.cpp
 //  master-touch-typing
 //
-//  Created by Wayne Chang on 2017/4/29.
+//  Created by Wayne Chang on 2017/5/4.
 //  Copyright © 2017年 WayneChang. All rights reserved.
 //
 
 #include "State_Game.hpp"
 #include "StateManager.hpp"
 
+State_Game::State_Game(StateManager* l_stateManager): BaseState(l_stateManager), m_correct(false), m_defaultText("Input:"){
+    m_english_words = {"English", "Chinese"};
+    it = m_english_words.begin();
+};
 
-State_Game::State_Game(StateManager* l_stateManager)
-: BaseState(l_stateManager){}
-
-State_Game::~State_Game(){}
+State_Game::~State_Game(){};
 
 void State_Game::OnCreate(){
+    m_font.loadFromFile(resourcePath() + "media/Fonts/arial.ttf");
+    m_text.setFont(m_font);
+    m_text.setCharacterSize(22);
+    m_text.setString(sf::String(m_defaultText + m_userInputs));
+    
+    m_word.setFont(m_font);
+    m_word.setString(sf::String(*it));
+    m_word.setCharacterSize(22);
+    
+    sf::FloatRect wordRect = m_word.getLocalBounds();
+    sf::FloatRect textRect = m_text.getLocalBounds();
+    m_text.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
+    m_word.setOrigin(wordRect.left + wordRect.width / 2.0f, wordRect.top + wordRect.height / 2.0f);
+    
+    m_text.setPosition(400, 350);
+    m_word.setPosition(400, 100);
+    
     EventManager* evMgr = m_stateMgr->
     GetContext()->m_eventManager;
-    
     evMgr->AddCallback(StateType::Game, "Key_Escape", &State_Game::MainMenu, this);
-    evMgr->AddCallback(StateType::Game, "Key_P", &State_Game::Pause, this);
-    evMgr->AddCallback(StateType::Game, "Key_O", &State_Game::ToggleOverlay, this);
-    
-    sf::Vector2u size = m_stateMgr->GetContext()->m_wind->GetWindowSize();
-    m_view.setSize(size.x,size.y);
-    m_view.setCenter(size.x/2,size.y/2);
-    m_view.zoom(0.6f);
-    m_stateMgr->GetContext()->m_wind->GetRenderWindow()->setView(m_view);
-    
-    // Load First stage's map
-    m_gameMap = new Map(m_stateMgr->GetContext(), this);
-    m_gameMap->LoadMap("media/Maps/map1.map");
+    AddTypingCallback();
 }
 
 void State_Game::OnDestroy(){
     EventManager* evMgr = m_stateMgr->
     GetContext()->m_eventManager;
-    evMgr->RemoveCallback(StateType::Game, "Key_Escape");
-    evMgr->RemoveCallback(StateType::Game, "Key_P");
-    evMgr->RemoveCallback(StateType::Game, "Key_O");
     
-    delete m_gameMap;
-    m_gameMap = nullptr;
+    evMgr->RemoveCallback(StateType::Game, "Key_Escape");
+    RemoveTypingCallback();
 }
 
+void State_Game::AddTypingCallback(){
+    EventManager* evMgr = m_stateMgr->
+    GetContext()->m_eventManager;
+    evMgr->AddCallback(StateType::Game, "Key_Typing", &State_Game::KeyPressed, this);
+    evMgr->AddCallback(StateType::Game, "Key_Enter", &State_Game::EnterKeyPressed, this);
+}
+
+void State_Game::RemoveTypingCallback(){
+    EventManager* evMgr = m_stateMgr->
+    GetContext()->m_eventManager;
+    evMgr->RemoveCallback(StateType::Game, "Key_Typing");
+    evMgr->RemoveCallback(StateType::Game, "Key_Enter");
+}
+
+void State_Game::KeyPressed(EventDetails* l_details){
+    if (l_details->m_textEntered == '\b'){
+        if(!m_userInputs.empty())
+            m_userInputs.erase(m_userInputs.size()-1, 1);
+    }
+    else if (l_details->m_textEntered < 128 && l_details->m_textEntered != 10){
+        m_userInputs += static_cast<char>(l_details->m_textEntered);
+    }
+}
+
+void State_Game::EnterKeyPressed(EventDetails* l_details){
+    if (m_userInputs == *it)
+        m_correct = true;
+    std::cout << "Enter key pressed" << std::endl;
+    m_userInputs = "";
+}
+
+
 void State_Game::Update(const sf::Time& l_time){
+    if(m_correct && it == m_english_words.end()){
+        m_correct = false;
+        m_stateMgr->SwitchTo(StateType::GameOver);
+    }else if (m_correct){
+        m_correct = false;
+        if(++it == m_english_words.end()){
+            m_correct = true;
+        }
+        if (it != m_english_words.end()){
+            m_word.setString(sf::String(*it));
+            sf::FloatRect wordRect = m_word.getLocalBounds();
+            m_word.setOrigin(wordRect.left + wordRect.width / 2.0f, wordRect.top + wordRect.height / 2.0f);
+            m_word.setPosition(400, 100);
+        }
+    }
+    
     SharedContext* context = m_stateMgr->GetContext();
-    EntityBase* player = context->m_entityManager->Find("Player");
-    if(!player){
-        std::cout << "Respawning player..." << std::endl;
-        context->m_entityManager->Add(EntityType::Player,"Player");
-        player = context->m_entityManager->Find("Player");
-        player->SetPosition(m_gameMap->GetPlayerStart());
-    } else {
-        m_view.setCenter(player->GetPosition());
-        context->m_wind->GetRenderWindow()->setView(m_view);
-    }
+    m_text.setString(sf::String(m_defaultText + m_userInputs));
     
-    sf::FloatRect viewSpace = context->m_wind->GetViewSpace();
-    if(viewSpace.left <= 0){
-        m_view.setCenter(viewSpace.width / 2,m_view.getCenter().y);
-        context->m_wind->GetRenderWindow()->setView(m_view);
-    } else if (viewSpace.left + viewSpace.width > (m_gameMap->GetMapSize().x + 1) * Sheet::Tile_Size){
-        m_view.setCenter(((m_gameMap->GetMapSize().x + 1) * Sheet::Tile_Size) - (viewSpace.width / 2), m_view.getCenter().y);
-        context->m_wind->GetRenderWindow()->setView(m_view);
-    }
+    sf::FloatRect textRect = m_text.getLocalBounds();
+    m_text.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
     
-    m_gameMap->Update(l_time.asSeconds());
-    m_stateMgr->GetContext()->m_entityManager->Update(l_time.asSeconds());
+    m_text.setPosition(400, 250);
 }
 
 void State_Game::Draw(){
-    m_gameMap->Draw();
-    m_stateMgr->GetContext()->m_entityManager->Draw();
+    sf::RenderWindow* window = m_stateMgr->GetContext()->m_wind->GetRenderWindow();
+    window->draw(m_word);
+    window->draw(m_text);
 }
 
 void State_Game::MainMenu(EventDetails* l_details){
     m_stateMgr->SwitchTo(StateType::MainMenu);
 }
 
-void State_Game::Pause(EventDetails* l_details){
+void State_Game::Pause(EventDetails *l_details){
     m_stateMgr->SwitchTo(StateType::Paused);
 }
 
 void State_Game::Activate(){}
 void State_Game::Deactivate(){}
-
-// Test/debug methods.
-void State_Game::ToggleOverlay(EventDetails* l_details){
-    m_stateMgr->GetContext()->m_debugOverlay.SetDebug(!m_stateMgr->GetContext()->m_debugOverlay.Debug());
-}

@@ -144,6 +144,7 @@ void EntityBase::UpdateAABB(){
     m_AABB = sf::FloatRect(m_position.x - (m_size.x / 2),m_position.y - m_size.y, m_size.x,m_size.y);
 }
 
+// check collisions with tiles
 void EntityBase::CheckCollisions(){
     Map* gameMap = m_entityManager->GetContext()->m_gameMap;
     unsigned int tileSize = gameMap->GetTileSize();
@@ -169,6 +170,7 @@ void EntityBase::CheckCollisions(){
     }
 }
 
+// sort area size collision before resolving 
 void EntityBase::ResolveCollisions(){
     if(!m_collisions.empty()){
         std::sort(m_collisions.begin(), m_collisions.end(), SortCollisions);

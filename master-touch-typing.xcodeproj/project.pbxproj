@@ -20,9 +20,10 @@
 		B09ECC031EB85747001036E1 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = B09ECC021EB85747001036E1 /* assets */; };
 		B09ECC061EB86BE8001036E1 /* State_GameOver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B09ECC041EB86BE8001036E1 /* State_GameOver.cpp */; };
 		B0BA8A611EB38D0900F4951B /* State_MainMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0BA8A5F1EB38D0900F4951B /* State_MainMenu.cpp */; };
-		B0BA8A641EB44DC900F4951B /* State_Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0BA8A621EB44DC900F4951B /* State_Game.cpp */; };
+		B0BA8A641EB44DC900F4951B /* State_Game2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0BA8A621EB44DC900F4951B /* State_Game2.cpp */; };
 		B0BA8A671EB4505000F4951B /* State_Intro.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0BA8A651EB4505000F4951B /* State_Intro.cpp */; };
 		B0BA8A6A1EB459D800F4951B /* State_Paused.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0BA8A681EB459D800F4951B /* State_Paused.cpp */; };
+		B0BC00D91EBAFE2400401D9B /* State_Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0BC00D71EBAFE2400401D9B /* State_Game.cpp */; };
 		B0EEE4AA1EB0833C00253BCF /* ResourcePath.mm in Sources */ = {isa = PBXBuildFile; fileRef = B0EEE4A91EB0833C00253BCF /* ResourcePath.mm */; };
 		B0EEE4AD1EB0833C00253BCF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0EEE4AC1EB0833C00253BCF /* main.cpp */; };
 		B0EEE4C01EB08B3700253BCF /* Window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0EEE4BF1EB08B3700253BCF /* Window.cpp */; };
@@ -75,12 +76,14 @@
 		B09ECC051EB86BE8001036E1 /* State_GameOver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = State_GameOver.hpp; sourceTree = "<group>"; };
 		B0BA8A5F1EB38D0900F4951B /* State_MainMenu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = State_MainMenu.cpp; sourceTree = "<group>"; };
 		B0BA8A601EB38D0900F4951B /* State_MainMenu.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = State_MainMenu.hpp; sourceTree = "<group>"; };
-		B0BA8A621EB44DC900F4951B /* State_Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = State_Game.cpp; sourceTree = "<group>"; };
-		B0BA8A631EB44DC900F4951B /* State_Game.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = State_Game.hpp; sourceTree = "<group>"; };
+		B0BA8A621EB44DC900F4951B /* State_Game2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = State_Game2.cpp; sourceTree = "<group>"; };
+		B0BA8A631EB44DC900F4951B /* State_Game2.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = State_Game2.hpp; sourceTree = "<group>"; };
 		B0BA8A651EB4505000F4951B /* State_Intro.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = State_Intro.cpp; sourceTree = "<group>"; };
 		B0BA8A661EB4505000F4951B /* State_Intro.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = State_Intro.hpp; sourceTree = "<group>"; };
 		B0BA8A681EB459D800F4951B /* State_Paused.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = State_Paused.cpp; sourceTree = "<group>"; };
 		B0BA8A691EB459D800F4951B /* State_Paused.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = State_Paused.hpp; sourceTree = "<group>"; };
+		B0BC00D71EBAFE2400401D9B /* State_Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = State_Game.cpp; sourceTree = "<group>"; };
+		B0BC00D81EBAFE2400401D9B /* State_Game.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = State_Game.hpp; sourceTree = "<group>"; };
 		B0EEE4A41EB0833C00253BCF /* master-touch-typing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "master-touch-typing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0EEE4A81EB0833C00253BCF /* master-touch-typing-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "master-touch-typing-Info.plist"; sourceTree = "<group>"; };
 		B0EEE4A91EB0833C00253BCF /* ResourcePath.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ResourcePath.mm; sourceTree = "<group>"; };
@@ -149,13 +152,11 @@
 				B09ECBF01EB83B4A001036E1 /* Player.cpp */,
 				B09ECBF11EB83B4A001036E1 /* Player.hpp */,
 				B09ECBCA1EB71094001036E1 /* ResourceManager.hpp */,
-				B0EEE4AB1EB0833C00253BCF /* ResourcePath.hpp */,
-				B0EEE4A91EB0833C00253BCF /* ResourcePath.mm */,
 				B079E9111EB2289000D7A830 /* SharedContext.hpp */,
 				B09ECBCE1EB71484001036E1 /* SpriteSheet.cpp */,
 				B09ECBCF1EB71484001036E1 /* SpriteSheet.hpp */,
-				B0BA8A621EB44DC900F4951B /* State_Game.cpp */,
-				B0BA8A631EB44DC900F4951B /* State_Game.hpp */,
+				B0BA8A621EB44DC900F4951B /* State_Game2.cpp */,
+				B0BA8A631EB44DC900F4951B /* State_Game2.hpp */,
 				B0BA8A651EB4505000F4951B /* State_Intro.cpp */,
 				B0BA8A661EB4505000F4951B /* State_Intro.hpp */,
 				B0BA8A5F1EB38D0900F4951B /* State_MainMenu.cpp */,
@@ -170,8 +171,12 @@
 				B09ECBC91EB71060001036E1 /* Utilities.hpp */,
 				B0EEE4BF1EB08B3700253BCF /* Window.cpp */,
 				B0EEE4BE1EB08A0500253BCF /* Window.hpp */,
+				B0EEE4AB1EB0833C00253BCF /* ResourcePath.hpp */,
+				B0EEE4A91EB0833C00253BCF /* ResourcePath.mm */,
 				B0EEE4AE1EB0833C00253BCF /* Resources */,
 				B0EEE4A71EB0833C00253BCF /* Supporting Files */,
+				B0BC00D71EBAFE2400401D9B /* State_Game.cpp */,
+				B0BC00D81EBAFE2400401D9B /* State_Game.hpp */,
 			);
 			path = "master-touch-typing";
 			sourceTree = "<group>";
@@ -296,8 +301,9 @@
 				B09ECBEA1EB82C44001036E1 /* EntityManager.cpp in Sources */,
 				B0EEE4AA1EB0833C00253BCF /* ResourcePath.mm in Sources */,
 				B09ECBD01EB71484001036E1 /* SpriteSheet.cpp in Sources */,
-				B0BA8A641EB44DC900F4951B /* State_Game.cpp in Sources */,
+				B0BA8A641EB44DC900F4951B /* State_Game2.cpp in Sources */,
 				B09ECBE41EB73BD0001036E1 /* Map.cpp in Sources */,
+				B0BC00D91EBAFE2400401D9B /* State_Game.cpp in Sources */,
 				B0EEE4C31EB08EDA00253BCF /* Game.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

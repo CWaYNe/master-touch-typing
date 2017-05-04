@@ -14,6 +14,7 @@ Player::Player(EntityManager* l_entityMgr)
 : Character(l_entityMgr)
 {
     Load("Player.char");
+    std::cout << "[DEBUG] " << "player loaded" << std::endl;
     m_type = EntityType::Player;
     
     EventManager* events = m_entityManager->GetContext()->m_eventManager;

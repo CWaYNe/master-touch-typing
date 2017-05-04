@@ -17,6 +17,7 @@ public:
     Player(EntityManager* l_entityMgr);
     ~Player();
     
+    // collision with other entity
     void OnEntityCollision(EntityBase* l_collider, bool l_attack);
     void React(EventDetails* l_details);
 };

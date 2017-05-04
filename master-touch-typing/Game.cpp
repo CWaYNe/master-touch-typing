@@ -21,6 +21,7 @@ m_stateManager(&m_context), m_entityManager(&m_context, 100)
     m_context.m_textureManager = &m_textureManager;
     m_context.m_entityManager = &m_entityManager;
     
+    // Set first state of the game
     m_stateManager.SwitchTo(StateType::Intro);
 }
 

@@ -28,7 +28,14 @@ public:
     void Draw();
     
     void MouseClick(EventDetails* l_details);
+    void KeyPressed(EventDetails* l_details);
+    void SpaceKeyPressed(EventDetails* l_details);
+    void EnterKeyPressed(EventDetails* l_details);
 private:
+    // Custom callback
+    void AddTypingCallback();
+    void RemoveTypingCallback();
+    
     sf::Font m_font;
     sf::Text m_text;
     

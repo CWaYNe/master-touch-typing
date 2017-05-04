@@ -21,6 +21,7 @@ Map::Map(SharedContext* l_context, BaseState* l_currentState):
         m_currentState(l_currentState)
 {
     m_context->m_gameMap = this;
+    std::cout << "[DEBUG] " << "m_context map updated" << std::endl;
     LoadTiles("tiles.cfg");
 }
 
@@ -108,6 +109,7 @@ void Map::LoadMap(const std::string& l_path){
         } else if(type == "PLAYER"){
             if (playerId != -1){ continue; }
             // Set up the player position here.
+            std::cout << "[DEBUG] " << "Adding player" << std::endl;
             playerId = entityMgr->Add(EntityType::Player);
             if (playerId < 0){ continue; }
             float playerX = 0; float playerY = 0;
@@ -117,6 +119,7 @@ void Map::LoadMap(const std::string& l_path){
         } else if(type == "ENEMY"){
             std::string enemyName;
             keystream >> enemyName;
+            std::cout << "[DEBUG] " << "Adding enemy" << std::endl;
             int enemyId = entityMgr->Add(EntityType::Enemy, enemyName);
             if (enemyId < 0){ continue; }
             float enemyX = 0; float enemyY = 0;
@@ -175,7 +178,7 @@ void Map::Draw(){
     sf::RenderWindow* l_wind = m_context->m_wind->GetRenderWindow();
     l_wind->draw(m_background);
     sf::FloatRect viewSpace = m_context->m_wind->GetViewSpace();
-    
+    // set tile in current view
     sf::Vector2i tileBegin(floor(viewSpace.left / Sheet::Tile_Size),floor(viewSpace.top / Sheet::Tile_Size));
     sf::Vector2i tileEnd(ceil((viewSpace.left + viewSpace.width) / Sheet::Tile_Size),
                          ceil((viewSpace.top + viewSpace.height) / Sheet::Tile_Size));

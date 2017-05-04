@@ -63,6 +63,7 @@ public:
 protected:
     // Methods.
     void UpdateAABB();
+    // Check collision with Tiles
     void CheckCollisions();
     void ResolveCollisions();
     

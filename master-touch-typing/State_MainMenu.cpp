@@ -62,12 +62,49 @@ void State_MainMenu::OnCreate(){
     EventManager* evMgr = m_stateMgr->
     GetContext()->m_eventManager;
     evMgr->AddCallback(StateType::MainMenu, "Mouse_Left",&State_MainMenu::MouseClick,this);
+//    AddTypingCallback();
 }
+
 
 void State_MainMenu::OnDestroy(){
     EventManager* evMgr = m_stateMgr->
     GetContext()->m_eventManager;
     evMgr->RemoveCallback(StateType::MainMenu, "Mouse_Left");
+//    RemoveTypingCallback();
+}
+
+void State_MainMenu::AddTypingCallback(){
+    EventManager* evMgr = m_stateMgr->
+    GetContext()->m_eventManager;
+    std::string Key = "Key_";
+    for(char a='A'; a < 'A' + 24; ++a){
+        evMgr->AddCallback(StateType::MainMenu, Key + a, &State_MainMenu::KeyPressed, this);
+    }
+    evMgr->AddCallback(StateType::MainMenu, "Key_Space", &State_MainMenu::SpaceKeyPressed, this);
+    evMgr->AddCallback(StateType::MainMenu, "Key_Enter", &State_MainMenu::EnterKeyPressed, this);
+}
+
+void State_MainMenu::RemoveTypingCallback(){
+    EventManager* evMgr = m_stateMgr->
+    GetContext()->m_eventManager;
+    std::string Key = "Key_";
+    for(char a='A'; a < 'A' + 24; ++a){
+        evMgr->RemoveCallback(StateType::MainMenu, Key + a);
+    }
+    evMgr->RemoveCallback(StateType::MainMenu, "Key_Space");
+    evMgr->RemoveCallback(StateType::MainMenu, "Key_Enter");
+}
+
+void State_MainMenu::KeyPressed(EventDetails* l_details){
+    std::cout << char('a' + l_details->m_keyCode) << " KeyPressed" << std::endl;
+}
+
+void State_MainMenu::SpaceKeyPressed(EventDetails* l_details){
+    std::cout << "Space key pressed" << std::endl;
+}
+
+void State_MainMenu::EnterKeyPressed(EventDetails* l_details){
+    std::cout << "Enter key pressed" << std::endl;
 }
 
 void State_MainMenu::Activate(){

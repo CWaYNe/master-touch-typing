@@ -126,6 +126,7 @@ void Character::Animate(){
 }
 
 void Character::Update(float l_dT){
+    // entityBase update (check collision with tiles)
     EntityBase::Update(l_dT);
     if(m_attackAABB.width != 0 && m_attackAABB.height != 0){
         UpdateAttackAABB();

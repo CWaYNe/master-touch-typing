@@ -31,8 +31,8 @@ private:
     
     sf::Clock m_clock;
     sf::Time m_elapsed;
-    SharedContext m_context;
     Window m_window;
+    SharedContext m_context;
     EntityManager m_entityManager;
     TextureManager m_textureManager;
     StateManager m_stateManager;

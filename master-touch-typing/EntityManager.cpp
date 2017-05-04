@@ -13,6 +13,7 @@ EntityManager::EntityManager(SharedContext* l_context, unsigned int l_maxEntitie
 :m_context(l_context), m_maxEntities(l_maxEntities), m_idCounter(0)
 {
     LoadEnemyTypes("EnemyList.list");
+    // template function declared in header file
     RegisterEntity<Player>(EntityType::Player);
     RegisterEntity<Enemy>(EntityType::Enemy);
 }
@@ -21,6 +22,8 @@ EntityManager::~EntityManager(){ Purge(); }
 
 int EntityManager::Add(const EntityType& l_type, const std::string& l_name)
 {
+    // create entity
+    std::cout << "[DEBUG] " << "Creating entity" << std::endl;
     auto itr = m_entityFactory.find(l_type);
     if (itr == m_entityFactory.end()){ return -1; }
     EntityBase* entity = itr->second();
@@ -102,6 +105,7 @@ void EntityManager::ProcessRemovals(){
         m_entitiesToRemove.pop_back();
     }
 }
+
 
 void EntityManager::EntityCollisionCheck(){
     if (m_entities.empty()){ return; }
