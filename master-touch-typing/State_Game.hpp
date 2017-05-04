@@ -38,12 +38,15 @@ private:
     void RemoveTypingCallback();
     
     bool m_correct;
+    float m_shakeTimer;
+    const float PI;
     
     std::string m_defaultText;
     std::string m_userInputs;
     std::vector<std::string> m_english_words;
     std::vector<std::string>::iterator it;
     
+    sf::Vector2f defaultScale;
     sf::Font m_font;
     sf::Text m_text;
     sf::Text m_word;

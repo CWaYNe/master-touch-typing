@@ -36,7 +36,7 @@ void State_GameOver::Deactivate(){}
 
 void State_GameOver::Update(const sf::Time& l_time){
     m_elapsed += l_time.asSeconds();
-    if(m_elapsed >= 5.0f){
+    if(m_elapsed >= 1.0f){
         m_stateMgr->Remove(StateType::GameOver);
         m_stateMgr->SwitchTo(StateType::MainMenu);
     }
