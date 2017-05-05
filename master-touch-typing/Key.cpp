@@ -9,17 +9,13 @@
 #include "Key.hpp"
 
 
-Key::Key(unsigned int l_code, unsigned int l_id, KeyType l_type):m_unicode_code(l_code), m_id(l_id), m_type(l_type){};
+Key::Key(unsigned int l_id, KeyType l_type): m_id(l_id), m_type(l_type){};
 
 Key::~Key(){};
 
 
 
 // Getters
-unsigned int Key::GetUnicodeCode() const {
-    return m_unicode_code;
-};
-
 unsigned int Key::GetId() const {
     return m_id;
 };

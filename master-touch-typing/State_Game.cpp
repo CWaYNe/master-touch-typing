@@ -101,9 +101,12 @@ void State_Game::KeyPressed(EventDetails* l_details){
     else if (l_details->m_textEntered < 128 && l_details->m_textEntered != 10){
         m_userInputs += static_cast<char>(l_details->m_textEntered);
 //        std::cout << l_details->m_textEntered << std::endl;
-        auto itr = m_keyboard->GetKeys().find(l_details->m_textEntered);
-        if (itr != m_keyboard->GetKeys().end()){
-            itr->second->Flicker();
+        auto id = m_keyboard->GetKeyId(l_details->m_textEntered);
+        if (id != 129){
+            auto itr2 = m_keyboard->GetKeys().find(id);
+            if (itr2 != m_keyboard->GetKeys().end()){
+                itr2->second->Flicker();
+            }
         }
     }
 }

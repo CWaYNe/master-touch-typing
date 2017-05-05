@@ -13,32 +13,38 @@
 #include "BaseState.hpp"
 #include "Key.hpp"
 
+using Unicode_code = unsigned int;
+using Key_id = unsigned int;
 
-using Keys = std::unordered_map<unsigned int, Key*>;
+
+using KeyMapping = std::unordered_map<Unicode_code, Key_id>;
+using Keys = std::unordered_map<Key_id, Key*>;
+
 
 class Keyboard{
 public:
     Keyboard(SharedContext* l_context, BaseState* l_currentState);
     ~Keyboard();
     
-    unsigned int GetKeyId(unsigned int unicode)const;
-    KeyType GetKeyType(unsigned int unicode)const;
+    unsigned int GetKeyId(Unicode_code unicode)const;
+    KeyType GetKeyType(Key_id unicode)const;
     Keys GetKeys()const;
     
     
     void Update(float l_dT);
     void Draw();
 private:
-    void LoadKeys();
+    void LoadKeys(const std::string& l_keyFile); // load keymapping then m_keys
     void CreateSkeleton();
     void PurgeKeys();
     
-    sf::RoundedRectangleShape m_keyboardContour;
+    sf::RoundedRectangleShape m_keyboardSkeleton;
     sf::Vector2f keyboardSize;
     
-    
+    std::unordered_map<int, float> widthMapping;
     BaseState* m_currentState;
     SharedContext* m_context;
+    KeyMapping m_key_mapping;
     Keys m_keys;
 };
 

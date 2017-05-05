@@ -15,10 +15,9 @@ enum class KeyType{ NORMAL, LONG_1, LONG_2, LONG_3, SPACE };
 
 class Key{
 public:
-    Key(unsigned int l_code, unsigned int l_id, KeyType l_type);
+    Key(unsigned int l_id, KeyType l_type);
     ~Key();
     
-    unsigned int GetUnicodeCode() const;
     unsigned int GetId() const;
     KeyType GetType() const;
     
@@ -29,7 +28,6 @@ public:
     void Flicker();
     
 private:
-    unsigned int m_unicode_code;
     unsigned int m_id; // keyboard index
     KeyType m_type;
     
