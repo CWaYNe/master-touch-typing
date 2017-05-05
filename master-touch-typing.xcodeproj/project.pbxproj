@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B079E9101EB2281000D7A830 /* StateManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B079E90E1EB2281000D7A830 /* StateManager.cpp */; };
+		B0935F8F1EBC51510039D9AF /* RoundedRectangleShape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0935F8D1EBC51510039D9AF /* RoundedRectangleShape.cpp */; };
 		B09ECBD01EB71484001036E1 /* SpriteSheet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B09ECBCE1EB71484001036E1 /* SpriteSheet.cpp */; };
 		B09ECBD71EB71A1D001036E1 /* Anim_Base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B09ECBD61EB71A1D001036E1 /* Anim_Base.cpp */; };
 		B09ECBDA1EB71C30001036E1 /* Anim_Directional.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B09ECBD81EB71C30001036E1 /* Anim_Directional.cpp */; };
@@ -48,6 +49,8 @@
 		B079E90E1EB2281000D7A830 /* StateManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StateManager.cpp; sourceTree = "<group>"; };
 		B079E90F1EB2281000D7A830 /* StateManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StateManager.hpp; sourceTree = "<group>"; };
 		B079E9111EB2289000D7A830 /* SharedContext.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SharedContext.hpp; sourceTree = "<group>"; };
+		B0935F8D1EBC51510039D9AF /* RoundedRectangleShape.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RoundedRectangleShape.cpp; sourceTree = "<group>"; };
+		B0935F8E1EBC51510039D9AF /* RoundedRectangleShape.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RoundedRectangleShape.hpp; sourceTree = "<group>"; };
 		B09ECBC91EB71060001036E1 /* Utilities.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Utilities.hpp; sourceTree = "<group>"; };
 		B09ECBCA1EB71094001036E1 /* ResourceManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ResourceManager.hpp; sourceTree = "<group>"; };
 		B09ECBCE1EB71484001036E1 /* SpriteSheet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpriteSheet.cpp; sourceTree = "<group>"; };
@@ -177,6 +180,8 @@
 				B0EEE4A91EB0833C00253BCF /* ResourcePath.mm */,
 				B0EEE4AE1EB0833C00253BCF /* Resources */,
 				B0EEE4A71EB0833C00253BCF /* Supporting Files */,
+				B0935F8D1EBC51510039D9AF /* RoundedRectangleShape.cpp */,
+				B0935F8E1EBC51510039D9AF /* RoundedRectangleShape.hpp */,
 			);
 			path = "master-touch-typing";
 			sourceTree = "<group>";
@@ -285,6 +290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B09ECBDA1EB71C30001036E1 /* Anim_Directional.cpp in Sources */,
+				B0935F8F1EBC51510039D9AF /* RoundedRectangleShape.cpp in Sources */,
 				B0EEE4AD1EB0833C00253BCF /* main.cpp in Sources */,
 				B09ECBF21EB83B4A001036E1 /* Player.cpp in Sources */,
 				B0BA8A6A1EB459D800F4951B /* State_Paused.cpp in Sources */,

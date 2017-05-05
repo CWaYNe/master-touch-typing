@@ -9,7 +9,6 @@
 #ifndef Anim_Base_hpp
 #define Anim_Base_hpp
 #include <string>
-#include <string>
 class SpriteSheet;
 
 using Frame = unsigned int;

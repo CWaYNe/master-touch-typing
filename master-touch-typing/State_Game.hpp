@@ -11,6 +11,7 @@
 
 #include "BaseState.hpp"
 #include "EventManager.hpp"
+#include "RoundedRectangleShape.hpp"
 
 class State_Game : public BaseState{
 public:
@@ -37,13 +38,16 @@ private:
     void AddTypingCallback();
     void RemoveTypingCallback();
     
+    void SetKeys();
+    
     bool m_correct;
     float m_shakeTimer;
     const float PI;
     
     sf::Sprite m_background;
-    sf::Sprite m_Info;
+    sf::Sprite m_info;
     sf::Sprite m_battleSprite;
+    
     
     std::string m_defaultText;
     std::string m_userInputs;
@@ -54,6 +58,11 @@ private:
     sf::Font m_font;
     sf::Text m_text;
     sf::Text m_word;
+    
+    sf::RoundedRectangleShape m_keyboardContour;
+    sf::RoundedRectangleShape keyboard[14];
+    
+//    Keyboard m_keyboard;
     
 };
 
