@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		B079E9101EB2281000D7A830 /* StateManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B079E90E1EB2281000D7A830 /* StateManager.cpp */; };
 		B0935F8F1EBC51510039D9AF /* RoundedRectangleShape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0935F8D1EBC51510039D9AF /* RoundedRectangleShape.cpp */; };
+		B0935F921EBC70930039D9AF /* Keyboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0935F901EBC70930039D9AF /* Keyboard.cpp */; };
+		B0935F951EBC7AA00039D9AF /* Key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0935F931EBC7AA00039D9AF /* Key.cpp */; };
 		B09ECBD01EB71484001036E1 /* SpriteSheet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B09ECBCE1EB71484001036E1 /* SpriteSheet.cpp */; };
 		B09ECBD71EB71A1D001036E1 /* Anim_Base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B09ECBD61EB71A1D001036E1 /* Anim_Base.cpp */; };
 		B09ECBDA1EB71C30001036E1 /* Anim_Directional.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B09ECBD81EB71C30001036E1 /* Anim_Directional.cpp */; };
@@ -51,6 +53,10 @@
 		B079E9111EB2289000D7A830 /* SharedContext.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SharedContext.hpp; sourceTree = "<group>"; };
 		B0935F8D1EBC51510039D9AF /* RoundedRectangleShape.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RoundedRectangleShape.cpp; sourceTree = "<group>"; };
 		B0935F8E1EBC51510039D9AF /* RoundedRectangleShape.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RoundedRectangleShape.hpp; sourceTree = "<group>"; };
+		B0935F901EBC70930039D9AF /* Keyboard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Keyboard.cpp; sourceTree = "<group>"; };
+		B0935F911EBC70930039D9AF /* Keyboard.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Keyboard.hpp; sourceTree = "<group>"; };
+		B0935F931EBC7AA00039D9AF /* Key.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Key.cpp; sourceTree = "<group>"; };
+		B0935F941EBC7AA00039D9AF /* Key.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Key.hpp; sourceTree = "<group>"; };
 		B09ECBC91EB71060001036E1 /* Utilities.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Utilities.hpp; sourceTree = "<group>"; };
 		B09ECBCA1EB71094001036E1 /* ResourceManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ResourceManager.hpp; sourceTree = "<group>"; };
 		B09ECBCE1EB71484001036E1 /* SpriteSheet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpriteSheet.cpp; sourceTree = "<group>"; };
@@ -182,6 +188,10 @@
 				B0EEE4A71EB0833C00253BCF /* Supporting Files */,
 				B0935F8D1EBC51510039D9AF /* RoundedRectangleShape.cpp */,
 				B0935F8E1EBC51510039D9AF /* RoundedRectangleShape.hpp */,
+				B0935F901EBC70930039D9AF /* Keyboard.cpp */,
+				B0935F911EBC70930039D9AF /* Keyboard.hpp */,
+				B0935F931EBC7AA00039D9AF /* Key.cpp */,
+				B0935F941EBC7AA00039D9AF /* Key.hpp */,
 			);
 			path = "master-touch-typing";
 			sourceTree = "<group>";
@@ -298,6 +308,7 @@
 				B09ECC061EB86BE8001036E1 /* State_GameOver.cpp in Sources */,
 				B0BA8A671EB4505000F4951B /* State_Intro.cpp in Sources */,
 				B0EEE4C81EB0D6F400253BCF /* EventManager.cpp in Sources */,
+				B0935F951EBC7AA00039D9AF /* Key.cpp in Sources */,
 				B0EEE4C01EB08B3700253BCF /* Window.cpp in Sources */,
 				B09ECBE71EB75EF4001036E1 /* EntityBase.cpp in Sources */,
 				B09ECBD71EB71A1D001036E1 /* Anim_Base.cpp in Sources */,
@@ -311,6 +322,7 @@
 				B09ECBE41EB73BD0001036E1 /* Map.cpp in Sources */,
 				B0BC00D91EBAFE2400401D9B /* State_Game.cpp in Sources */,
 				B0EEE4C31EB08EDA00253BCF /* Game.cpp in Sources */,
+				B0935F921EBC70930039D9AF /* Keyboard.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

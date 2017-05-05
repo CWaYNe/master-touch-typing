@@ -12,6 +12,8 @@
 #include "BaseState.hpp"
 #include "EventManager.hpp"
 #include "RoundedRectangleShape.hpp"
+#include "Keyboard.hpp"
+
 
 class State_Game : public BaseState{
 public:
@@ -38,7 +40,6 @@ private:
     void AddTypingCallback();
     void RemoveTypingCallback();
     
-    void SetKeys();
     
     bool m_correct;
     float m_shakeTimer;
@@ -59,10 +60,9 @@ private:
     sf::Text m_text;
     sf::Text m_word;
     
-    sf::RoundedRectangleShape m_keyboardContour;
-    sf::RoundedRectangleShape keyboard[14];
+
     
-//    Keyboard m_keyboard;
+    Keyboard* m_keyboard;
     
 };
 

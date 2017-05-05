@@ -57,41 +57,13 @@ void State_Game::OnCreate(){
     m_word.setPosition(windowSize.x / 2.0f, m_battleSprite.getLocalBounds().height + 20);
     defaultScale = m_text.getScale();
     
-    // setup keyboard layout
-    SetKeys();
+    // setup Keyboard
+    m_keyboard = new Keyboard(m_stateMgr->GetContext(), this);
     
     EventManager* evMgr = m_stateMgr->
     GetContext()->m_eventManager;
     evMgr->AddCallback(StateType::Game, "Key_Escape", &State_Game::MainMenu, this);
     AddTypingCallback();
-}
-
-void State_Game::SetKeys(){
-    sf::Vector2u windowSize = m_stateMgr->GetContext()
-    ->m_wind->GetRenderWindow()->getSize();
-    
-    sf::Vector2f keyboardSize(800, 400);
-    m_keyboardContour.setSize(keyboardSize);
-    m_keyboardContour.setFillColor(sf::Color::White);
-    m_keyboardContour.setCornersRadius(5.0f);
-    m_keyboardContour.setCornerPointCount(4);
-    m_keyboardContour.setOrigin(400, 200);
-    m_keyboardContour.setOutlineColor(sf::Color::Black);
-    m_keyboardContour.setOutlineThickness(7);
-    m_keyboardContour.setPosition(windowSize.x / 2.0f, windowSize.y / 1.43);
-    
-    sf::Vector2f keyboardPos =  m_keyboardContour.getPosition();
-    
-    sf::Vector2f keySize(48.0f,48.0f);
-    for (int i=0; i<14; ++i){
-        sf::Vector2f keyPosition(keyboardPos.x - keyboardSize.x / 2.0f + i * ( 5 + 48 ) + 24 + 5, keyboardPos.y - keyboardSize.y /2.0f + 24 + 5);
-        keyboard[i].setSize(keySize);
-        keyboard[i].setFillColor(sf::Color::Black);
-        keyboard[i].setCornersRadius(4.5f);
-        keyboard[i].setCornerPointCount(4);
-        keyboard[i].setOrigin(keySize.x / 2.0f, keySize.y / 2.0f);
-        keyboard[i].setPosition(keyPosition);
-    }
 }
 
 void State_Game::OnDestroy(){
@@ -103,6 +75,8 @@ void State_Game::OnDestroy(){
     GetContext()->m_eventManager;
     evMgr->RemoveCallback(StateType::Game, "Key_Escape");
     RemoveTypingCallback();
+    delete m_keyboard;
+    m_keyboard = nullptr;
 }
 
 void State_Game::AddTypingCallback(){
@@ -126,9 +100,11 @@ void State_Game::KeyPressed(EventDetails* l_details){
     }
     else if (l_details->m_textEntered < 128 && l_details->m_textEntered != 10){
         m_userInputs += static_cast<char>(l_details->m_textEntered);
-        std::cout << l_details->m_textEntered << std::endl;
-        if (l_details->m_textEntered == 97) // match
-            keyboard[0].setFillColor(sf::Color::Yellow);
+//        std::cout << l_details->m_textEntered << std::endl;
+        auto itr = m_keyboard->GetKeys().find(l_details->m_textEntered);
+        if (itr != m_keyboard->GetKeys().end()){
+            itr->second->Flicker();
+        }
     }
 }
 
@@ -180,6 +156,8 @@ void State_Game::Update(const sf::Time& l_time){
         m_text.setRotation(0.0f);
         m_text.setScale(defaultScale);
     }
+    
+    m_keyboard->Update(l_time.asSeconds());
 }
 
 void State_Game::Draw(){
@@ -188,11 +166,7 @@ void State_Game::Draw(){
     window->draw(m_battleSprite);
     window->draw(m_word);
     window->draw(m_text);
-    window->draw(m_keyboardContour);
-    for (int i=0; i<14; ++i){
-        window->draw(keyboard[i]);
-    }
-
+    m_keyboard->Draw();
 }
 
 void State_Game::MainMenu(EventDetails* l_details){
