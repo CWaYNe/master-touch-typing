@@ -30,7 +30,14 @@ public:
 private:
     sf::Sprite m_introSprite;
     sf::Font m_font;
+    sf::Text m_title;
+    sf::Text m_subtitle;
     sf::Text m_text;
+    
+    std::string m_titlePunc;
+    
+    float m_elapsedTime;
+    float m_elapsedTime2;
 };
 
 #endif //State_Intro_hpp

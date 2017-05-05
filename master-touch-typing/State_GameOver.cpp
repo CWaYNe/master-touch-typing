@@ -16,15 +16,17 @@ State_GameOver::State_GameOver(StateManager* l_stateManager)
 State_GameOver::~State_GameOver(){}
 
 void State_GameOver::OnCreate(){
+    sf::Vector2u windowSize = m_stateMgr->GetContext()
+    ->m_wind->GetRenderWindow()->getSize();
     m_elapsed = 0;
     m_font.loadFromFile(resourcePath() + "media/Fonts/arial.ttf");
     m_text.setFont(m_font);
-    m_text.setCharacterSize(16);
-    m_text.setString("You beat the game! Congratulations!");
+    m_text.setCharacterSize(50);
+    m_text.setString("Congratulations! You beat the game!");
     m_text.setFillColor(sf::Color::White);
     m_text.setOrigin(m_text.getLocalBounds().width / 2,
                      m_text.getLocalBounds().height / 2);
-    m_text.setPosition(400, 300);
+    m_text.setPosition(windowSize.x / 2.0f , windowSize.y /2.0f);
 
     m_stateMgr->Remove(StateType::Game);
 }

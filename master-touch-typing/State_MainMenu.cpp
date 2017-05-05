@@ -16,19 +16,22 @@ State_MainMenu::State_MainMenu(StateManager* l_stateManager)
 State_MainMenu::~State_MainMenu(){}
 
 void State_MainMenu::OnCreate(){
+    sf::Vector2u windowSize = m_stateMgr->GetContext()
+    ->m_wind->GetRenderWindow()->getSize();
+    
     m_font.loadFromFile(resourcePath() + "media/Fonts/arial.ttf");
     m_text.setFont(m_font);
     m_text.setString(sf::String("MAIN MENU:"));
-    m_text.setCharacterSize(18);
+    m_text.setCharacterSize(48);
     
     sf::FloatRect textRect = m_text.getLocalBounds();
     m_text.setOrigin(textRect.left + textRect.width / 2.0f,
                      textRect.top + textRect.height / 2.0f);
     
-    m_text.setPosition(400,100);
+    m_text.setPosition(windowSize.x / 2.0f,windowSize.y / 3.8f);
     
     m_buttonSize = sf::Vector2f(300.0f,32.0f);
-    m_buttonPos = sf::Vector2f(400,200);
+    m_buttonPos = sf::Vector2f(windowSize.x / 2.0f,windowSize.y / 3.0f);
     m_buttonPadding = 4; // 4px.
     
     std::string str[3];

@@ -18,15 +18,35 @@ State_Game::State_Game(StateManager* l_stateManager): BaseState(l_stateManager),
 State_Game::~State_Game(){};
 
 void State_Game::OnCreate(){
+    sf::Vector2u windowSize = m_stateMgr->GetContext()
+    ->m_wind->GetRenderWindow()->getSize();
+    TextureManager* textureMgr = m_stateMgr->GetContext()->m_textureManager;
+    sf::FloatRect viewSpace = this->m_stateMgr->GetContext()->m_wind->GetViewSpace();
+    
+    textureMgr->RequireResource("GameStateBg");
+    textureMgr->RequireResource("Stage1");
+    
+    
+    m_background.setTexture(*textureMgr->GetResource("GameStateBg"));
+    m_battleSprite.setTexture(*textureMgr->GetResource("Stage1"));
+    
+    
+    m_battleSprite.setScale(windowSize.x/m_battleSprite.getLocalBounds().width, 1);
+    m_background.setScale(windowSize.x/m_background.getLocalBounds().width, windowSize.y/m_background.getLocalBounds().height);
+    m_battleSprite.setPosition(viewSpace.left, viewSpace.top);
+    m_background.setPosition(viewSpace.left, viewSpace.top);
+    
+    
     m_font.loadFromFile(resourcePath() + "media/Fonts/arial.ttf");
     m_text.setFont(m_font);
-    m_text.setCharacterSize(22);
+    m_text.setCharacterSize(36);
+    m_text.setFillColor(sf::Color::Black);
     m_text.setString(sf::String(m_defaultText + m_userInputs));
     
     m_word.setFont(m_font);
     m_word.setString(sf::String(*it));
-    m_word.setCharacterSize(22);
-    
+    m_word.setCharacterSize(36);
+    m_word.setFillColor(sf::Color::Black);
     
     
     sf::FloatRect wordRect = m_word.getLocalBounds();
@@ -34,8 +54,8 @@ void State_Game::OnCreate(){
     m_text.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
     m_word.setOrigin(wordRect.left + wordRect.width / 2.0f, wordRect.top + wordRect.height / 2.0f);
     
-    m_text.setPosition(400, 350);
-    m_word.setPosition(400, 100);
+    m_text.setPosition(windowSize.x / 2.0f, m_battleSprite.getLocalBounds().height + 80);
+    m_word.setPosition(windowSize.x / 2.0f, m_battleSprite.getLocalBounds().height + 20);
     defaultScale = m_text.getScale();
     
     EventManager* evMgr = m_stateMgr->
@@ -45,9 +65,12 @@ void State_Game::OnCreate(){
 }
 
 void State_Game::OnDestroy(){
+    TextureManager* textureMgr = m_stateMgr->GetContext()->m_textureManager;
+    textureMgr->ReleaseResource("GameStateBg");
+    textureMgr->ReleaseResource("Stage1");
+    
     EventManager* evMgr = m_stateMgr->
     GetContext()->m_eventManager;
-    
     evMgr->RemoveCallback(StateType::Game, "Key_Escape");
     RemoveTypingCallback();
 }
@@ -89,6 +112,8 @@ void State_Game::EnterKeyPressed(EventDetails* l_details){
 
 
 void State_Game::Update(const sf::Time& l_time){
+    sf::Vector2u windowSize = m_stateMgr->GetContext()
+    ->m_wind->GetRenderWindow()->getSize();
     if(m_correct && it == m_english_words.end()){
         m_correct = false;
         m_stateMgr->SwitchTo(StateType::GameOver);
@@ -101,7 +126,7 @@ void State_Game::Update(const sf::Time& l_time){
             m_word.setString(sf::String(*it));
             sf::FloatRect wordRect = m_word.getLocalBounds();
             m_word.setOrigin(wordRect.left + wordRect.width / 2.0f, wordRect.top + wordRect.height / 2.0f);
-            m_word.setPosition(400, 100);
+            m_word.setPosition(windowSize.x / 2.0f, m_battleSprite.getLocalBounds().height + 20);
         }
     }
     
@@ -111,7 +136,8 @@ void State_Game::Update(const sf::Time& l_time){
     sf::FloatRect textRect = m_text.getLocalBounds();
     m_text.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
     
-    m_text.setPosition(400, 250);
+    m_text.setPosition(windowSize.x / 2.0f, m_battleSprite.getLocalBounds().height + 80);
+    
     if (m_shakeTimer > 0.0f){
         m_shakeTimer -= l_time.asSeconds();
         float offset = rand() % 1 ? 1.5366 : -1.54642;
@@ -125,6 +151,8 @@ void State_Game::Update(const sf::Time& l_time){
 
 void State_Game::Draw(){
     sf::RenderWindow* window = m_stateMgr->GetContext()->m_wind->GetRenderWindow();
+    window->draw(m_background);
+    window->draw(m_battleSprite);
     window->draw(m_word);
     window->draw(m_text);
 }

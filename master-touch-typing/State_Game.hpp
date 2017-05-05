@@ -41,6 +41,10 @@ private:
     float m_shakeTimer;
     const float PI;
     
+    sf::Sprite m_background;
+    sf::Sprite m_Info;
+    sf::Sprite m_battleSprite;
+    
     std::string m_defaultText;
     std::string m_userInputs;
     std::vector<std::string> m_english_words;

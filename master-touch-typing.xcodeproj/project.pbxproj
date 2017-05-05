@@ -163,6 +163,8 @@
 				B0BA8A601EB38D0900F4951B /* State_MainMenu.hpp */,
 				B0BA8A681EB459D800F4951B /* State_Paused.cpp */,
 				B0BA8A691EB459D800F4951B /* State_Paused.hpp */,
+				B0BC00D71EBAFE2400401D9B /* State_Game.cpp */,
+				B0BC00D81EBAFE2400401D9B /* State_Game.hpp */,
 				B09ECC041EB86BE8001036E1 /* State_GameOver.cpp */,
 				B09ECC051EB86BE8001036E1 /* State_GameOver.hpp */,
 				B079E90E1EB2281000D7A830 /* StateManager.cpp */,
@@ -175,8 +177,6 @@
 				B0EEE4A91EB0833C00253BCF /* ResourcePath.mm */,
 				B0EEE4AE1EB0833C00253BCF /* Resources */,
 				B0EEE4A71EB0833C00253BCF /* Supporting Files */,
-				B0BC00D71EBAFE2400401D9B /* State_Game.cpp */,
-				B0BC00D81EBAFE2400401D9B /* State_Game.hpp */,
 			);
 			path = "master-touch-typing";
 			sourceTree = "<group>";
