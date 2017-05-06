@@ -7,43 +7,57 @@
 //
 
 #include "Keyboard.hpp"
+#include <typeinfo>
 
-Keyboard::Keyboard(SharedContext* l_context, BaseState* l_currentState):m_currentState(l_currentState),m_context(l_context), keyboardSize(800, 400){
+Keyboard::Keyboard(SharedContext* l_context, BaseState* l_currentState):m_currentState(l_currentState),m_context(l_context), keyboardSize(780, 270){
     CreateSkeleton();
-    widthMapping[0] = 48.0f;
-    widthMapping[1] = 64.0f;
-    widthMapping[2] = 76.0f;
-    widthMapping[3] = 100.0f;
-    widthMapping[4] = 240.0f;
+    InitKeyWidthMapping();
     LoadKeys("Keyboard.cfg");
 }
 
 Keyboard::~Keyboard(){PurgeKeys();}
 
+
+void Keyboard::InitKeyWidthMapping(){
+    widthMapping.insert(std::make_pair(KeyType::NORMAL, 48.0f));
+    widthMapping.insert(std::make_pair(KeyType::LONG_1, 64.0f));
+    widthMapping.insert(std::make_pair(KeyType::LONG_2, 76.0f));
+    widthMapping.insert(std::make_pair(KeyType::LONG_3, 90.0f));
+    widthMapping.insert(std::make_pair(KeyType::LONG_4, 130.0f));
+    widthMapping.insert(std::make_pair(KeyType::SPACE, 295.0f));
+}
+
 void Keyboard::LoadKeys(const std::string& l_keyFile){
     sf::Vector2f keyboardPos =  m_keyboardSkeleton.getPosition();
     // load file from keyboard.cfg
     float w, lw = 0; // current width, last width of key
-    std::ifstream keysmapping;
+    std::wifstream keysmapping;
+    
+    m_font.loadFromFile(resourcePath() + "media/Fonts/DejaVuSansMono-Bold.ttf");
 
-
-    float defaultXPos = keyboardPos.x - keyboardSize.x / 2.0f + 24.0f;
+    float defaultXPos = keyboardPos.x - keyboardSize.x / 2.0f;
     float xPos = defaultXPos;
-    float yPos = keyboardPos.y - keyboardSize.y /2.0f + 24 + 5;
+    float yPos = keyboardPos.y - keyboardSize.y /1.35f + 24 + 5;
     
     int i = 0;
     
     keysmapping.open(resourcePath()+l_keyFile);
     if(keysmapping.is_open()){
-        std::string line;
+        std::wstring line;
         while(std::getline(keysmapping, line)){
-            
-            
             if (line[0] == '|'){ continue; }
-            std::stringstream keystream(line);
+            
+            std::wstringstream keystream(line);
             int code1, code2, id, type;
+            std::wstring keyTag;
+            
             keystream >> code1 >> code2;
             keystream >> id >> type;
+            keystream >> keyTag;
+            
+            
+
+            
             if (code1 != -1){
                 m_key_mapping.insert(std::make_pair(unsigned(code1), unsigned(id)));
             }
@@ -63,21 +77,42 @@ void Keyboard::LoadKeys(const std::string& l_keyFile){
                     xPos += 4*(48+5);
                 }
             }
-            w = widthMapping[type];
+            w = widthMapping[static_cast<KeyType>(type)];
             sf::Vector2f keySize(w, 48.0f);
-        
+            wchar_t b = L'⇧';
+            
+            sf::String label(keyTag);
+            // TODO : Fix wstring bug
+            if (id == 13)
+                label = sf::String(L'⌫');
+            else if (id == 14)
+                label = sf::String(L'⇄');
+            else if (id == 28)
+                label = sf::String("Caps");
+            else if (id == 40)
+                label = sf::String(L'↵');
+            else if (id == 41)
+                label = sf::String(L'⇧');
+            else if (id == 52)
+                label = sf::String(L'⇧');
+            else if (id == 53)
+                label = sf::String("SPACE");
+            
+            
             xPos += lw/2.0f + w/2.0f + 5;
             sf::Vector2f keyPosition(xPos, yPos);
             Key *key = new Key(id, static_cast<KeyType>(type));
-            key->SetKey(keyPosition, keySize);
+            key->SetKey(keyPosition, keySize, label, m_font);
             m_keys.insert(std::make_pair(id, key));
             
             lw = w;
             i++;
         }
+        return;
     }
     
-    // TODO : handle path error
+    std::cout << "keyboard.loadkeys path error" << std::endl;
+    return;
     
 }
 
@@ -107,7 +142,7 @@ void Keyboard::CreateSkeleton(){
     m_keyboardSkeleton.setOrigin(400, 200);
     m_keyboardSkeleton.setOutlineColor(sf::Color::Black);
     m_keyboardSkeleton.setOutlineThickness(7);
-    m_keyboardSkeleton.setPosition(windowSize.x / 2.0f, windowSize.y / 1.43);
+    m_keyboardSkeleton.setPosition(windowSize.x / 2.0f, windowSize.y / 1.13);
     
 }
 

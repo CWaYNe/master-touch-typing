@@ -184,14 +184,14 @@
 				B0EEE4BE1EB08A0500253BCF /* Window.hpp */,
 				B0EEE4AB1EB0833C00253BCF /* ResourcePath.hpp */,
 				B0EEE4A91EB0833C00253BCF /* ResourcePath.mm */,
-				B0EEE4AE1EB0833C00253BCF /* Resources */,
-				B0EEE4A71EB0833C00253BCF /* Supporting Files */,
 				B0935F8D1EBC51510039D9AF /* RoundedRectangleShape.cpp */,
 				B0935F8E1EBC51510039D9AF /* RoundedRectangleShape.hpp */,
 				B0935F901EBC70930039D9AF /* Keyboard.cpp */,
 				B0935F911EBC70930039D9AF /* Keyboard.hpp */,
 				B0935F931EBC7AA00039D9AF /* Key.cpp */,
 				B0935F941EBC7AA00039D9AF /* Key.hpp */,
+				B0EEE4AE1EB0833C00253BCF /* Resources */,
+				B0EEE4A71EB0833C00253BCF /* Supporting Files */,
 			);
 			path = "master-touch-typing";
 			sourceTree = "<group>";

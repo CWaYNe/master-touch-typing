@@ -34,6 +34,8 @@ public:
     void Pause(EventDetails* l_details);
     void KeyPressed(EventDetails* l_details);
     void EnterKeyPressed(EventDetails* l_details);
+    void PressedLShift(EventDetails* l_details);
+    void PressedRShift(EventDetails* l_details);
     
 private:
     // Custom callback

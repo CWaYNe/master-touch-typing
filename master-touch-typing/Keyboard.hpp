@@ -35,13 +35,16 @@ public:
     void Draw();
 private:
     void LoadKeys(const std::string& l_keyFile); // load keymapping then m_keys
+    void InitKeyWidthMapping();
     void CreateSkeleton();
     void PurgeKeys();
+    
+    sf::Font m_font;
     
     sf::RoundedRectangleShape m_keyboardSkeleton;
     sf::Vector2f keyboardSize;
     
-    std::unordered_map<int, float> widthMapping;
+    std::unordered_map<KeyType, float, EnumClassHash> widthMapping;
     BaseState* m_currentState;
     SharedContext* m_context;
     KeyMapping m_key_mapping;

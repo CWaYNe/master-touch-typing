@@ -84,7 +84,19 @@ void State_Game::AddTypingCallback(){
     GetContext()->m_eventManager;
     evMgr->AddCallback(StateType::Game, "Key_Typing", &State_Game::KeyPressed, this);
     evMgr->AddCallback(StateType::Game, "Key_Enter", &State_Game::EnterKeyPressed, this);
+    evMgr->AddCallback(StateType::Game, "Press_L_SHIFT", &State_Game::PressedLShift,this);
+    evMgr->AddCallback(StateType::Game, "Press_R_SHIFT", &State_Game::PressedRShift,this);
 }
+
+void State_Game::PressedLShift(EventDetails* l_details){
+    auto itr = m_keyboard->GetKeys().find(41);
+    itr->second->Flicker();
+}
+void State_Game::PressedRShift(EventDetails* l_details){
+    auto itr = m_keyboard->GetKeys().find(52);
+    itr->second->Flicker();
+}
+
 
 void State_Game::RemoveTypingCallback(){
     EventManager* evMgr = m_stateMgr->
@@ -97,10 +109,11 @@ void State_Game::KeyPressed(EventDetails* l_details){
     if (l_details->m_textEntered == '\b'){
         if(!m_userInputs.empty())
             m_userInputs.erase(m_userInputs.size()-1, 1);
+        auto itr = m_keyboard->GetKeys().find(13);
+        itr->second->Flicker();
     }
     else if (l_details->m_textEntered < 128 && l_details->m_textEntered != 10){
         m_userInputs += static_cast<char>(l_details->m_textEntered);
-//        std::cout << l_details->m_textEntered << std::endl;
         auto id = m_keyboard->GetKeyId(l_details->m_textEntered);
         if (id != 129){
             auto itr2 = m_keyboard->GetKeys().find(id);
@@ -112,6 +125,8 @@ void State_Game::KeyPressed(EventDetails* l_details){
 }
 
 void State_Game::EnterKeyPressed(EventDetails* l_details){
+    auto itr = m_keyboard->GetKeys().find(40);
+    itr->second->Flicker();
     if (m_userInputs == *it){
         m_correct = true;
         m_userInputs = "";

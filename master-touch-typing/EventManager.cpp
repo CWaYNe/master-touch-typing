@@ -81,9 +81,7 @@ void EventManager::HandleEvent(sf::Event& l_event){
                     bind->m_details.m_size.y = l_event.size.height;
                 } else if (sfmlEvent == EventType::TextEntered){
                     bind->m_details.m_textEntered = l_event.text.unicode;
-//                    if (e_itr.second.m_code == l_event.text.unicode){
-//                        std::cout << e_itr.second.m_code << ":" << l_event.text.unicode << std::endl;
-//                    }
+                    bind->m_details.m_keyCode = l_event.key.code;
                 }
                 ++(bind->c);
             }

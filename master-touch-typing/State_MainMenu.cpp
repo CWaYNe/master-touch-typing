@@ -34,7 +34,8 @@ void State_MainMenu::OnCreate(){
     m_buttonPos = sf::Vector2f(windowSize.x / 2.0f,windowSize.y / 3.0f);
     m_buttonPadding = 4; // 4px.
     
-    std::string str[3];
+//    std::string str[3];
+    sf::String str[3];
     str[0] = "PLAY";
     str[1] = "CREDITS";
     str[2] = "EXIT";
@@ -51,7 +52,7 @@ void State_MainMenu::OnCreate(){
         m_rects[i].setPosition(buttonPosition);
         
         m_labels[i].setFont(m_font);
-        m_labels[i].setString(sf::String(str[i]));
+        m_labels[i].setString(str[i]);
         m_labels[i].setCharacterSize(12);
         
         sf::FloatRect rect = m_labels[i].getLocalBounds();
