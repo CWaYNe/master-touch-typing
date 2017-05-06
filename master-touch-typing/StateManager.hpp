@@ -18,7 +18,9 @@
 #include "State_Paused.hpp"
 #include "State_GameOver.hpp"
 
-enum class StateType{ Intro = 1, MainMenu, Game, Paused, GameOver, Credits };
+#include "State_Game2.hpp" // example 6
+
+enum class StateType{ Intro = 1, MainMenu, Game, Game2, Paused, GameOver, Credits };
 
 // State container.
 using StateContainer = std::vector<std::pair<StateType, BaseState*>>;

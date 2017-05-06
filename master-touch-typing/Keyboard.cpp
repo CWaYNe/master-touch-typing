@@ -7,7 +7,6 @@
 //
 
 #include "Keyboard.hpp"
-#include <typeinfo>
 
 Keyboard::Keyboard(SharedContext* l_context, BaseState* l_currentState):m_currentState(l_currentState),m_context(l_context), keyboardSize(780, 270){
     CreateSkeleton();

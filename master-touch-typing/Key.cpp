@@ -50,7 +50,7 @@ void Key::SetKey(sf::Vector2f position,const  sf::Vector2f& keySize, const sf::S
 void Key::Update(float l_DT){
     if (m_elapsed > 0){
         m_elapsed -= l_DT;
-    }else if(m_elapsed <= 0){
+    }else if(m_elapsed < 0){
 //        m_key.setFillColor(sf::Color::Black);
         m_label.setFillColor(sf::Color::Color(138,138,138));
         m_elapsed = 0.0f;

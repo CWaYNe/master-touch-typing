@@ -35,6 +35,28 @@ void State_Game::OnCreate(){
     m_battleSprite.setPosition(viewSpace.left, viewSpace.top);
     m_background.setPosition(viewSpace.left, viewSpace.top);
     
+    sf::Vector2f boxSize(200.0f, 40.0f);
+    sf::Vector2f wordPos(windowSize.x / 2.0f, m_battleSprite.getLocalBounds().height + 35);
+    sf::Vector2f inputPos(windowSize.x / 2.0f, m_battleSprite.getLocalBounds().height + 125);
+    
+    
+    m_WordBox.setSize(boxSize);
+    m_WordBox.setFillColor(sf::Color::White);
+    m_WordBox.setCornersRadius(5.0f);
+    m_WordBox.setCornerPointCount(4);
+    m_WordBox.setOrigin(boxSize.x / 2.0f, boxSize.y / 2.0f);
+    m_WordBox.setOutlineColor(sf::Color::Blue);
+    m_WordBox.setPosition(wordPos.x, wordPos.y);
+    
+    
+    m_InputBox.setSize(boxSize);
+    m_InputBox.setFillColor(sf::Color::White);
+    m_InputBox.setCornersRadius(5.0f);
+    m_InputBox.setCornerPointCount(4);
+    m_InputBox.setOrigin(boxSize.x / 2.0f, boxSize.y / 2.0f);
+    m_InputBox.setOutlineColor(sf::Color::Blue);
+    m_InputBox.setPosition(inputPos.x, inputPos.y);
+    
     
     m_font.loadFromFile(resourcePath() + "media/Fonts/arial.ttf");
     m_text.setFont(m_font);
@@ -53,8 +75,8 @@ void State_Game::OnCreate(){
     m_text.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
     m_word.setOrigin(wordRect.left + wordRect.width / 2.0f, wordRect.top + wordRect.height / 2.0f);
     
-    m_text.setPosition(windowSize.x / 2.0f, m_battleSprite.getLocalBounds().height + 80);
-    m_word.setPosition(windowSize.x / 2.0f, m_battleSprite.getLocalBounds().height + 20);
+    m_text.setPosition(inputPos.x, inputPos.y);
+    m_word.setPosition(wordPos.x, wordPos.y);
     defaultScale = m_text.getScale();
     
     // setup Keyboard
@@ -182,6 +204,8 @@ void State_Game::Draw(){
     sf::RenderWindow* window = m_stateMgr->GetContext()->m_wind->GetRenderWindow();
     window->draw(m_background);
     window->draw(m_battleSprite);
+    window->draw(m_WordBox);
+    window->draw(m_InputBox);
     window->draw(m_word);
     window->draw(m_text);
     m_keyboard->Draw();

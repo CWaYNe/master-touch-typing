@@ -17,6 +17,9 @@ StateManager::StateManager(SharedContext* l_shared)
     RegisterState<State_Game>(StateType::Game);
     RegisterState<State_Paused>(StateType::Paused);
     RegisterState<State_GameOver>(StateType::GameOver);
+    
+    
+    RegisterState<State_Game2>(StateType::Game2);// example 6
 }
 
 StateManager::~StateManager(){

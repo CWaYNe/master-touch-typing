@@ -47,6 +47,9 @@ private:
     float m_shakeTimer;
     const float PI;
     
+    sf::RoundedRectangleShape m_WordBox;
+    sf::RoundedRectangleShape m_InputBox;
+    
     sf::Sprite m_background;
     sf::Sprite m_info;
     sf::Sprite m_battleSprite;
