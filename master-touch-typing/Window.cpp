@@ -28,6 +28,8 @@ void Window::Setup(const std::string& l_title, const sf::Vector2u& l_size)
     m_eventManager.AddCallback(StateType(0),"Window_close", &Window::Close, this);
 
     Create();
+    // TODO
+    m_window.setVerticalSyncEnabled(true);
 }
 
 void Window::Create(){

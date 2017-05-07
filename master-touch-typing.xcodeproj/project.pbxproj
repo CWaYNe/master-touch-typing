@@ -33,6 +33,7 @@
 		B0EEE4C31EB08EDA00253BCF /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0EEE4C11EB08EDA00253BCF /* Game.cpp */; };
 		B0EEE4C81EB0D6F400253BCF /* EventManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0EEE4C61EB0D6F400253BCF /* EventManager.cpp */; };
 		B0F02F241EBEF2F00047A374 /* Platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0F02F221EBEF2F00047A374 /* Platform.cpp */; };
+		B0F02F271EBF15130047A374 /* State_GameClear.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0F02F251EBF15130047A374 /* State_GameClear.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -107,6 +108,8 @@
 		B0EEE4C71EB0D6F400253BCF /* EventManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EventManager.hpp; sourceTree = "<group>"; };
 		B0F02F221EBEF2F00047A374 /* Platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Platform.cpp; sourceTree = "<group>"; };
 		B0F02F231EBEF2F00047A374 /* Platform.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Platform.hpp; sourceTree = "<group>"; };
+		B0F02F251EBF15130047A374 /* State_GameClear.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = State_GameClear.cpp; sourceTree = "<group>"; };
+		B0F02F261EBF15130047A374 /* State_GameClear.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = State_GameClear.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +200,8 @@
 				B0EEE4A71EB0833C00253BCF /* Supporting Files */,
 				B0F02F221EBEF2F00047A374 /* Platform.cpp */,
 				B0F02F231EBEF2F00047A374 /* Platform.hpp */,
+				B0F02F251EBF15130047A374 /* State_GameClear.cpp */,
+				B0F02F261EBF15130047A374 /* State_GameClear.hpp */,
 			);
 			path = "master-touch-typing";
 			sourceTree = "<group>";
@@ -309,6 +314,7 @@
 				B0EEE4AD1EB0833C00253BCF /* main.cpp in Sources */,
 				B09ECBF21EB83B4A001036E1 /* Player.cpp in Sources */,
 				B0BA8A6A1EB459D800F4951B /* State_Paused.cpp in Sources */,
+				B0F02F271EBF15130047A374 /* State_GameClear.cpp in Sources */,
 				B09ECBED1EB83732001036E1 /* Character.cpp in Sources */,
 				B09ECC061EB86BE8001036E1 /* State_GameOver.cpp in Sources */,
 				B0BA8A671EB4505000F4951B /* State_Intro.cpp in Sources */,

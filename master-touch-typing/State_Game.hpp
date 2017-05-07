@@ -14,6 +14,7 @@
 #include "RoundedRectangleShape.hpp"
 #include "Keyboard.hpp"
 #include "Platform.hpp"
+#include <iomanip> // setprecision
 
 
 class State_Game : public BaseState{
@@ -47,6 +48,7 @@ private:
     bool m_correct;
     float m_shakeTimer;
     float m_correctTimer;
+    float m_elapsedTime;
     const float PI;
     
     sf::Vector2f m_wordBoxPos;
@@ -57,8 +59,13 @@ private:
     sf::RoundedRectangleShape m_InputBox;
     
     sf::Sprite m_background;
-    sf::Sprite m_info;
     sf::Sprite m_great;
+    
+    sf::RectangleShape m_info;
+    sf::Text m_health;
+    sf::Text m_stageTitle;
+    sf::Text m_Timer;
+    
     
     std::wstring m_defaultText;
     std::wstring m_userInputs;
@@ -72,6 +79,7 @@ private:
     sf::Text m_text; // user input box
     sf::Text m_word; // vocabulary box
     
+    int m_missedCount;
     
 
     Platform* m_gamePlatform;

@@ -13,7 +13,9 @@
 State_Game::State_Game(StateManager* l_stateManager): BaseState(l_stateManager), m_correct(false), m_shakeTimer(0.0f), PI(3.1415926f),
     m_boxSize(200.0f, 80.0f),
     m_defaultText(L"Input:"),
-    m_correctTimer(0.0f){
+    m_correctTimer(0.0f),
+    m_missedCount(0),
+    m_elapsedTime(60.0f){
     LoadGameData("gameData/stage1.gameData");
     itr2 = m_vocabulary.begin();
 };
@@ -50,6 +52,8 @@ void State_Game::OnCreate(){
     TextureManager* textureMgr = m_stateMgr->GetContext()->m_textureManager;
     sf::FloatRect viewSpace = this->m_stateMgr->GetContext()->m_wind->GetViewSpace();
     
+    m_font.loadFromFile(resourcePath() + "media/Fonts/NotoSansCJKtc-Bold.otf");
+    
     textureMgr->RequireResource("GameStateBg");
     textureMgr->RequireResource("Correct");
     
@@ -58,8 +62,39 @@ void State_Game::OnCreate(){
     
     m_background.setTexture(*textureMgr->GetResource("GameStateBg"));
     
-    sf::Vector2u platformPos(viewSpace.left, viewSpace.top);
+    // set info bar
+    m_info.setSize(sf::Vector2f(1024, 50));
+    m_info.setFillColor(sf::Color::Black);
+    m_info.setPosition(viewSpace.left,viewSpace.top);
+    
+    m_health.setFont(m_font);
+    m_stageTitle.setFont(m_font);
+    m_Timer.setFont(m_font);
+    
+    m_health.setString({"Health: "});
+    m_stageTitle.setString({"Stage 1"});
+    
+    std::stringstream ss;
+    ss << std::fixed << std::setprecision(2) << m_elapsedTime;
+    
+    m_Timer.setString({"Timer: " + ss.str()});
+    
+    
+    m_health.setPosition(viewSpace.left, viewSpace.top);
+    m_stageTitle.setOrigin(m_stageTitle.getLocalBounds().width / 2.0f,0);
+    m_stageTitle.setPosition(viewSpace.left + windowSize.x / 2.0f, viewSpace.top);
+    
+    
+    m_Timer.setOrigin(m_Timer.getLocalBounds().width, 0);
+    m_Timer.setPosition(viewSpace.width, viewSpace.top);
+    
+    m_Timer.setFillColor(sf::Color::White);
+    m_health.setFillColor(sf::Color::White);
+    m_stageTitle.setFillColor(sf::Color::White);
+    
+    
     // set up game battle platform
+    sf::Vector2u platformPos(viewSpace.left, viewSpace.top + 50);
     m_gamePlatform = new Platform(m_stateMgr->GetContext(), this, platformPos);
     
     
@@ -70,8 +105,8 @@ void State_Game::OnCreate(){
     
     
     // set box position
-    m_wordBoxPos = sf::Vector2f(windowSize.x / 2.0f, m_gamePlatform->GetBackgroundBound().height + m_boxSize.y / 2.0f + 30.0f);
-    m_inputBoxPos = sf::Vector2f(windowSize.x / 2.0f, m_wordBoxPos.y + m_boxSize.y + 60.0f);
+    m_wordBoxPos = sf::Vector2f(windowSize.x / 2.0f, platformPos.y + m_gamePlatform->GetBackgroundBound().height + m_boxSize.y / 2.0f + 30.0f);
+    m_inputBoxPos = sf::Vector2f(windowSize.x / 2.0f, m_wordBoxPos.y + m_boxSize.y + 55.0f);
     
     // set correct image
     m_great.setTexture(*textureMgr->GetResource("Correct"));
@@ -87,7 +122,6 @@ void State_Game::OnCreate(){
     m_WordBox.setCornerPointCount(8);
     m_WordBox.setOrigin(m_boxSize.x / 2.0f, m_boxSize.y / 2.0f);
     m_WordBox.setOutlineThickness(2.0f);
-//    m_WordBox.setOutlineColor(sf::Color::Blue);
     m_WordBox.setPosition(m_wordBoxPos.x, m_wordBoxPos.y);
     
     
@@ -97,11 +131,10 @@ void State_Game::OnCreate(){
     m_InputBox.setCornerPointCount(8);
     m_InputBox.setOrigin(m_boxSize.x / 2.0f, m_boxSize.y / 2.0f);
     m_InputBox.setOutlineThickness(2.0f);
-//    m_InputBox.setOutlineColor(sf::Color::Blue);
     m_InputBox.setPosition(m_inputBoxPos.x, m_inputBoxPos.y);
     
     
-    m_font.loadFromFile(resourcePath() + "media/Fonts/NotoSansCJKtc-Bold.otf");
+    
     m_text.setFont(m_font);
     m_text.setCharacterSize(36);
     m_text.setFillColor(sf::Color::White);
@@ -201,6 +234,7 @@ void State_Game::EnterKeyPressed(EventDetails* l_details){
     } else{
         m_text.setFillColor(sf::Color::Red);
         m_shakeTimer = 0.4f;
+        ++m_missedCount;
     }
 }
 
@@ -209,9 +243,23 @@ void State_Game::Update(const sf::Time& l_time){
     sf::Vector2u windowSize = m_stateMgr->GetContext()
     ->m_wind->GetRenderWindow()->getSize();
     
+    m_elapsedTime -= l_time.asSeconds();
+    if (m_elapsedTime <= 0.0f){
+        m_stateMgr->SwitchTo(StateType::GameOver);
+    }
+    
+    if (m_missedCount >= 3){
+        m_stateMgr->SwitchTo(StateType::GameOver);
+    }
+    
+    std::stringstream ss;
+    ss << std::fixed << std::setprecision(2) << m_elapsedTime;
+    
+    m_Timer.setString({"Timer: " + ss.str()});
+    
     if(m_correct && itr2 == m_vocabulary.end()){
         m_correct = false;
-        m_stateMgr->SwitchTo(StateType::GameOver);
+        m_stateMgr->SwitchTo(StateType::Clear);
     }else if (m_correct){
         m_correct = false;
         if(++itr2 == m_vocabulary.end()){
@@ -270,11 +318,16 @@ void State_Game::Update(const sf::Time& l_time){
 void State_Game::Draw(){
     sf::RenderWindow* window = m_stateMgr->GetContext()->m_wind->GetRenderWindow();
     window->draw(m_background);
+    window->draw(m_info);
+    window->draw(m_health);
+    window->draw(m_stageTitle);
+    window->draw(m_Timer);
     window->draw(m_WordBox);
     window->draw(m_InputBox);
     window->draw(m_word);
     window->draw(m_text);
     window->draw(m_great);
+    
     m_gamePlatform->Draw();
     m_keyboard->Draw();
     

@@ -22,7 +22,7 @@ void State_GameOver::OnCreate(){
     m_font.loadFromFile(resourcePath() + "media/Fonts/arial.ttf");
     m_text.setFont(m_font);
     m_text.setCharacterSize(50);
-    m_text.setString("Congratulations! You beat the game!");
+    m_text.setString("No~~~~ You failed!");
     m_text.setFillColor(sf::Color::White);
     m_text.setOrigin(m_text.getLocalBounds().width / 2,
                      m_text.getLocalBounds().height / 2);
