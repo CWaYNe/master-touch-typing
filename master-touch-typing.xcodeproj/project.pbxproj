@@ -32,6 +32,7 @@
 		B0EEE4C01EB08B3700253BCF /* Window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0EEE4BF1EB08B3700253BCF /* Window.cpp */; };
 		B0EEE4C31EB08EDA00253BCF /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0EEE4C11EB08EDA00253BCF /* Game.cpp */; };
 		B0EEE4C81EB0D6F400253BCF /* EventManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0EEE4C61EB0D6F400253BCF /* EventManager.cpp */; };
+		B0F02F241EBEF2F00047A374 /* Platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0F02F221EBEF2F00047A374 /* Platform.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -104,6 +105,8 @@
 		B0EEE4C21EB08EDA00253BCF /* Game.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
 		B0EEE4C61EB0D6F400253BCF /* EventManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EventManager.cpp; sourceTree = "<group>"; };
 		B0EEE4C71EB0D6F400253BCF /* EventManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EventManager.hpp; sourceTree = "<group>"; };
+		B0F02F221EBEF2F00047A374 /* Platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Platform.cpp; sourceTree = "<group>"; };
+		B0F02F231EBEF2F00047A374 /* Platform.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Platform.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +195,8 @@
 				B0935F941EBC7AA00039D9AF /* Key.hpp */,
 				B0EEE4AE1EB0833C00253BCF /* Resources */,
 				B0EEE4A71EB0833C00253BCF /* Supporting Files */,
+				B0F02F221EBEF2F00047A374 /* Platform.cpp */,
+				B0F02F231EBEF2F00047A374 /* Platform.hpp */,
 			);
 			path = "master-touch-typing";
 			sourceTree = "<group>";
@@ -308,6 +313,7 @@
 				B09ECC061EB86BE8001036E1 /* State_GameOver.cpp in Sources */,
 				B0BA8A671EB4505000F4951B /* State_Intro.cpp in Sources */,
 				B0EEE4C81EB0D6F400253BCF /* EventManager.cpp in Sources */,
+				B0F02F241EBEF2F00047A374 /* Platform.cpp in Sources */,
 				B0935F951EBC7AA00039D9AF /* Key.cpp in Sources */,
 				B0EEE4C01EB08B3700253BCF /* Window.cpp in Sources */,
 				B09ECBE71EB75EF4001036E1 /* EntityBase.cpp in Sources */,

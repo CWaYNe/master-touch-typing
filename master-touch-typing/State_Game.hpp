@@ -13,6 +13,7 @@
 #include "EventManager.hpp"
 #include "RoundedRectangleShape.hpp"
 #include "Keyboard.hpp"
+#include "Platform.hpp"
 
 
 class State_Game : public BaseState{
@@ -41,32 +42,39 @@ private:
     // Custom callback
     void AddTypingCallback();
     void RemoveTypingCallback();
-    
+    void LoadGameData(const std::string& l_dataFile);
     
     bool m_correct;
     float m_shakeTimer;
+    float m_correctTimer;
     const float PI;
+    
+    sf::Vector2f m_wordBoxPos;
+    sf::Vector2f m_inputBoxPos;
+    sf::Vector2f m_boxSize;
     
     sf::RoundedRectangleShape m_WordBox;
     sf::RoundedRectangleShape m_InputBox;
     
     sf::Sprite m_background;
     sf::Sprite m_info;
-    sf::Sprite m_battleSprite;
+    sf::Sprite m_great;
+    
+    std::wstring m_defaultText;
+    std::wstring m_userInputs;
+    
+    std::unordered_map<std::wstring, std::wstring> m_vocabulary;
+    std::unordered_map<std::wstring, std::wstring>::iterator itr2;
     
     
-    std::string m_defaultText;
-    std::string m_userInputs;
-    std::vector<std::string> m_english_words;
-    std::vector<std::string>::iterator it;
-    
-    sf::Vector2f defaultScale;
+    sf::Vector2f m_defaultScale;
     sf::Font m_font;
-    sf::Text m_text;
-    sf::Text m_word;
+    sf::Text m_text; // user input box
+    sf::Text m_word; // vocabulary box
+    
     
 
-    
+    Platform* m_gamePlatform;
     Keyboard* m_keyboard;
     
 };
