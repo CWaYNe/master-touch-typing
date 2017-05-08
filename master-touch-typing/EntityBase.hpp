@@ -60,6 +60,7 @@ public:
     
     virtual void Update(float l_dT);
     virtual void Draw(sf::RenderWindow* l_wind) = 0;
+    
 protected:
     // Methods.
     void UpdateAABB();

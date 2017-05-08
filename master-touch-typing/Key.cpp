@@ -13,8 +13,6 @@ Key::Key(unsigned int l_id, KeyType l_type): m_id(l_id), m_type(l_type){};
 
 Key::~Key(){};
 
-
-
 // Getters
 unsigned int Key::GetId() const {
     return m_id;

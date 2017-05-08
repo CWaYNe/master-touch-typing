@@ -13,6 +13,7 @@
 #include "StateManager.hpp"
 #include "TextureManager.hpp"
 #include "EntityManager.hpp"
+#include "PlatformEntityManager.hpp"
 
 class Game{
 public:
@@ -34,6 +35,7 @@ private:
     Window m_window;
     SharedContext m_context;
     EntityManager m_entityManager;
+    PlatformEntityManager m_platformEntityManager;
     TextureManager m_textureManager;
     StateManager m_stateManager;
 };

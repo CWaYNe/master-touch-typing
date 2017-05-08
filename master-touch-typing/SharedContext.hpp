@@ -14,6 +14,7 @@
 #include "TextureManager.hpp"
 #include "EntityManager.hpp"
 #include "DebugOverlay.hpp"
+#include "PlatformEntityManager.hpp"
 
 // keeps the pointer to the main window class and event manager
 
@@ -25,12 +26,14 @@ struct SharedContext{
         m_eventManager(nullptr),
         m_textureManager(nullptr),
         m_entityManager(nullptr),
+        m_platformEntityManager(nullptr),
         m_gameMap(nullptr){};
     
     Window* m_wind;
     EventManager* m_eventManager;
     TextureManager* m_textureManager;
     EntityManager* m_entityManager;
+    PlatformEntityManager* m_platformEntityManager;
     Map* m_gameMap;
     DebugOverlay m_debugOverlay;
 };

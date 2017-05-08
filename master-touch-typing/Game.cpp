@@ -11,7 +11,7 @@
 
 
 Game::Game(): m_window("Master Touch Typing", sf::Vector2u(1024, 768)),
-m_stateManager(&m_context), m_entityManager(&m_context, 100)
+m_stateManager(&m_context), m_entityManager(&m_context, 100), m_platformEntityManager(&m_context, 100)
 {
     m_clock.restart();
     srand(time(nullptr));
@@ -20,7 +20,7 @@ m_stateManager(&m_context), m_entityManager(&m_context, 100)
     m_context.m_eventManager = m_window.GetEventManager();
     m_context.m_textureManager = &m_textureManager;
     m_context.m_entityManager = &m_entityManager;
-    
+    m_context.m_platformEntityManager = &m_platformEntityManager;
     // Set first state of the game
     m_stateManager.SwitchTo(StateType::Intro);
 }

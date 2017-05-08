@@ -21,6 +21,7 @@
 #include "SharedContext.hpp"
 #include "BaseState.hpp"
 
+
 class Platform{
 public:
     Platform(SharedContext* l_context, BaseState* l_currentState, const sf::Vector2u& l_position);
@@ -38,10 +39,8 @@ public:
 private:
     void PurgePlatform(); // purge current platform
     
-    
     SharedContext* m_context;
     BaseState* m_currentState;
-    
     
     bool m_nextStage;
     sf::Vector2u m_backgroundPosition;
@@ -49,6 +48,11 @@ private:
     
     
     sf::Sprite m_backgroundSprite;
+    
+    // DEV TEST PLAYGROUND
+//    sf::RectangleShape m_player;
+//    sf::RectangleShape m_enemy;
+    // END DEV
     
 };
 

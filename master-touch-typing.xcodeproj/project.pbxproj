@@ -27,6 +27,9 @@
 		B0BA8A671EB4505000F4951B /* State_Intro.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0BA8A651EB4505000F4951B /* State_Intro.cpp */; };
 		B0BA8A6A1EB459D800F4951B /* State_Paused.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0BA8A681EB459D800F4951B /* State_Paused.cpp */; };
 		B0BC00D91EBAFE2400401D9B /* State_Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0BC00D71EBAFE2400401D9B /* State_Game.cpp */; };
+		B0CBC9D01EC03E2700080A9B /* PlatformEntityManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0CBC9CE1EC03E2700080A9B /* PlatformEntityManager.cpp */; };
+		B0CBC9D31EC03F2500080A9B /* PlatformEntityBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0CBC9D11EC03F2500080A9B /* PlatformEntityBase.cpp */; };
+		B0CBC9D61EC0411300080A9B /* PlatformCharacter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0CBC9D41EC0411300080A9B /* PlatformCharacter.cpp */; };
 		B0EEE4AA1EB0833C00253BCF /* ResourcePath.mm in Sources */ = {isa = PBXBuildFile; fileRef = B0EEE4A91EB0833C00253BCF /* ResourcePath.mm */; };
 		B0EEE4AD1EB0833C00253BCF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0EEE4AC1EB0833C00253BCF /* main.cpp */; };
 		B0EEE4C01EB08B3700253BCF /* Window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0EEE4BF1EB08B3700253BCF /* Window.cpp */; };
@@ -95,6 +98,12 @@
 		B0BA8A691EB459D800F4951B /* State_Paused.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = State_Paused.hpp; sourceTree = "<group>"; };
 		B0BC00D71EBAFE2400401D9B /* State_Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = State_Game.cpp; sourceTree = "<group>"; };
 		B0BC00D81EBAFE2400401D9B /* State_Game.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = State_Game.hpp; sourceTree = "<group>"; };
+		B0CBC9CE1EC03E2700080A9B /* PlatformEntityManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlatformEntityManager.cpp; sourceTree = "<group>"; };
+		B0CBC9CF1EC03E2700080A9B /* PlatformEntityManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PlatformEntityManager.hpp; sourceTree = "<group>"; };
+		B0CBC9D11EC03F2500080A9B /* PlatformEntityBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlatformEntityBase.cpp; sourceTree = "<group>"; };
+		B0CBC9D21EC03F2500080A9B /* PlatformEntityBase.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PlatformEntityBase.hpp; sourceTree = "<group>"; };
+		B0CBC9D41EC0411300080A9B /* PlatformCharacter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlatformCharacter.cpp; sourceTree = "<group>"; };
+		B0CBC9D51EC0411300080A9B /* PlatformCharacter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PlatformCharacter.hpp; sourceTree = "<group>"; };
 		B0EEE4A41EB0833C00253BCF /* master-touch-typing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "master-touch-typing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0EEE4A81EB0833C00253BCF /* master-touch-typing-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "master-touch-typing-Info.plist"; sourceTree = "<group>"; };
 		B0EEE4A91EB0833C00253BCF /* ResourcePath.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ResourcePath.mm; sourceTree = "<group>"; };
@@ -146,6 +155,8 @@
 				B09ECBD41EB71924001036E1 /* Anim_Base.hpp */,
 				B09ECBD81EB71C30001036E1 /* Anim_Directional.cpp */,
 				B09ECBD91EB71C30001036E1 /* Anim_Directional.hpp */,
+				B09ECBCE1EB71484001036E1 /* SpriteSheet.cpp */,
+				B09ECBCF1EB71484001036E1 /* SpriteSheet.hpp */,
 				B079E90C1EB2223300D7A830 /* BaseState.hpp */,
 				B09ECBEB1EB83732001036E1 /* Character.cpp */,
 				B09ECBEC1EB83732001036E1 /* Character.hpp */,
@@ -168,8 +179,6 @@
 				B09ECBF11EB83B4A001036E1 /* Player.hpp */,
 				B09ECBCA1EB71094001036E1 /* ResourceManager.hpp */,
 				B079E9111EB2289000D7A830 /* SharedContext.hpp */,
-				B09ECBCE1EB71484001036E1 /* SpriteSheet.cpp */,
-				B09ECBCF1EB71484001036E1 /* SpriteSheet.hpp */,
 				B0BA8A621EB44DC900F4951B /* State_Game2.cpp */,
 				B0BA8A631EB44DC900F4951B /* State_Game2.hpp */,
 				B0BA8A651EB4505000F4951B /* State_Intro.cpp */,
@@ -196,12 +205,18 @@
 				B0935F911EBC70930039D9AF /* Keyboard.hpp */,
 				B0935F931EBC7AA00039D9AF /* Key.cpp */,
 				B0935F941EBC7AA00039D9AF /* Key.hpp */,
-				B0EEE4AE1EB0833C00253BCF /* Resources */,
-				B0EEE4A71EB0833C00253BCF /* Supporting Files */,
 				B0F02F221EBEF2F00047A374 /* Platform.cpp */,
 				B0F02F231EBEF2F00047A374 /* Platform.hpp */,
 				B0F02F251EBF15130047A374 /* State_GameClear.cpp */,
 				B0F02F261EBF15130047A374 /* State_GameClear.hpp */,
+				B0EEE4AE1EB0833C00253BCF /* Resources */,
+				B0EEE4A71EB0833C00253BCF /* Supporting Files */,
+				B0CBC9CE1EC03E2700080A9B /* PlatformEntityManager.cpp */,
+				B0CBC9CF1EC03E2700080A9B /* PlatformEntityManager.hpp */,
+				B0CBC9D11EC03F2500080A9B /* PlatformEntityBase.cpp */,
+				B0CBC9D21EC03F2500080A9B /* PlatformEntityBase.hpp */,
+				B0CBC9D41EC0411300080A9B /* PlatformCharacter.cpp */,
+				B0CBC9D51EC0411300080A9B /* PlatformCharacter.hpp */,
 			);
 			path = "master-touch-typing";
 			sourceTree = "<group>";
@@ -313,6 +328,7 @@
 				B0935F8F1EBC51510039D9AF /* RoundedRectangleShape.cpp in Sources */,
 				B0EEE4AD1EB0833C00253BCF /* main.cpp in Sources */,
 				B09ECBF21EB83B4A001036E1 /* Player.cpp in Sources */,
+				B0CBC9D31EC03F2500080A9B /* PlatformEntityBase.cpp in Sources */,
 				B0BA8A6A1EB459D800F4951B /* State_Paused.cpp in Sources */,
 				B0F02F271EBF15130047A374 /* State_GameClear.cpp in Sources */,
 				B09ECBED1EB83732001036E1 /* Character.cpp in Sources */,
@@ -323,6 +339,7 @@
 				B0935F951EBC7AA00039D9AF /* Key.cpp in Sources */,
 				B0EEE4C01EB08B3700253BCF /* Window.cpp in Sources */,
 				B09ECBE71EB75EF4001036E1 /* EntityBase.cpp in Sources */,
+				B0CBC9D61EC0411300080A9B /* PlatformCharacter.cpp in Sources */,
 				B09ECBD71EB71A1D001036E1 /* Anim_Base.cpp in Sources */,
 				B079E9101EB2281000D7A830 /* StateManager.cpp in Sources */,
 				B0BA8A611EB38D0900F4951B /* State_MainMenu.cpp in Sources */,
@@ -332,6 +349,7 @@
 				B09ECBD01EB71484001036E1 /* SpriteSheet.cpp in Sources */,
 				B0BA8A641EB44DC900F4951B /* State_Game2.cpp in Sources */,
 				B09ECBE41EB73BD0001036E1 /* Map.cpp in Sources */,
+				B0CBC9D01EC03E2700080A9B /* PlatformEntityManager.cpp in Sources */,
 				B0BC00D91EBAFE2400401D9B /* State_Game.cpp in Sources */,
 				B0EEE4C31EB08EDA00253BCF /* Game.cpp in Sources */,
 				B0935F921EBC70930039D9AF /* Keyboard.cpp in Sources */,

@@ -18,7 +18,7 @@ void Anim_Directional::CropSprite(){
 
 void Anim_Directional::FrameStep(){
     if (m_frameStart < m_frameEnd){ ++m_frameCurrent; }
-    else { --m_frameCurrent; }
+    else { --m_frameCurrent; }  // backwards
     
     if ((m_frameStart < m_frameEnd && m_frameCurrent > m_frameEnd) ||
         (m_frameStart > m_frameEnd && m_frameCurrent < m_frameEnd))

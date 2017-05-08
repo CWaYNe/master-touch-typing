@@ -54,9 +54,6 @@ void Keyboard::LoadKeys(const std::string& l_keyFile){
             keystream >> id >> type;
             keystream >> keyTag;
             
-            
-
-            
             if (code1 != -1){
                 m_key_mapping.insert(std::make_pair(unsigned(code1), unsigned(id)));
             }
@@ -96,7 +93,6 @@ void Keyboard::LoadKeys(const std::string& l_keyFile){
                 label = sf::String(L'⇧');
             else if (id == 53)
                 label = sf::String("SPACE");
-            
             
             xPos += lw/2.0f + w/2.0f + 5;
             sf::Vector2f keyPosition(xPos, yPos);

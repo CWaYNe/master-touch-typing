@@ -8,7 +8,6 @@
 
 #include "Platform.hpp"
 
-
 Platform::Platform(SharedContext* l_context, BaseState* l_currentState, const sf::Vector2u& l_position):m_context(l_context), m_currentState(l_currentState), m_nextStage(false), m_backgroundPosition(l_position){
     LoadBackground();
 }
@@ -31,9 +30,27 @@ void Platform::LoadBackground(){
     textureMgr->RequireResource(m_backgroundTexture);
     
     m_backgroundSprite.setTexture(*textureMgr->GetResource(m_backgroundTexture));
+    m_backgroundSprite.setScale(windowSize.x / m_backgroundSprite.getLocalBounds().width, 1);
+    m_backgroundSprite.setOrigin(m_backgroundSprite.getLocalBounds().width / 2.0f, m_backgroundSprite.getLocalBounds().height / 2.0f);
+    m_backgroundSprite.setPosition(m_backgroundPosition.x + m_backgroundSprite.getLocalBounds().width / 2.0f, m_backgroundPosition.y + m_backgroundSprite.getLocalBounds().height / 2.0f);
     
-    m_backgroundSprite.setScale(windowSize.x /m_backgroundSprite.getLocalBounds().width, 1);
-    m_backgroundSprite.setPosition(m_backgroundPosition.x, m_backgroundPosition.y);
+    m_context->m_platformEntityManager->Add(PlatformEntityType::Player, "");
+    m_context->m_platformEntityManager->Add(PlatformEntityType::Enemy, "");
+    
+    // DEV TEST PLAYGROUND
+//    m_player.setSize(sf::Vector2f(32, 32));
+//    m_player.setFillColor(sf::Color::Green);
+//    m_player.setOrigin(m_player.getSize().x / 2.0f, m_player.getSize().y / 2.0f);
+//    m_player.setPosition(16.0f, m_backgroundSprite.getPosition().y + m_backgroundSprite.getLocalBounds().height / 2.0f - 16.0f);
+//
+//    m_enemy.setSize(sf::Vector2f(32, 32));
+//    m_enemy.setFillColor(sf::Color::Red);
+//    m_enemy.setOrigin(m_enemy.getSize().x / 2.0f, m_enemy.getSize().y / 2.0f);
+//    m_enemy.setPosition(m_backgroundSprite.getPosition().x + m_backgroundSprite.getLocalBounds().width / 2.0f - 16.0f, m_backgroundSprite.getPosition().y + m_backgroundSprite.getLocalBounds().height / 2.0f -  16.0f);
+//    
+
+    // END DEV
+    
 }
 
 void Platform::PurgePlatform(){
@@ -60,4 +77,9 @@ void Platform::Update(float l_dT){
 void Platform::Draw(){
     sf::RenderWindow* window = m_context->m_wind->GetRenderWindow();
     window->draw(m_backgroundSprite);
+    
+    // DEV TEST PlAYGROUND
+//    window->draw(m_player);
+//    window->draw(m_enemy);
+    // END DEV
 }

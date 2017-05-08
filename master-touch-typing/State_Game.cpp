@@ -25,7 +25,6 @@ State_Game::~State_Game(){};
 void State_Game::LoadGameData(const std::string& l_dataFile){
     std::wifstream vocabularyMapping;
     vocabularyMapping.open(resourcePath()+l_dataFile);
-    std::cout << resourcePath() << std::endl;
     // TODO: Solve unicode problem
     if(vocabularyMapping.is_open()){
         std::wstring line;
@@ -56,9 +55,6 @@ void State_Game::OnCreate(){
     
     textureMgr->RequireResource("GameStateBg");
     textureMgr->RequireResource("Correct");
-    
-    
-    
     
     m_background.setTexture(*textureMgr->GetResource("GameStateBg"));
     
@@ -124,7 +120,6 @@ void State_Game::OnCreate(){
     m_WordBox.setOutlineThickness(2.0f);
     m_WordBox.setPosition(m_wordBoxPos.x, m_wordBoxPos.y);
     
-    
     m_InputBox.setSize(m_boxSize);
     m_InputBox.setFillColor(sf::Color::Color(5, 80, 140));
     m_InputBox.setCornersRadius(7.5f);
@@ -132,8 +127,6 @@ void State_Game::OnCreate(){
     m_InputBox.setOrigin(m_boxSize.x / 2.0f, m_boxSize.y / 2.0f);
     m_InputBox.setOutlineThickness(2.0f);
     m_InputBox.setPosition(m_inputBoxPos.x, m_inputBoxPos.y);
-    
-    
     
     m_text.setFont(m_font);
     m_text.setCharacterSize(36);
@@ -329,8 +322,8 @@ void State_Game::Draw(){
     window->draw(m_great);
     
     m_gamePlatform->Draw();
+    m_stateMgr->GetContext()->m_platformEntityManager->Draw();
     m_keyboard->Draw();
-    
 }
 
 void State_Game::MainMenu(EventDetails* l_details){
