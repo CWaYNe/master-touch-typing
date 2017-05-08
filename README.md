@@ -8,6 +8,7 @@ A sfml game to help me master touch-typing in a more interesting and funny way
 | #    | Content                                | Link to commit                           |
 | ---- | -------------------------------------- | ---------------------------------------- |
 | 1    | Chapter 6 source code tested on MAC OS | [7448fd9](https://github.com/CWaYNe/master-touch-typing/commit/7448fd9d6e9396080f8f02fedcde252303b31f5b) |
+| 2    | Master touch typing pre-alpha  version        | [6653cd2](https://github.com/CWaYNe/master-touch-typing/commit/6653cd2d8fcbb5f4a177aebab0859ca81b933241) |
 
 ## Credit
 
