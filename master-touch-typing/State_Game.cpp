@@ -67,7 +67,7 @@ void State_Game::OnCreate(){
     m_stageTitle.setFont(m_font);
     m_Timer.setFont(m_font);
     
-    m_health.setString({"Health: "});
+    m_health.setString({"Health: " + std::to_string(3 - m_missedCount)});
     m_stageTitle.setString({"Stage 1"});
     
     std::stringstream ss;
@@ -234,9 +234,10 @@ void State_Game::EnterKeyPressed(EventDetails* l_details){
         PlatformEntityBase* player = m_stateMgr->GetContext()->m_platformEntityManager->Find("Player");
         
     } else{
+        ++m_missedCount;
+        m_health.setString({"Health: " + std::to_string(3 - m_missedCount)});
         m_text.setFillColor(sf::Color::Red);
         m_shakeTimer = 0.4f;
-        ++m_missedCount;
     }
 }
 
