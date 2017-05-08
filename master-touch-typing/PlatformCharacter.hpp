@@ -24,8 +24,12 @@ public:
     virtual void Update(float l_dT);
     void Draw(sf::RenderWindow* l_wind);
     
+    
 private:
-    sf::RectangleShape m_sprite;
+    void Animate();
+    SpriteSheet m_spriteSheet;
+    
+    int m_hitpoints;
 
 };
 #endif /* PlatformCharacter_hpp */

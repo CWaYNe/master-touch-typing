@@ -34,9 +34,10 @@ private:
     sf::Time m_elapsed;
     Window m_window;
     SharedContext m_context;
+    TextureManager m_textureManager;
     EntityManager m_entityManager;
     PlatformEntityManager m_platformEntityManager;
-    TextureManager m_textureManager;
+    
     StateManager m_stateManager;
 };
 

@@ -159,6 +159,7 @@ void State_Game::OnCreate(){
 }
 
 void State_Game::OnDestroy(){
+    std::cout << "Game removed" << std::endl;
     TextureManager* textureMgr = m_stateMgr->GetContext()->m_textureManager;
     textureMgr->ReleaseResource("GameStateBg");
     textureMgr->ReleaseResource("Correct");
@@ -169,6 +170,12 @@ void State_Game::OnDestroy(){
     RemoveTypingCallback();
     delete m_keyboard;
     m_keyboard = nullptr;
+    delete m_gamePlatform;
+    m_gamePlatform = nullptr;
+    
+    m_stateMgr->GetContext()->m_platformEntityManager->Purge();
+    
+    
 }
 
 void State_Game::AddTypingCallback(){
@@ -224,6 +231,8 @@ void State_Game::EnterKeyPressed(EventDetails* l_details){
         m_userInputs = L"";
         m_text.setFillColor(sf::Color::White);
         m_correctTimer = 0.2f;
+        PlatformEntityBase* player = m_stateMgr->GetContext()->m_platformEntityManager->Find("Player");
+        
     } else{
         m_text.setFillColor(sf::Color::Red);
         m_shakeTimer = 0.4f;
@@ -237,11 +246,13 @@ void State_Game::Update(const sf::Time& l_time){
     ->m_wind->GetRenderWindow()->getSize();
     
     m_elapsedTime -= l_time.asSeconds();
-    if (m_elapsedTime <= 0.0f){
-        m_stateMgr->SwitchTo(StateType::GameOver);
-    }
-    
-    if (m_missedCount >= 3){
+    if (m_elapsedTime <= 0.0f || m_missedCount >= 3){
+        PlatformEntityBase* player = m_stateMgr->GetContext()->m_platformEntityManager->Find("Player");
+        PlatformEntityBase* enemy = m_stateMgr->GetContext()->m_platformEntityManager->Find("Enemy");
+        player->SetState(PlatformEntityState::Dying);
+        enemy->SetState(PlatformEntityState::Dying); // cheat here
+        player->SetPosition(windowSize.x / 2.0f - 40, windowSize.y / 2.0f - 20);
+        enemy->SetPosition(windowSize.x / 2.0f + 20, windowSize.y / 2.0f - 20);
         m_stateMgr->SwitchTo(StateType::GameOver);
     }
     
@@ -305,7 +316,7 @@ void State_Game::Update(const sf::Time& l_time){
     }
     m_gamePlatform->Update(l_time.asSeconds());
     m_keyboard->Update(l_time.asSeconds());
-    
+    m_stateMgr->GetContext()->m_platformEntityManager->Update(l_time.asSeconds());
 }
 
 void State_Game::Draw(){

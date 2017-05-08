@@ -49,6 +49,7 @@ private:
     float m_shakeTimer;
     float m_correctTimer;
     float m_elapsedTime;
+    float m_dyingTime;
     const float PI;
     
     sf::Vector2f m_wordBoxPos;

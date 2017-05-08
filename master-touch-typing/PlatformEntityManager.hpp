@@ -11,8 +11,8 @@
 
 #include <unordered_map>
 #include <functional>
-#include "PlatformCharacter.hpp"
-
+#include "PlatformPlayer.hpp"
+#include "PlatformEnemy.hpp"
 
 
 
@@ -31,12 +31,17 @@ public:
     int Add(const PlatformEntityType& l_type, const std::string& l_name);
     PlatformEntityBase* Find(const std::string& l_name);
     PlatformEntityBase* Find(unsigned int l_id);
+    void Remove(unsigned int l_id);
 
     void Update(float l_dT);
     void Draw();
     
-private:
     void Purge();
+    SharedContext* GetContext();
+private:
+
+    void ProcessRemovals();
+    
     template<class T>
     void RegisterEntity(const PlatformEntityType& l_type){
         m_platformEntityFactory[l_type] = [this]() -> PlatformEntityBase*
@@ -46,10 +51,13 @@ private:
     }
     
     PlatformEntityContainer m_platformEntities;
+    PlatformEnemyTypes m_enemyTypes;
     PlatformEntityFactory m_platformEntityFactory;
     SharedContext* m_context;
     unsigned int m_maxEntities;
     unsigned int m_idCounter;
+    
+    std::vector<unsigned int> m_entitiesToRemove;
 };
 
 #endif /* PlatformEntityManager_hpp */

@@ -13,8 +13,8 @@ PlatformEntityManager::PlatformEntityManager(SharedContext* l_context, unsigned 
 :m_context(l_context), m_maxEntities(l_maxEntities), m_idCounter(0)
 {
 //    LoadEnemyTypes("EnemyList.list");
-    RegisterEntity<PlatformCharacter>(PlatformEntityType::Player);
-//    RegisterEntity<Enemy>(EntityType::Enemy);
+    RegisterEntity<PlatformPlayer>(PlatformEntityType::Player);
+    RegisterEntity<PlatformEnemy>(PlatformEntityType::Enemy);
 }
 
 PlatformEntityManager::~PlatformEntityManager(){
@@ -43,8 +43,29 @@ void PlatformEntityManager::Purge(){
     m_idCounter = 0;
 }
 
+void PlatformEntityManager::Remove(unsigned int l_id){
+    m_entitiesToRemove.emplace_back(l_id);
+}
+
+
+void PlatformEntityManager::ProcessRemovals(){
+    while(m_entitiesToRemove.begin() != m_entitiesToRemove.end()){
+        unsigned int id = m_entitiesToRemove.back();
+        auto itr = m_platformEntities.find(id);
+        if (itr != m_platformEntities.end()){
+            std::cout << "Discarding entity: " << itr->second->GetId() << std::endl;
+            delete itr->second;
+            m_platformEntities.erase(itr);
+        }
+        m_entitiesToRemove.pop_back();
+    }
+}
+
 void PlatformEntityManager::Update(float l_dT){
-    
+    for (auto &itr : m_platformEntities){
+        itr.second->Update(l_dT);
+    }
+    ProcessRemovals();
 }
 
 void PlatformEntityManager::Draw(){
@@ -70,4 +91,8 @@ PlatformEntityBase* PlatformEntityManager::Find(unsigned int l_id){
     auto itr = m_platformEntities.find(l_id);
     if (itr == m_platformEntities.end()){ return nullptr; }
     return itr->second;
+}
+
+SharedContext* PlatformEntityManager::GetContext(){
+    return m_context;
 }

@@ -1,0 +1,11 @@
+Texture OrcSprite
+Size 64 64
+Scale 2 2
+|Type|Name|StartFrame|EndFrame|Row|FrameTime|FrameActionStart|FrameActionEnd|
+AnimationType Directional
+Animation Attack 0 5 6 0.1 2 3
+Animation Jump 0 8 10 0.2 -1 -1 
+Animation Hurt 0 2 8 0.2 -1 -1
+Animation Death 0 6 2 0.2 -1 -1
+Animation Idle 0 1 13 0.7 -1 -1
+Animation Walk 0 8 9 0.1 -1 -1

@@ -30,6 +30,8 @@
 		B0CBC9D01EC03E2700080A9B /* PlatformEntityManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0CBC9CE1EC03E2700080A9B /* PlatformEntityManager.cpp */; };
 		B0CBC9D31EC03F2500080A9B /* PlatformEntityBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0CBC9D11EC03F2500080A9B /* PlatformEntityBase.cpp */; };
 		B0CBC9D61EC0411300080A9B /* PlatformCharacter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0CBC9D41EC0411300080A9B /* PlatformCharacter.cpp */; };
+		B0CBC9D91EC04E3B00080A9B /* PlatformPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0CBC9D71EC04E3B00080A9B /* PlatformPlayer.cpp */; };
+		B0CBC9DC1EC04EEA00080A9B /* PlatformEnemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0CBC9DA1EC04EEA00080A9B /* PlatformEnemy.cpp */; };
 		B0EEE4AA1EB0833C00253BCF /* ResourcePath.mm in Sources */ = {isa = PBXBuildFile; fileRef = B0EEE4A91EB0833C00253BCF /* ResourcePath.mm */; };
 		B0EEE4AD1EB0833C00253BCF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0EEE4AC1EB0833C00253BCF /* main.cpp */; };
 		B0EEE4C01EB08B3700253BCF /* Window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0EEE4BF1EB08B3700253BCF /* Window.cpp */; };
@@ -104,6 +106,10 @@
 		B0CBC9D21EC03F2500080A9B /* PlatformEntityBase.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PlatformEntityBase.hpp; sourceTree = "<group>"; };
 		B0CBC9D41EC0411300080A9B /* PlatformCharacter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlatformCharacter.cpp; sourceTree = "<group>"; };
 		B0CBC9D51EC0411300080A9B /* PlatformCharacter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PlatformCharacter.hpp; sourceTree = "<group>"; };
+		B0CBC9D71EC04E3B00080A9B /* PlatformPlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlatformPlayer.cpp; sourceTree = "<group>"; };
+		B0CBC9D81EC04E3B00080A9B /* PlatformPlayer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PlatformPlayer.hpp; sourceTree = "<group>"; };
+		B0CBC9DA1EC04EEA00080A9B /* PlatformEnemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlatformEnemy.cpp; sourceTree = "<group>"; };
+		B0CBC9DB1EC04EEA00080A9B /* PlatformEnemy.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PlatformEnemy.hpp; sourceTree = "<group>"; };
 		B0EEE4A41EB0833C00253BCF /* master-touch-typing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "master-touch-typing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0EEE4A81EB0833C00253BCF /* master-touch-typing-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "master-touch-typing-Info.plist"; sourceTree = "<group>"; };
 		B0EEE4A91EB0833C00253BCF /* ResourcePath.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ResourcePath.mm; sourceTree = "<group>"; };
@@ -217,6 +223,10 @@
 				B0CBC9D21EC03F2500080A9B /* PlatformEntityBase.hpp */,
 				B0CBC9D41EC0411300080A9B /* PlatformCharacter.cpp */,
 				B0CBC9D51EC0411300080A9B /* PlatformCharacter.hpp */,
+				B0CBC9D71EC04E3B00080A9B /* PlatformPlayer.cpp */,
+				B0CBC9D81EC04E3B00080A9B /* PlatformPlayer.hpp */,
+				B0CBC9DA1EC04EEA00080A9B /* PlatformEnemy.cpp */,
+				B0CBC9DB1EC04EEA00080A9B /* PlatformEnemy.hpp */,
 			);
 			path = "master-touch-typing";
 			sourceTree = "<group>";
@@ -343,12 +353,14 @@
 				B09ECBD71EB71A1D001036E1 /* Anim_Base.cpp in Sources */,
 				B079E9101EB2281000D7A830 /* StateManager.cpp in Sources */,
 				B0BA8A611EB38D0900F4951B /* State_MainMenu.cpp in Sources */,
+				B0CBC9D91EC04E3B00080A9B /* PlatformPlayer.cpp in Sources */,
 				B09ECBF51EB83C5B001036E1 /* Enemy.cpp in Sources */,
 				B09ECBEA1EB82C44001036E1 /* EntityManager.cpp in Sources */,
 				B0EEE4AA1EB0833C00253BCF /* ResourcePath.mm in Sources */,
 				B09ECBD01EB71484001036E1 /* SpriteSheet.cpp in Sources */,
 				B0BA8A641EB44DC900F4951B /* State_Game2.cpp in Sources */,
 				B09ECBE41EB73BD0001036E1 /* Map.cpp in Sources */,
+				B0CBC9DC1EC04EEA00080A9B /* PlatformEnemy.cpp in Sources */,
 				B0CBC9D01EC03E2700080A9B /* PlatformEntityManager.cpp in Sources */,
 				B0BC00D91EBAFE2400401D9B /* State_Game.cpp in Sources */,
 				B0EEE4C31EB08EDA00253BCF /* Game.cpp in Sources */,

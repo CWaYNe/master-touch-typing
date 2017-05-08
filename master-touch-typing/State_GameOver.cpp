@@ -23,12 +23,11 @@ void State_GameOver::OnCreate(){
     m_text.setFont(m_font);
     m_text.setCharacterSize(50);
     m_text.setString("No~~~~ You failed!");
-    m_text.setFillColor(sf::Color::White);
+    m_text.setFillColor(sf::Color::Red);
     m_text.setOrigin(m_text.getLocalBounds().width / 2,
                      m_text.getLocalBounds().height / 2);
     m_text.setPosition(windowSize.x / 2.0f , windowSize.y /2.0f);
-
-    m_stateMgr->Remove(StateType::Game);
+    
 }
 
 void State_GameOver::OnDestroy(){}
@@ -38,13 +37,16 @@ void State_GameOver::Deactivate(){}
 
 void State_GameOver::Update(const sf::Time& l_time){
     m_elapsed += l_time.asSeconds();
-    if(m_elapsed >= 1.0f){
+    if(m_elapsed >= 1.50f){
         m_stateMgr->Remove(StateType::GameOver);
         m_stateMgr->SwitchTo(StateType::MainMenu);
+        m_stateMgr->Remove(StateType::Game);
     }
+    m_stateMgr->GetContext()->m_platformEntityManager->Update(l_time.asSeconds());
 }
 
 void State_GameOver::Draw(){
     sf::RenderWindow* window = m_stateMgr->GetContext()->m_wind->GetRenderWindow();
     window->draw(m_text);
+    m_stateMgr->GetContext()->m_platformEntityManager->Draw();
 }

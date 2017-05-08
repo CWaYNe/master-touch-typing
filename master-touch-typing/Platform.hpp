@@ -48,11 +48,7 @@ private:
     
     
     sf::Sprite m_backgroundSprite;
-    
-    // DEV TEST PLAYGROUND
-//    sf::RectangleShape m_player;
-//    sf::RectangleShape m_enemy;
-    // END DEV
+
     
 };
 

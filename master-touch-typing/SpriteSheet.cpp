@@ -16,6 +16,7 @@ m_spriteScale(1.f, 1.f), m_direction(Direction::Right){}
 SpriteSheet::~SpriteSheet(){ ReleaseSheet(); }
 
 void SpriteSheet::ReleaseSheet(){
+    std::cout << "Releasing texture :" << m_texture << std::endl;
     m_textureManager->ReleaseResource(m_texture);
     m_animationCurrent = nullptr;
     while(m_animations.begin() != m_animations.end()){
